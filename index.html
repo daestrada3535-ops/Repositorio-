@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clientes del taller</title>
+<style>
+  :root {
+    --bg: #f4f5f7; --card: #fff; --text: #1d2330; --muted: #6b7280;
+    --line: #e2e5ea; --accent: #d9480f; --accent-text: #fff; --danger: #c92a2a;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171c; --card: #1e232b; --text: #e6e8eb; --muted: #9aa3ae;
+      --line: #2e3540; --accent: #ff7a3d; --accent-text: #14171c; --danger: #ff6b6b;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+         background: var(--bg); color: var(--text); }
+  header { position: sticky; top: 0; background: var(--card); border-bottom: 1px solid var(--line);
+           padding: 12px 16px; z-index: 5; }
+  header h1 { margin: 0 0 8px; font-size: 1.25rem; }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  main { max-width: 820px; margin: 0 auto; padding: 16px; }
+  input, textarea, select { width: 100%; padding: 10px; border: 1px solid var(--line); border-radius: 8px;
+           background: var(--bg); color: var(--text); font: inherit; }
+  textarea { min-height: 70px; resize: vertical; }
+  button { padding: 9px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--card);
+           color: var(--text); font: inherit; cursor: pointer; }
+  button.primary { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
+  button.danger { color: var(--danger); }
+  .search { flex: 1; min-width: 180px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px; margin-bottom: 12px; }
+  .client { cursor: pointer; }
+  .client h3 { margin: 0 0 4px; font-size: 1.05rem; }
+  .muted { color: var(--muted); font-size: .9rem; }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line);
+         font-size: .8rem; margin: 4px 4px 0 0; }
+  .empty { text-align: center; color: var(--muted); padding: 40px 0; }
+  label { display: block; font-size: .85rem; color: var(--muted); margin: 10px 0 4px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 12px; }
+  @media (max-width: 520px) { .grid2 { grid-template-columns: 1fr; } }
+  dialog { border: none; border-radius: 14px; padding: 0; width: min(560px, calc(100% - 32px));
+           background: var(--card); color: var(--text); }
+  dialog::backdrop { background: rgba(0,0,0,.45); }
+  dialog form { padding: 18px; }
+  dialog h2 { margin: 0 0 6px; font-size: 1.15rem; }
+  .actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+  table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+  th, td { text-align: left; padding: 6px 4px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .section-title { display: flex; justify-content: space-between; align-items: center; margin: 18px 0 8px; }
+  .section-title h3 { margin: 0; font-size: 1rem; }
+  .stats { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+  .stat { flex: 1; min-width: 120px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; }
+  .stat b { display: block; font-size: 1.3rem; }
+</style>
+</head>
+<body>
+<header>
+  <h1>🔧 Clientes del taller</h1>
+  <div class="row">
+    <input id="search" class="search" type="search" placeholder="Buscar por nombre, teléfono, placa, marca…">
+    <button class="primary" id="btnNew">+ Nuevo cliente</button>
+  </div>
+</header>
+
+<main>
+  <div class="stats" id="stats"></div>
+  <div id="list"></div>
+  <div class="row" style="justify-content:center;margin-top:20px">
+    <button id="btnExport">Exportar datos</button>
+    <button id="btnImport">Importar datos</button>
+    <input type="file" id="fileImport" accept="application/json" hidden>
+  </div>
+</main>
+
+<!-- Formulario de cliente -->
+<dialog id="dlgClient">
+  <form method="dialog" id="formClient">
+    <h2 id="clientTitle">Nuevo cliente</h2>
+    <label>Nombre *</label>
+    <input name="nombre" required>
+    <div class="grid2">
+      <div><label>Teléfono</label><input name="telefono" type="tel"></div>
+      <div><label>Correo</label><input name="correo" type="email"></div>
+    </div>
+    <label>Dirección</label>
+    <input name="direccion">
+    <label>Notas</label>
+    <textarea name="notas"></textarea>
+    <div class="actions">
+      <button value="cancel" formnovalidate>Cancelar</button>
+      <button class="primary" value="ok">Guardar</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- Detalle de cliente -->
+<dialog id="dlgDetail">
+  <form method="dialog" id="detail"></form>
+</dialog>
+
+<!-- Formulario de vehículo -->
+<dialog id="dlgVehicle">
+  <form method="dialog" id="formVehicle">
+    <h2>Vehículo</h2>
+    <div class="grid2">
+      <div><label>Placa *</label><input name="placa" required></div>
+      <div><label>Marca</label><input name="marca"></div>
+      <div><label>Modelo</label><input name="modelo"></div>
+      <div><label>Año</label><input name="anio" type="number" min="1900" max="2100"></div>
+      <div><label>Color</label><input name="color"></div>
+      <div><label>Kilometraje</label><input name="km" type="number" min="0"></div>
+    </div>
+    <div class="actions">
+      <button value="cancel" formnovalidate>Cancelar</button>
+      <button class="primary" value="ok">Guardar</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- Formulario de servicio -->
+<dialog id="dlgService">
+  <form method="dialog" id="formService">
+    <h2>Servicio / reparación</h2>
+    <div class="grid2">
+      <div><label>Fecha *</label><input name="fecha" type="date" required></div>
+      <div><label>Vehículo</label><select name="vehiculoId"></select></div>
+      <div><label>Costo</label><input name="costo" type="number" min="0" step="0.01"></div>
+      <div><label>Estado</label>
+        <select name="estado">
+          <option>Pendiente</option><option>En proceso</option><option>Terminado</option><option>Entregado</option>
+        </select>
+      </div>
+    </div>
+    <label>Descripción *</label>
+    <textarea name="descripcion" required></textarea>
+    <div class="actions">
+      <button value="cancel" formnovalidate>Cancelar</button>
+      <button class="primary" value="ok">Guardar</button>
+    </div>
+  </form>
+</dialog>
+
+<script>
+const KEY = 'taller-clientes-v1';
+let db = load();
+let current = null;   // id del cliente abierto
+let editing = null;   // id del registro en edición
+
+function load() {
+  try { return JSON.parse(localStorage.getItem(KEY)) || { clientes: [] }; }
+  catch { return { clientes: [] }; }
+}
+function save() {
+  try { localStorage.setItem(KEY, JSON.stringify(db)); } catch {}
+  render();
+}
+const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money = (n) => (Number(n) || 0).toLocaleString('es', { style: 'currency', currency: 'USD' });
+const byId = (id) => db.clientes.find(c => c.id === id);
+
+// ---------- Lista ----------
+function render() {
+  const q = $('#search').value.trim().toLowerCase();
+  const list = db.clientes
+    .filter(c => !q || [c.nombre, c.telefono, c.correo, ...c.vehiculos.flatMap(v => [v.placa, v.marca, v.modelo])]
+      .some(x => String(x || '').toLowerCase().includes(q)))
+    .sort((a, b) => a.nombre.localeCompare(b.nombre));
+
+  const servicios = db.clientes.flatMap(c => c.servicios);
+  const abiertos = servicios.filter(s => s.estado === 'Pendiente' || s.estado === 'En proceso').length;
+  $('#stats').innerHTML = `
+    <div class="stat"><span class="muted">Clientes</span><b>${db.clientes.length}</b></div>
+    <div class="stat"><span class="muted">Vehículos</span><b>${db.clientes.reduce((n, c) => n + c.vehiculos.length, 0)}</b></div>
+    <div class="stat"><span class="muted">Trabajos abiertos</span><b>${abiertos}</b></div>`;
+
+  $('#list').innerHTML = list.length ? list.map(c => {
+    const last = [...c.servicios].sort((a, b) => b.fecha.localeCompare(a.fecha))[0];
+    return `<div class="card client" data-id="${c.id}">
+      <h3>${esc(c.nombre)}</h3>
+      <div class="muted">${esc(c.telefono || 'Sin teléfono')}${last ? ' · Último servicio: ' + esc(last.fecha) : ''}</div>
+      <div>${c.vehiculos.map(v => `<span class="tag">🚗 ${esc(v.placa)} ${esc(v.marca)} ${esc(v.modelo)}</span>`).join('')}</div>
+    </div>`;
+  }).join('') : `<div class="empty">${q ? 'No hay resultados.' : 'Aún no hay clientes. Pulsa “+ Nuevo cliente”.'}</div>`;
+
+  if (current && $('#dlgDetail').open) renderDetail();
+}
+
+$('#list').addEventListener('click', e => {
+  const card = e.target.closest('.client');
+  if (card) openDetail(card.dataset.id);
+});
+$('#search').addEventListener('input', render);
+
+// ---------- Cliente ----------
+function fill(form, data) {
+  for (const el of form.elements) if (el.name) el.value = data?.[el.name] ?? '';
+}
+function read(form) {
+  const o = {};
+  for (const el of form.elements) if (el.name) o[el.name] = el.value.trim();
+  return o;
+}
+
+$('#btnNew').onclick = () => openClientForm(null);
+function openClientForm(id) {
+  editing = id;
+  $('#clientTitle').textContent = id ? 'Editar cliente' : 'Nuevo cliente';
+  fill($('#formClient'), id ? byId(id) : null);
+  $('#dlgClient').showModal();
+}
+$('#dlgClient').addEventListener('close', () => {
+  if ($('#dlgClient').returnValue !== 'ok') return;
+  const data = read($('#formClient'));
+  if (editing) Object.assign(byId(editing), data);
+  else db.clientes.push({ id: uid(), creado: new Date().toISOString().slice(0, 10), vehiculos: [], servicios: [], ...data });
+  save();
+});
+
+// ---------- Detalle ----------
+function openDetail(id) { current = id; renderDetail(); $('#dlgDetail').showModal(); }
+function renderDetail() {
+  const c = byId(current);
+  if (!c) { $('#dlgDetail').close(); return; }
+  const veh = (id) => c.vehiculos.find(v => v.id === id);
+  const total = c.servicios.reduce((n, s) => n + (Number(s.costo) || 0), 0);
+  const servicios = [...c.servicios].sort((a, b) => b.fecha.localeCompare(a.fecha));
+  $('#detail').innerHTML = `
+    <h2>${esc(c.nombre)}</h2>
+    <div class="muted">
+      ${c.telefono ? `📞 <a href="tel:${esc(c.telefono)}">${esc(c.telefono)}</a>` : ''}
+      ${c.telefono ? ` · <a href="https://wa.me/${esc(c.telefono.replace(/\D/g, ''))}" target="_blank" rel="noopener">WhatsApp</a>` : ''}
+      ${c.correo ? `<br>✉️ ${esc(c.correo)}` : ''}
+      ${c.direccion ? `<br>📍 ${esc(c.direccion)}` : ''}
+      ${c.creado ? `<br>Cliente desde ${esc(c.creado)}` : ''}
+    </div>
+    ${c.notas ? `<p>${esc(c.notas)}</p>` : ''}
+
+    <div class="section-title"><h3>Vehículos</h3><button type="button" data-act="addVeh">+ Agregar</button></div>
+    ${c.vehiculos.length ? `<table>
+      <tr><th>Placa</th><th>Vehículo</th><th>Km</th><th></th></tr>
+      ${c.vehiculos.map(v => `<tr>
+        <td><b>${esc(v.placa)}</b></td>
+        <td>${esc([v.marca, v.modelo, v.anio, v.color].filter(Boolean).join(' · '))}</td>
+        <td>${esc(v.km)}</td>
+        <td style="white-space:nowrap"><button type="button" data-act="editVeh" data-id="${v.id}">✏️</button>
+            <button type="button" class="danger" data-act="delVeh" data-id="${v.id}">🗑</button></td>
+      </tr>`).join('')}
+    </table>` : '<div class="muted">Sin vehículos registrados.</div>'}
+
+    <div class="section-title"><h3>Historial de servicios (${money(total)})</h3><button type="button" data-act="addSrv">+ Agregar</button></div>
+    ${servicios.length ? `<table>
+      <tr><th>Fecha</th><th>Trabajo</th><th>Costo</th><th></th></tr>
+      ${servicios.map(s => `<tr>
+        <td>${esc(s.fecha)}<br><span class="tag">${esc(s.estado)}</span></td>
+        <td>${esc(s.descripcion)}${veh(s.vehiculoId) ? `<br><span class="muted">${esc(veh(s.vehiculoId).placa)}</span>` : ''}</td>
+        <td>${s.costo ? money(s.costo) : ''}</td>
+        <td style="white-space:nowrap"><button type="button" data-act="editSrv" data-id="${s.id}">✏️</button>
+            <button type="button" class="danger" data-act="delSrv" data-id="${s.id}">🗑</button></td>
+      </tr>`).join('')}
+    </table>` : '<div class="muted">Sin servicios registrados.</div>'}
+
+    <div class="actions">
+      <button type="button" class="danger" data-act="delClient">Eliminar cliente</button>
+      <button type="button" data-act="editClient">Editar</button>
+      <button class="primary" value="close">Cerrar</button>
+    </div>`;
+}
+
+$('#detail').addEventListener('click', e => {
+  const b = e.target.closest('button[data-act]');
+  if (!b) return;
+  const c = byId(current), id = b.dataset.id;
+  switch (b.dataset.act) {
+    case 'editClient': openClientForm(c.id); break;
+    case 'delClient':
+      if (confirm(`¿Eliminar a ${c.nombre} y todo su historial?`)) {
+        db.clientes = db.clientes.filter(x => x.id !== c.id);
+        $('#dlgDetail').close(); current = null; save();
+      }
+      break;
+    case 'addVeh': case 'editVeh':
+      editing = id || null;
+      fill($('#formVehicle'), id ? c.vehiculos.find(v => v.id === id) : null);
+      $('#dlgVehicle').showModal(); break;
+    case 'delVeh':
+      if (confirm('¿Eliminar este vehículo?')) { c.vehiculos = c.vehiculos.filter(v => v.id !== id); save(); }
+      break;
+    case 'addSrv': case 'editSrv': {
+      editing = id || null;
+      const sel = $('#formService').elements.vehiculoId;
+      sel.innerHTML = '<option value="">—</option>' + c.vehiculos.map(v => `<option value="${v.id}">${esc(v.placa)} ${esc(v.marca)}</option>`).join('');
+      fill($('#formService'), id ? c.servicios.find(s => s.id === id)
+        : { fecha: new Date().toISOString().slice(0, 10), estado: 'Pendiente', vehiculoId: c.vehiculos[0]?.id || '' });
+      $('#dlgService').showModal(); break;
+    }
+    case 'delSrv':
+      if (confirm('¿Eliminar este servicio?')) { c.servicios = c.servicios.filter(s => s.id !== id); save(); }
+      break;
+  }
+});
+
+function upsert(arr, data) {
+  if (editing) Object.assign(arr.find(x => x.id === editing), data);
+  else arr.push({ id: uid(), ...data });
+}
+$('#dlgVehicle').addEventListener('close', () => {
+  if ($('#dlgVehicle').returnValue !== 'ok') return;
+  const data = read($('#formVehicle'));
+  data.placa = data.placa.toUpperCase();
+  upsert(byId(current).vehiculos, data); save();
+});
+$('#dlgService').addEventListener('close', () => {
+  if ($('#dlgService').returnValue !== 'ok') return;
+  upsert(byId(current).servicios, read($('#formService'))); save();
+});
+
+// ---------- Exportar / importar ----------
+$('#btnExport').onclick = () => {
+  const blob = new Blob([JSON.stringify(db, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `clientes-taller-${new Date().toISOString().slice(0, 10)}.json`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+};
+$('#btnImport').onclick = () => $('#fileImport').click();
+$('#fileImport').onchange = async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  try {
+    const data = JSON.parse(await file.text());
+    if (!Array.isArray(data.clientes)) throw new Error();
+    if (confirm(`Se importarán ${data.clientes.length} clientes y se reemplazarán los datos actuales. ¿Continuar?`)) {
+      db = data; save();
+    }
+  } catch { alert('El archivo no es válido.'); }
+  e.target.value = '';
+};
+
+render();
+</script>
+</body>
+</html>
