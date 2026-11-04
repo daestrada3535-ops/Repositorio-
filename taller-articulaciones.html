@@ -1,0 +1,724 @@
+<title>Taller de Articulaciones</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Big+Shoulders+Display:wght@700;800;900&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: sala de fisioterapia. Escenario animado arriba, sesiones guiadas, biblioteca filtrable por articulación, reproductor a pantalla completa. */
+:root{
+  --bg:#EDF1EF; --surface:#F8FAF9; --ink:#132029; --muted:#5D6D76; --line:#CBD5D7;
+  --tape:#DB4F27; --tape-soft:rgba(219,79,39,.13); --cool:#2A6C98; --ok:#2F8A57; --warn:#C98A12;
+  --display:'Big Shoulders Display','Arial Narrow',Impact,sans-serif;
+  --body:'Atkinson Hyperlegible',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0D1418; --surface:#141E24; --ink:#E5ECEE; --muted:#8FA0A9; --line:#26353E;
+  --tape:#FF6A3D; --tape-soft:rgba(255,106,61,.15); --cool:#6CB0DB; --ok:#5CC48A; --warn:#E8B04A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0D1418; --surface:#141E24; --ink:#E5ECEE; --muted:#8FA0A9; --line:#26353E;
+  --tape:#FF6A3D; --tape-soft:rgba(255,106,61,.15); --cool:#6CB0DB; --ok:#5CC48A; --warn:#E8B04A; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:800;letter-spacing:.005em;line-height:.95;text-wrap:balance;margin:0}
+h2{font-size:clamp(2.1rem,5vw,3.2rem);text-transform:uppercase}
+h3{font-size:1.55rem;text-transform:uppercase}
+p{margin:0}
+.lbl{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--cool);outline-offset:2px;border-radius:6px}
+a{color:var(--cool)}
+
+/* Header */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:18px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:900;font-size:1.35rem;text-transform:uppercase;letter-spacing:.02em}
+.brand i{display:inline-block;width:26px;height:10px;background:var(--tape);border-radius:3px;transform:rotate(-12deg)}
+.top nav{display:flex;gap:16px;font-size:.95rem}
+.top nav a{color:var(--muted);text-decoration:none}
+.top nav a:hover{color:var(--ink)}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:28px;align-items:center;padding-block:12px 40px}
+.hero h1{font-size:clamp(3rem,8.4vw,6.4rem);text-transform:uppercase}
+.hero h1 em{font-style:normal;color:var(--tape)}
+.hero .lead{margin-top:18px;max-width:52ch;font-size:1.08rem;color:var(--muted)}
+.ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.btn{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--ink);background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:999px;font-weight:700;text-decoration:none}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn:hover{filter:brightness(1.08)}
+.feat{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:22px;font-size:.92rem;color:var(--muted)}
+.feat span::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--tape);margin-right:8px;vertical-align:1px}
+.stage{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:22px;overflow:hidden;min-width:0}
+.stage canvas{display:block;width:100%;aspect-ratio:5/4;max-width:100%}
+.stage .cap{position:absolute;left:16px;right:16px;bottom:14px;display:flex;justify-content:space-between;align-items:flex-end;gap:10px;pointer-events:none}
+.stage .cap b{font-family:var(--display);font-size:1.6rem;text-transform:uppercase;line-height:1}
+.stage .tag{position:absolute;top:14px;left:16px;display:flex;align-items:center;gap:8px}
+.ring{display:inline-block;width:12px;height:12px;border-radius:50%;border:2.5px solid var(--tape);background:var(--tape-soft)}
+
+/* Sections */
+section.block{padding-block:44px}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:14px;margin-bottom:22px}
+.sec-head p{color:var(--muted);max-width:56ch;margin-top:8px}
+
+/* Week tracker */
+.week{display:flex;align-items:center;gap:10px}
+.week .days{display:flex;gap:5px}
+.week .d{width:26px;height:26px;border-radius:7px;border:1.5px solid var(--line);display:grid;place-items:center;font-family:var(--mono);font-size:.66rem;color:var(--muted)}
+.week .d.on{background:var(--tape);border-color:var(--tape);color:#fff}
+.week .d.today{border-color:var(--ink)}
+
+/* Routines */
+.routines{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.rt{display:flex;flex-direction:column;gap:12px;padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:18px;min-width:0}
+.rt .meta{display:flex;gap:14px;font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+.rt .meta b{color:var(--ink);font-weight:700}
+.rt p{color:var(--muted);font-size:.95rem}
+.rt ol{margin:0;padding-left:20px;font-size:.9rem;color:var(--muted)}
+.rt .btn{align-self:flex-start;margin-top:auto}
+.rt.star{border:2px solid var(--tape)}
+
+/* Library */
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid var(--line);background:transparent;padding:7px 14px;border-radius:999px;font-size:.92rem}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+.card{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;min-width:0}
+.card canvas{display:block;width:100%;aspect-ratio:4/3;max-width:100%;border-bottom:1px solid var(--line)}
+.card .body{display:flex;flex-direction:column;gap:10px;padding:16px 16px 18px;flex:1}
+.card .row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.pill{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:6px;border:1px solid var(--line);color:var(--muted)}
+.pill.j{border-color:transparent;background:var(--tape-soft);color:var(--tape)}
+.card .dose{font-family:var(--mono);font-size:.84rem}
+.card ul{margin:0;padding-left:18px;font-size:.92rem;color:var(--muted)}
+.card .acts{display:flex;gap:8px;align-items:center;margin-top:auto;padding-top:6px;flex-wrap:wrap}
+.card .acts .btn{padding:9px 14px;font-size:.92rem}
+.card .acts a{font-size:.9rem}
+.why{font-size:.88rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:10px}
+
+/* Rules */
+.rules{display:grid;grid-template-columns:1.1fr 1fr;gap:16px}
+.light{display:flex;flex-direction:column;gap:10px;padding:20px;border-radius:18px;background:var(--surface);border:1px solid var(--line)}
+.lvl{display:grid;grid-template-columns:76px 1fr;gap:12px;align-items:center}
+.lvl .bar{height:12px;border-radius:6px}
+.lvl b{font-family:var(--mono);font-size:.85rem}
+.rules ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px}
+.note{font-size:.88rem;color:var(--muted);margin-top:14px}
+footer{padding-block:30px 50px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);margin-top:20px}
+
+/* Player */
+#player[hidden]{display:none}
+#player{position:fixed;inset:0;z-index:50;background:var(--bg);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
+.p-top{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.p-top .t{min-width:0}
+.p-top .t b{display:block;font-family:var(--display);font-size:1.3rem;text-transform:uppercase;line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.icon-btn{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--line);background:var(--surface);display:grid;place-items:center;flex:none}
+.icon-btn[aria-pressed="false"]{opacity:.45}
+.icon-btn svg{width:20px;height:20px}
+.p-prog{height:4px;background:var(--line)}
+.p-prog i{display:block;height:100%;background:var(--tape);width:0}
+.p-main{flex:1;display:grid;grid-template-columns:1fr 360px;min-height:0}
+.p-stage{position:relative;min-height:0;min-width:0}
+.p-stage canvas{position:absolute;inset:0;width:100%;height:100%}
+.phase{position:absolute;top:14px;left:16px;font-family:var(--mono);font-weight:700;font-size:.78rem;letter-spacing:.14em;padding:6px 10px;border-radius:6px;background:var(--ink);color:var(--bg)}
+.phase.work{background:var(--tape);color:#fff}
+.phase.rest{background:var(--cool);color:#fff}
+.side-tag{position:absolute;top:14px;right:16px;font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.caption{position:absolute;left:16px;right:16px;bottom:14px;text-align:center;font-size:1.05rem;font-weight:700;text-wrap:balance;min-height:1.5em}
+.caption span{background:var(--surface);border:1px solid var(--line);padding:6px 12px;border-radius:10px;display:inline-block;max-width:100%}
+.p-side{border-left:1px solid var(--line);padding:20px;overflow:auto;display:flex;flex-direction:column;gap:16px;min-width:0}
+.big{font-family:var(--display);font-weight:900;font-size:clamp(4rem,10vw,6.5rem);line-height:.85;font-variant-numeric:tabular-nums}
+.big small{font-size:.4em;color:var(--muted);font-weight:700}
+.p-side h3{font-size:2rem}
+.p-side ol,.p-side ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.p-side .err li{color:var(--muted)}
+.p-ctrl{display:flex;justify-content:center;align-items:center;gap:14px;padding:12px 16px;border-top:1px solid var(--line)}
+.p-ctrl .play{width:64px;height:64px;border-radius:50%;background:var(--ink);color:var(--bg);border:none;display:grid;place-items:center}
+.p-ctrl .play svg{width:26px;height:26px}
+.next-up{font-size:.9rem;color:var(--muted)}
+.done{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding:24px;height:100%}
+.done h2{font-size:clamp(2.6rem,8vw,4.5rem)}
+
+@media (max-width:880px){
+  .hero{grid-template-columns:1fr}
+  .stage{order:-1}
+  .rules{grid-template-columns:1fr}
+  .p-main{grid-template-columns:1fr;grid-template-rows:minmax(240px,1fr) auto}
+  .p-side{border-left:none;border-top:1px solid var(--line);max-height:38vh;padding:14px 16px}
+  .p-side .hide-m{display:none}
+  .big{font-size:3.4rem}
+  .top nav{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><i></i>Taller de Articulaciones</div>
+    <nav><a href="#sesiones">Sesiones guiadas</a><a href="#biblioteca">Ejercicios</a><a href="#reglas">Reglas de seguridad</a></nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <p class="lbl">Hombros · Rodillas · Muñecas · Cadera · Espalda</p>
+      <h1 style="margin-top:10px">Mira, escucha y <em>replica</em>.</h1>
+      <p class="lead">26 ejercicios con respaldo científico para fortalecer tus articulaciones. Cada uno tiene una demostración animada y una voz en español que te guía, cuenta tus repeticiones y te avisa cuándo descansar.</p>
+      <div class="ctas">
+        <button class="btn" data-routine="express">▶ Empezar sesión diaria</button>
+        <a class="btn ghost" href="#biblioteca">Ver los ejercicios</a>
+      </div>
+      <div class="feat"><span>Demostración en bucle</span><span>Guía por voz</span><span>Temporizador de series</span></div>
+    </div>
+    <div class="stage">
+      <canvas id="heroCanvas" aria-label="Demostración animada de ejercicios"></canvas>
+      <div class="tag"><span class="ring"></span><span class="lbl">Articulación que trabaja</span></div>
+      <div class="cap"><div><span class="lbl" id="heroJ">Hombros</span><br><b id="heroName">Ejercicio</b></div><span class="lbl" id="heroDose"></span></div>
+    </div>
+  </section>
+</div>
+
+<section class="block" id="sesiones">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><h2>Sesiones guiadas</h2><p>Pulsa empezar, deja el móvil apoyado donde lo veas y sigue la voz. Todas se hacen en casa con una banda elástica y un par de mancuernas o botellas de agua.</p></div>
+      <div class="week" aria-label="Sesiones de esta semana"><span class="lbl" id="weekTxt">Esta semana</span><div class="days" id="weekDays"></div></div>
+    </div>
+    <div class="routines" id="routines"></div>
+  </div>
+</section>
+
+<section class="block" id="biblioteca">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><h2>Biblioteca de ejercicios</h2><p>Filtra por articulación. El círculo naranja marca la zona que trabaja. Pulsa <b>Practicar</b> para hacerlo con voz y temporizador, o abre un video real de referencia.</p></div>
+      <div class="chips" id="chips" role="group" aria-label="Filtrar por articulación"></div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<section class="block" id="reglas">
+  <div class="wrap">
+    <div class="sec-head"><div><h2>Reglas de seguridad</h2><p>El tejido de las articulaciones se adapta en meses, no en días. Estas reglas te dejan progresar sin lesionarte.</p></div></div>
+    <div class="rules">
+      <div class="light">
+        <p class="lbl">Semáforo del dolor · escala 0–10</p>
+        <div class="lvl"><b>0–3</b><div><div class="bar" style="background:var(--ok)"></div><p>Aceptable. Sigue con el ejercicio.</p></div></div>
+        <div class="lvl"><b>4–5</b><div><div class="bar" style="background:var(--warn)"></div><p>Reduce el peso, el rango o las repeticiones.</p></div></div>
+        <div class="lvl"><b>6–10</b><div><div class="bar" style="background:var(--tape)"></div><p>Para. Si al día siguiente duele más, baja la carga en la próxima sesión.</p></div></div>
+      </div>
+      <div class="light">
+        <p class="lbl">Cómo progresar</p>
+        <ul>
+          <li>Haz <b>3 sesiones por semana</b> y la sesión diaria de movilidad los demás días.</li>
+          <li>Cambia <b>una sola cosa a la vez</b>: primero repeticiones, después series, después peso.</li>
+          <li>Termina cada serie con <b>2–3 repeticiones de reserva</b>. Sin llegar al fallo.</li>
+          <li>Baja en <b>3 segundos</b>. La fase lenta es la que más fortalece los tendones.</li>
+          <li>Los resultados en tendones y ligamentos se notan entre las <b>8 y 12 semanas</b>.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">Esta guía es educativa y no sustituye una valoración médica. Consulta a un profesional si tienes hormigueo, hinchazón, una articulación caliente o roja, dolor nocturno o dolor que dura más de 6 semanas.</p>
+  </div>
+</section>
+
+<footer><div class="wrap">Basado en las guías de ejercicio para dolor lumbar y artrosis (NICE, Cochrane 2021), protocolos de fuerza para tendinopatía de hombro y rodilla, y el método de estabilidad lumbar de McGill. Los enlaces de video llevan a búsquedas en YouTube.</div></footer>
+
+<div id="player" hidden role="dialog" aria-modal="true" aria-label="Sesión guiada">
+  <div class="p-top">
+    <button class="icon-btn" id="pClose" aria-label="Cerrar sesión"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="t"><span class="lbl" id="pRoutine">Sesión</span><b id="pStep">—</b></div>
+    <div style="display:flex;gap:8px">
+      <button class="icon-btn" id="pVoice" aria-pressed="true" aria-label="Voz guía"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg></button>
+      <button class="icon-btn" id="pBeep" aria-pressed="true" aria-label="Pitidos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg></button>
+    </div>
+  </div>
+  <div class="p-prog"><i id="pProg"></i></div>
+  <div class="p-main" id="pMain">
+    <div class="p-stage">
+      <canvas id="pCanvas"></canvas>
+      <span class="phase" id="pPhase">PREPÁRATE</span>
+      <span class="side-tag" id="pSide"></span>
+      <div class="caption" id="pCap"></div>
+    </div>
+    <div class="p-side">
+      <div><span class="lbl" id="pCountLbl">Repeticiones</span><div class="big" id="pCount">0</div><div class="next-up" id="pNext"></div></div>
+      <div><h3 id="pName">—</h3><p class="lbl" id="pDose" style="margin-top:6px"></p></div>
+      <div><p class="lbl" style="margin-bottom:6px">Claves</p><ol id="pCues"></ol></div>
+      <div class="hide-m"><p class="lbl" style="margin-bottom:6px">Evita</p><ul class="err" id="pErr"></ul></div>
+      <a class="hide-m" id="pVideo" href="#" target="_blank" rel="noopener">Ver un video real de este ejercicio ↗</a>
+    </div>
+  </div>
+  <div class="p-ctrl">
+    <button class="icon-btn" id="pPrev" aria-label="Paso anterior"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg></button>
+    <button class="play" id="pPlay" aria-label="Pausar"><svg viewBox="0 0 24 24" fill="currentColor" id="pPlayIco"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg></button>
+    <button class="icon-btn" id="pNextBtn" aria-label="Paso siguiente"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 5h2v14h-2zM4 5v14l11-7z"/></svg></button>
+  </div>
+</div>
+
+<script>
+(()=>{
+"use strict";
+/* ---------- Esqueleto y cinemática ---------- */
+const L={torso:50,neck:6,head:10,ua:28,fa:26,hand:9,th:42,sh:40,ft:12,shW:13,hipW:8};
+const rad=a=>a*Math.PI/180;
+const dir=a=>[Math.sin(rad(a)),Math.cos(rad(a))];
+const add=(p,a,len)=>{const d=dir(a);return[p[0]+d[0]*len,p[1]+d[1]*len]};
+const fill=(a,def)=>def.map((v,i)=>a&&a[i]!=null?a[i]:v);
+function norm(f){return{t:f.t??180,hd:f.hd??0,c:f.c??0,tl:f.tl??180,
+  aR:fill(f.aR,[0,0,0,1,1]),aL:fill(f.aL??f.aR,[0,0,0,1,1]),lR:fill(f.lR,[0,0,0,1]),lL:fill(f.lL??f.lR,[0,0,0,1])}}
+function lerpPose(A,B,u){const o={};for(const k in A){o[k]=Array.isArray(A[k])?A[k].map((v,i)=>v+(B[k][i]-v)*u):A[k]+(B[k]-A[k])*u}return o}
+const ease=u=>.5-.5*Math.cos(Math.PI*u);
+
+function solve(ex,P){
+  const front=ex.view==='front',T=P.t,base=T-180;
+  const hip=[0,0],neck=add(hip,T,L.torso),head=add(neck,T+P.hd,L.neck+L.head);
+  const side=dir(T-90),pts={hip,neck,head};
+  const off=(p,k)=>[p[0]+side[0]*k,p[1]+side[1]*k];
+  const mid=[(hip[0]+neck[0])/2,(hip[1]+neck[1])/2];
+  pts.spine=[mid[0]-side[0]*P.c*.5,mid[1]-side[1]*P.c*.5];
+  pts.ctl=[mid[0]-side[0]*P.c,mid[1]-side[1]*P.c];
+  for(const S of['R','L']){
+    const m=front?(S==='R'?1:-1):1;
+    const a=P['a'+S],sh=front?off(neck,m*L.shW):neck;
+    const ua=base+m*a[0],el=add(sh,ua,L.ua*a[4]);
+    const fa=ua+m*a[1],wr=add(el,fa,L.fa*a[3]);
+    const ha=fa+m*a[2],hd=add(wr,ha,L.hand*a[3]);
+    pts['sh'+S]=sh;pts['el'+S]=el;pts['wr'+S]=wr;pts['ha'+S]=hd;
+    const l=P['l'+S],hp=front?off(hip,m*L.hipW):hip;
+    const ta=base+m*l[0],kn=add(hp,ta,L.th*l[3]);
+    const sa=ta-m*l[1],an=add(kn,sa,L.sh);
+    const to=front?add(an,sa+m*90,L.ft*.45):add(an,sa+90+l[2],L.ft);
+    pts['hp'+S]=hp;pts['kn'+S]=kn;pts['an'+S]=an;pts['to'+S]=to;
+  }
+  if(ex.props&&ex.props.hammer){pts.tool=add(pts.wrR,base+P.tl,34)}
+  let dy;
+  if(ex.hang)dy=-pts.wrR[1];
+  else if(ex.gp)dy=ex.gp[1]-pts[ex.gp[0]][1];
+  else{let m=-1e9;for(const k in pts){if(k==='ctl'||k==='spine'||k==='tool')continue;m=Math.max(m,pts[k][1]+(k==='head'?L.head:2.5))}dy=-m}
+  const dx=-pts[ex.ax||'hip'][0];
+  for(const k in pts)pts[k]=[pts[k][0]+dx,pts[k][1]+dy];
+  pts._T=T;pts._base=base;pts._hd=P.hd;
+  return pts;
+}
+function cycleOf(ex){return ex.d.reduce((a,b)=>a+b,0)}
+function poseAt(ex,time){
+  if(!ex._F)ex._F=ex.frames.map(norm);
+  const F=ex._F,n=F.length,cyc=cycleOf(ex);
+  let t=((time%cyc)+cyc)%cyc,i=0;
+  while(i<n-1&&t>=ex.d[i]){t-=ex.d[i];i++}
+  const u=ex.d[i]>0?Math.min(1,t/ex.d[i]):1;
+  return lerpPose(F[i],F[(i+1)%n],ease(u));
+}
+function boundsOf(ex){
+  if(ex._B)return ex._B;
+  if(!ex._F)ex._F=ex.frames.map(norm);
+  let b={x0:1e9,x1:-1e9,y0:1e9,y1:-1e9};
+  const inc=(x,y,r=0)=>{b.x0=Math.min(b.x0,x-r);b.x1=Math.max(b.x1,x+r);b.y0=Math.min(b.y0,y-r);b.y1=Math.max(b.y1,y+r)};
+  const F=ex._F;
+  for(let i=0;i<F.length;i++)for(const u of[0,.5]){
+    const pts=solve(ex,lerpPose(F[i],F[(i+1)%F.length],u));
+    const keys=ex.focus||Object.keys(pts).filter(k=>!k.startsWith('_')&&k!=='ctl');
+    for(const k of keys)inc(pts[k][0],pts[k][1],k==='head'?L.head:4);
+  }
+  if(!ex.focus){
+    const p=ex.props||{};
+    if(!ex.hang)inc(b.x0,0);
+    if(p.box)inc(p.box[0],-p.box[2]),inc(p.box[1],0);
+    if(p.wall!=null)inc(p.wall-4,b.y0);
+    if(p.band&&p.band!=='hands')for(const a of p.band)inc(a[1],a[2],4);
+    if(ex.hang)inc(b.x0,-8);
+  }
+  const w=b.x1-b.x0,h=b.y1-b.y0;
+  if(w<60){const c=(b.x0+b.x1)/2;b.x0=c-30;b.x1=c+30}
+  if(h<50){const c=(b.y0+b.y1)/2;b.y0=c-25;b.y1=c+25}
+  return ex._B=b;
+}
+
+/* ---------- Colores del tema ---------- */
+let C={};
+function readColors(){const s=getComputedStyle(document.documentElement);for(const k of['ink','muted','line','tape','tape-soft','cool','surface','bg'])C[k]=s.getPropertyValue('--'+k).trim()||'#888'}
+readColors();
+try{matchMedia('(prefers-color-scheme: dark)').addEventListener('change',readColors)}catch(e){}
+new MutationObserver(readColors).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme','class','style']});
+
+/* ---------- Dibujo ---------- */
+function seg(ctx,a,b){ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke()}
+function poly(ctx,arr){ctx.beginPath();ctx.moveTo(arr[0][0],arr[0][1]);for(let i=1;i<arr.length;i++)ctx.lineTo(arr[i][0],arr[i][1]);ctx.stroke()}
+function drawProps(ctx,ex,pts,s,B){
+  const p=ex.props||{};
+  ctx.lineCap='round';
+  if(!ex.hang){
+    ctx.strokeStyle=C.line;ctx.lineWidth=2.4/s;
+    ctx.beginPath();ctx.moveTo(B.x0-400,0);ctx.lineTo(B.x1+400,0);ctx.stroke();
+    ctx.lineWidth=1.2/s;
+    for(let x=Math.floor((B.x0-400)/12)*12;x<B.x1+400;x+=12){seg(ctx,[x,1.5/s],[x-6,9])}
+  }
+  if(p.box){ctx.fillStyle=C.line;ctx.globalAlpha=.55;ctx.fillRect(p.box[0],-p.box[2],p.box[1]-p.box[0],p.box[2]);ctx.globalAlpha=1}
+  if(p.wall!=null){ctx.strokeStyle=C.line;ctx.lineWidth=3/s;seg(ctx,[p.wall,0],[p.wall,-200]);ctx.lineWidth=1.2/s;for(let y=-200;y<0;y+=12)seg(ctx,[p.wall,y],[p.wall-7,y+6])}
+  if(ex.hang){ctx.strokeStyle=C.muted;ctx.lineWidth=Math.max(3.5,5/s);seg(ctx,[pts.wrL[0]-40,pts.wrR[1]-1],[pts.wrR[0]+40,pts.wrR[1]-1])}
+}
+function drawBand(ctx,ex,pts,s){
+  const p=ex.props||{};if(!p.band)return;
+  ctx.strokeStyle=C.cool;ctx.lineWidth=Math.max(2,3/s);ctx.setLineDash([]);
+  if(p.band==='hands'){seg(ctx,pts.wrR,pts.wrL)}
+  else for(const a of p.band){seg(ctx,pts[a[0]],[a[1],a[2]]);ctx.fillStyle=C.cool;ctx.beginPath();ctx.arc(a[1],a[2],3,0,7);ctx.fill()}
+}
+function drawTools(ctx,ex,pts,s,front){
+  const p=ex.props||{};ctx.fillStyle=C.muted;ctx.strokeStyle=C.muted;
+  if(p.db)for(const k of p.db){const q=pts[k];
+    if(front){ctx.lineWidth=4;seg(ctx,[q[0]-7,q[1]],[q[0]+7,q[1]]);ctx.fillRect(q[0]-10,q[1]-5,4,10);ctx.fillRect(q[0]+6,q[1]-5,4,10)}
+    else{ctx.beginPath();ctx.arc(q[0],q[1],6,0,7);ctx.fill()}}
+  if(p.kb){const a=pts.wrR,b=pts.wrL,q=[(a[0]+b[0])/2+4,(a[1]+b[1])/2+6];ctx.beginPath();ctx.arc(q[0],q[1],8.5,0,7);ctx.fill()}
+  if(p.stick){ctx.fillStyle=C.ink;ctx.beginPath();ctx.arc(pts.wrR[0],pts.wrR[1],3.6,0,7);ctx.fill()}
+  if(p.hammer){ctx.lineWidth=3.2;seg(ctx,pts.wrR,pts.tool);const d=dir(pts._base+(pts._tl||0));
+    ctx.save();ctx.translate(pts.tool[0],pts.tool[1]);ctx.rotate(Math.atan2(pts.tool[1]-pts.wrR[1],pts.tool[0]-pts.wrR[0]));ctx.fillRect(-4,-8,9,16);ctx.restore()}
+}
+function drawFigure(ctx,ex,pts,s,alpha=1,hlT=null){
+  const front=ex.view==='front';
+  const lw=Math.min(5.4,14/s,Math.max(5.4,2.6/s));
+  ctx.lineCap='round';ctx.lineJoin='round';ctx.globalAlpha=alpha;
+  const arm=S=>poly(ctx,[pts['sh'+S],pts['el'+S],pts['wr'+S],pts['ha'+S]]);
+  const leg=S=>poly(ctx,[pts['hp'+S],pts['kn'+S],pts['an'+S],pts['to'+S]]);
+  ctx.lineWidth=lw;
+  const farC=front?C.ink:C.muted;
+  ctx.strokeStyle=farC;arm('L');leg('L');
+  ctx.strokeStyle=C.ink;
+  // torso
+  if(front){seg(ctx,pts.shL,pts.shR);seg(ctx,pts.hpL,pts.hpR)}
+  ctx.lineWidth=lw*1.25;ctx.beginPath();ctx.moveTo(pts.hip[0],pts.hip[1]);ctx.quadraticCurveTo(pts.ctl[0],pts.ctl[1],pts.neck[0],pts.neck[1]);ctx.stroke();
+  ctx.lineWidth=lw;leg('R');seg(ctx,pts.neck,add(pts.neck,pts._T+pts._hd,L.neck));
+  // cabeza
+  ctx.fillStyle=C.surface;ctx.beginPath();ctx.arc(pts.head[0],pts.head[1],L.head,0,7);ctx.fill();ctx.stroke();
+  if(!front){const fa=pts._T-90+(ex.tuck?0:pts._hd*.8);const n0=add(pts.head,fa,L.head-1),n1=add(pts.head,fa,L.head+3.5);ctx.lineWidth=lw*.7;seg(ctx,n0,n1);ctx.lineWidth=lw}
+  arm('R');
+  ctx.globalAlpha=1;
+  if(hlT!=null&&ex.hl){const pulse=.5+.5*Math.sin(hlT*4);
+    for(const k of ex.hl){const q=pts[k];if(!q)continue;const r=8+pulse*3;
+      ctx.fillStyle=C['tape-soft'];ctx.beginPath();ctx.arc(q[0],q[1],r+3,0,7);ctx.fill();
+      ctx.strokeStyle=C.tape;ctx.lineWidth=Math.max(2.2/s,1.6);ctx.beginPath();ctx.arc(q[0],q[1],r,0,7);ctx.stroke()}}
+}
+function render(v,time){
+  const ex=v.ex,ctx=v.ctx;if(!ex)return;
+  const P=poseAt(ex,time),pts=solve(ex,P);pts._tl=P.tl;
+  const B=boundsOf(ex),pad=v.pad??.12;
+  const bw=B.x1-B.x0,bh=B.y1-B.y0;
+  const s=Math.min(v.w*(1-2*pad)/bw,v.h*(1-2*pad)/bh,ex.focus?4.2:4);
+  const cx=(B.x0+B.x1)/2,cy=(B.y0+B.y1)/2,m=v.mirror?-1:1,d=v.dpr;
+  ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,v.canvas.width,v.canvas.height);
+  ctx.setTransform(d*s*m,0,0,d*s,d*(v.w/2)-d*s*m*cx,d*(v.h/2+(v.yOff||0))-d*s*cy);
+  drawProps(ctx,ex,pts,s,B);
+  if(v.ghost&&ex._F.length>1){const g=solve(ex,ex._F[ex.gk??1]);g._tl=ex._F[ex.gk??1].tl;drawFigure(ctx,ex,g,s,.13)}
+  drawBand(ctx,ex,pts,s);
+  drawFigure(ctx,ex,pts,s,1,time);
+  drawTools(ctx,ex,pts,s,ex.view==='front');
+}
+
+/* ---------- Ejercicios ---------- */
+const QUAD={t:104,aR:[76,0,90],lR:[76,90,-90]};
+const EX=[
+// HOMBROS
+{id:'rot-ext',n:'Rotación externa con banda',j:'hombros',lvl:'Básico',view:'front',mode:'reps',reps:12,sets:3,rest:45,
+ frames:[{aR:[8,82,0,-.55],lR:[4,0,0]},{aR:[8,82,0,.85],lR:[4,0,0]},{aR:[8,82,0,.85],lR:[4,0,0]}],d:[1.5,.7,2.2],props:{band:'hands'},hl:['shR','shL'],
+ cues:['Codos pegados a las costillas, como si sujetaras una toalla.','Abre las manos hacia fuera sin mover los codos.','Vuelve lento, en dos segundos.'],
+ err:['Separar los codos del cuerpo.','Arquear la espalda para ganar recorrido.'],why:'Fortalece el manguito rotador, el músculo que mantiene el hombro centrado en su sitio.',q:'rotación externa hombro con banda elástica'},
+{id:'pull-apart',n:'Separación de banda (pull-apart)',j:'hombros',lvl:'Básico',view:'front',mode:'reps',reps:15,sets:3,rest:45,
+ frames:[{aR:[90,0,0,.25,.25],lR:[4,0,0]},{aR:[90,0,0,1,1],lR:[4,0,0]}],d:[1.4,1.8],props:{band:'hands'},hl:['shR','shL','neck'],
+ cues:['Brazos estirados al frente, a la altura del pecho.','Junta los omóplatos y abre los brazos en cruz.','Hombros lejos de las orejas.'],
+ err:['Encoger los hombros.','Doblar mucho los codos.'],why:'Activa la espalda alta y contrarresta los hombros adelantados por pasar horas sentado.',q:'band pull apart técnica'},
+{id:'wall-slide',n:'Deslizamiento en pared (W a Y)',j:'hombros',lvl:'Básico',view:'front',mode:'reps',reps:10,sets:2,rest:40,
+ frames:[{aR:[55,125,0],lR:[4,0,0]},{aR:[155,15,0],lR:[4,0,0]}],d:[2,2],hl:['shR','shL'],
+ cues:['Espalda, cabeza y antebrazos contra la pared.','Desliza los brazos hacia arriba formando una Y.','Baja tirando de los codos hacia los bolsillos.'],
+ err:['Despegar la zona lumbar de la pared.','Forzar si aparece un pinchazo.'],why:'Mejora la movilidad por encima de la cabeza y el control del omóplato.',q:'wall slides hombro ejercicio'},
+{id:'remo',n:'Remo con banda',j:'hombros',lvl:'Básico',view:'side',mode:'reps',reps:12,sets:3,rest:60,ax:'anR',
+ frames:[{aR:[80,0,0],lR:[5,10,5]},{aR:[-25,115,0],lR:[5,10,5]},{aR:[-25,115,0],lR:[5,10,5]}],d:[1.3,.6,2],props:{band:[['wrR',132,-120]]},hl:['shR'],
+ cues:['Pecho alto y rodillas suaves.','Lleva los codos hacia atrás, pegados al cuerpo.','Aprieta los omóplatos un segundo y vuelve lento.'],
+ err:['Echar el tronco hacia atrás.','Subir los hombros.'],why:'Equilibra todo lo que empujas en el día. Por cada empuje, haz al menos un tirón.',q:'remo con banda elástica de pie'},
+{id:'cars-hombro',n:'Círculos controlados de hombro (CARs)',j:'hombros',lvl:'Diario',view:'side',mode:'reps',reps:4,sets:1,rest:20,sides:2,
+ frames:[{aR:[0,0,0],aL:[0,0,0]},{aR:[90,0,0],aL:[0,0,0]},{aR:[180,0,0],aL:[0,0,0]},{aR:[270,0,0],aL:[0,0,0]},{aR:[360,0,0],aL:[0,0,0]}],d:[1.3,1.3,1.3,1.3,0],gk:2,hl:['shR'],
+ cues:['Puño cerrado y el resto del cuerpo quieto.','Dibuja el círculo más grande posible, muy lento.','Aprieta todo el brazo durante el recorrido.'],
+ err:['Girar el tronco para llegar más lejos.','Hacerlo rápido.'],why:'Mantiene y entrena todo el rango de movimiento del hombro. Ideal como calentamiento.',q:'shoulder CARs FRC tutorial'},
+{id:'flexion',n:'Flexión con empuje final',j:'hombros',lvl:'Intermedio',view:'side',mode:'reps',reps:8,sets:3,rest:75,ax:'wrR',
+ frames:[{t:113,aR:[67,0,90],lR:[0,0,-23]},{t:97,aR:[-37,120,90],lR:[0,0,-7]}],d:[2,1.5],hl:['shR','wrR'],
+ cues:['Cuerpo en línea recta, de la cabeza a los talones.','Baja en dos segundos con los codos a 45 grados.','Arriba, empuja el suelo y separa los omóplatos.'],
+ err:['Hundir la cadera.','Abrir los codos en cruz.'],why:'Fortalece pecho, hombros y el serrato. Si cuesta, apoya las rodillas o las manos en una mesa.',q:'flexión con protracción escapular serratus push up'},
+{id:'colgarse',n:'Colgarse de la barra',j:'hombros',lvl:'Intermedio',view:'front',mode:'time',secs:30,sets:3,rest:60,hang:true,
+ frames:[{aR:[170,0,0],lR:[3,0,0]},{aR:[170,0,0,1,.9],lR:[3,0,0]}],d:[2.5,2.5],hl:['shR','shL','wrR','wrL'],
+ cues:['Agarra la barra con las manos a la anchura de los hombros.','Deja que el cuerpo cuelgue y respira.','Si puedes, tira un poco de los omóplatos hacia abajo.'],
+ err:['Balancearte.','Seguir si hay dolor punzante.'],why:'Descomprime el hombro, gana movilidad y entrena el agarre, que protege muñeca y codo.',q:'dead hang colgarse barra beneficios técnica'},
+{id:'dislocaciones',n:'Pases de palo por encima',j:'hombros',lvl:'Básico',view:'side',mode:'reps',reps:10,sets:2,rest:30,
+ frames:[{aR:[60,0,0]},{aR:[180,0,0]},{aR:[290,0,0]},{aR:[180,0,0]}],d:[1.6,1.6,1.6,1.6],gk:2,props:{stick:true},hl:['shR'],
+ cues:['Agarra un palo o una toalla con las manos muy separadas.','Pasa los brazos estirados por encima de la cabeza hasta atrás.','Cada semana acerca un poco las manos.'],
+ err:['Doblar los codos.','Arquear la zona lumbar.'],why:'Abre pecho y hombros. Mejora la postura encorvada.',q:'shoulder dislocates con palo movilidad'},
+// RODILLAS
+{id:'sentadilla',n:'Sentadilla goblet',j:'rodillas',lvl:'Básico',view:'side',mode:'reps',reps:10,sets:3,rest:75,ax:'anR',
+ frames:[{aR:[20,130,0],lR:[0,0,0]},{t:140,aR:[60,130,0],lR:[125,105,20]},{t:140,aR:[60,130,0],lR:[125,105,20]}],d:[2.5,.6,2],props:{kb:true},hl:['knR','hpR'],
+ cues:['Sujeta el peso pegado al pecho.','Siéntate hacia atrás y abajo, con las rodillas siguiendo la punta de los pies.','Empuja el suelo con todo el pie para subir.'],
+ err:['Levantar los talones.','Que las rodillas se vayan hacia dentro.'],why:'El ejercicio base para rodillas y cadera fuertes. Que las rodillas pasen la punta de los pies es normal.',q:'sentadilla goblet técnica correcta'},
+{id:'zancada',n:'Zancada hacia atrás',j:'rodillas',lvl:'Intermedio',view:'side',mode:'reps',reps:8,sets:3,rest:60,sides:2,ax:'anR',
+ frames:[{aR:[10,0,0],lR:[0,0,0]},{t:175,aR:[10,0,0],lR:[85,85,5],lL:[-10,100,25]},{t:175,aR:[10,0,0],lR:[85,85,5],lL:[-10,100,25]}],d:[1.8,.5,1.8],hl:['knR'],
+ cues:['Da un paso largo hacia atrás.','Baja vertical, como un ascensor, hasta casi tocar el suelo con la rodilla.','Empuja con el talón de delante para volver.'],
+ err:['Rodilla de delante hacia dentro.','Inclinarte mucho hacia delante.'],why:'Fortalece cada pierna por separado. Ir hacia atrás carga menos la rodilla que la zancada al frente.',q:'zancada hacia atrás reverse lunge técnica'},
+{id:'step-down',n:'Bajada lenta desde escalón',j:'rodillas',lvl:'Intermedio',view:'side',mode:'reps',reps:8,sets:3,rest:60,sides:2,ax:'anR',gp:['anR',-17.5],
+ frames:[{aR:[10,0,0],lR:[0,0,0],lL:[15,15,0]},{t:165,aR:[75,0,0],lR:[65,80,30],lL:[40,0,-15]}],d:[3,1.5],props:{box:[-18,16,15]},hl:['knR'],
+ cues:['De pie sobre un escalón bajo, con una pierna en el aire.','Baja en tres segundos hasta rozar el suelo con el talón.','La rodilla apunta al segundo dedo del pie.'],
+ err:['Dejarte caer.','Que la rodilla se meta hacia dentro.'],why:'La fase lenta de bajada es de lo más eficaz para el tendón rotuliano y el dolor en la parte delantera de la rodilla.',q:'step down excéntrico rodilla fisioterapia'},
+{id:'pared',n:'Sentadilla isométrica en pared',j:'rodillas',lvl:'Básico',view:'side',mode:'time',secs:40,sets:3,rest:60,
+ frames:[{aR:[5,0,0],lR:[90,90,0]},{t:181,aR:[6,0,0],lR:[90,90,0]}],d:[2.5,2.5],props:{wall:-9},hl:['knR'],
+ cues:['Espalda apoyada en la pared y pies a un paso de ella.','Baja hasta donde no moleste, idealmente con los muslos paralelos al suelo.','Respira con calma y aguanta.'],
+ err:['Bajar más de lo tolerable.','Aguantar la respiración.'],why:'Los isométricos reducen el dolor de rodilla y fortalecen el cuádriceps sin mover la articulación.',q:'wall sit sentadilla isométrica pared rodilla'},
+{id:'tke',n:'Extensión de rodilla con banda',j:'rodillas',lvl:'Básico',view:'side',mode:'reps',reps:15,sets:3,rest:40,sides:2,ax:'anR',
+ frames:[{aR:[5,0,0],lR:[10,25,15],lL:[0,0,0]},{aR:[5,0,0],lR:[0,0,0],lL:[0,0,0]},{aR:[5,0,0],lR:[0,0,0],lL:[0,0,0]}],d:[1,1,1.6],props:{band:[['knR',78,-44]]},hl:['knR'],
+ cues:['Banda detrás de la rodilla, atada delante de ti.','Dobla un poco la rodilla y luego estírala del todo contra la banda.','Aprieta el muslo un segundo arriba.'],
+ err:['Bloquear la rodilla de golpe.','Mover la cadera en lugar de la rodilla.'],why:'Activa el cuádriceps en el último tramo de extensión, clave para estabilizar la rodilla.',q:'terminal knee extension banda TKE'},
+// MUÑECAS
+{id:'muneca-flex',n:'Flexión de muñeca con peso',j:'muñecas',lvl:'Básico',view:'side',mode:'reps',reps:15,sets:2,rest:30,
+ frames:[{t:140,hd:-20,aR:[40,90,-55],lR:[130,90,0]},{t:140,hd:-20,aR:[40,90,45],lR:[130,90,0]}],d:[1.3,2.6],props:{box:[-26,10,40],db:['haR']},hl:['wrR'],focus:['shR','elR','wrR','haR','knR'],
+ cues:['Antebrazo apoyado en el muslo, palma hacia arriba.','Sube el peso doblando solo la muñeca.','Baja lento, en tres segundos.'],
+ err:['Levantar el antebrazo.','Usar un peso que no controlas.'],why:'Fortalece los flexores del antebrazo. Protege la muñeca al apoyar peso y el codo de golfista.',q:'curl de muñeca con mancuerna sentado'},
+{id:'muneca-ext',n:'Extensión de muñeca con peso',j:'muñecas',lvl:'Básico',view:'side',mode:'reps',reps:15,sets:2,rest:30,
+ frames:[{t:140,hd:-20,aR:[40,90,-40],lR:[130,90,0]},{t:140,hd:-20,aR:[40,90,40],lR:[130,90,0]}],d:[1.3,2.6],props:{box:[-26,10,40],db:['haR']},hl:['wrR'],focus:['shR','elR','wrR','haR','knR'],
+ cues:['Antebrazo apoyado, palma hacia abajo.','Levanta el dorso de la mano hacia el techo.','Baja en tres segundos. Esta fase es la que fortalece el tendón.'],
+ err:['Hacerlo rápido.','Mover el codo.'],why:'Fortalece los extensores. Es el ejercicio de referencia para el codo de tenista y para quien usa mucho teclado y ratón.',q:'extensión de muñeca excéntrica epicondilitis'},
+{id:'martillo',n:'Rotación de antebrazo con martillo',j:'muñecas',lvl:'Básico',view:'front',mode:'reps',reps:10,sets:2,rest:30,
+ frames:[{aR:[6,-6,0,.3],aL:[10,0,0],lR:[12,12,0,.25],tl:180},{aR:[6,-6,0,.3],aL:[10,0,0],lR:[12,12,0,.25],tl:95},{aR:[6,-6,0,.3],aL:[10,0,0],lR:[12,12,0,.25],tl:180},{aR:[6,-6,0,.3],aL:[10,0,0],lR:[12,12,0,.25],tl:265}],d:[1.5,1.5,1.5,1.5],
+ props:{box:[-24,24,36],hammer:true},hl:['wrR'],focus:['shR','elR','wrR','tool','neck'],
+ cues:['Codo doblado a noventa grados y pegado al cuerpo.','Gira el martillo hacia fuera, despacio.','Vuelve al centro y gíralo hacia dentro.'],
+ err:['Mover el hombro.','Agarrar demasiado cerca de la cabeza del martillo al empezar.'],why:'Entrena la rotación del antebrazo. Más lejos de la cabeza del martillo es más difícil.',q:'pronación supinación con martillo antebrazo'},
+{id:'balanceo',n:'Balanceo de muñecas en cuadrupedia',j:'muñecas',lvl:'Diario',view:'side',mode:'reps',reps:8,sets:1,rest:20,ax:'wrR',
+ frames:[QUAD,{t:100,aR:[55,0,115],lR:[65,75,-90]},QUAD,{t:106,aR:[94,0,74],lR:[89,105,-90]}],d:[1.5,1.5,1.5,1.5],hl:['wrR'],
+ cues:['Manos planas bajo los hombros y dedos abiertos.','Lleva el peso hacia delante, despacio.','Luego hacia atrás. Prueba también con los dedos girados.'],
+ err:['Despegar la base de los dedos.','Forzar si hay dolor.'],why:'Prepara las muñecas para soportar peso en flexiones, yoga o al levantarte del suelo.',q:'calentamiento de muñecas en cuadrupedia wrist warm up'},
+{id:'granjero',n:'Paseo del granjero',j:'muñecas',lvl:'Básico',view:'side',mode:'time',secs:40,sets:3,rest:60,
+ frames:[{aR:[4,0,0],aL:[2,0,0],lR:[22,3,-10],lL:[-18,15,0]},{aR:[2,0,0],aL:[4,0,0],lR:[2,4,0],lL:[18,55,0]},{aR:[2,0,0],aL:[4,0,0],lL:[22,3,-10],lR:[-18,15,0]},{aR:[4,0,0],aL:[2,0,0],lL:[2,4,0],lR:[18,55,0]}],d:[.45,.45,.45,.45],
+ props:{db:['wrR','wrL']},hl:['wrR','shR'],
+ cues:['Un peso pesado en cada mano.','Camina erguido, con pasos cortos y hombros abajo.','Aprieta fuerte las asas.'],
+ err:['Encorvarte.','Dejar que los hombros caigan hacia delante.'],why:'Fuerza de agarre, hombros estables y core. La fuerza de agarre se asocia a mejor salud general.',q:'farmer walk paseo del granjero técnica'},
+// CADERA
+{id:'puente',n:'Puente de glúteo',j:'cadera',lvl:'Básico',view:'side',mode:'reps',reps:12,sets:3,rest:45,ax:'anR',
+ frames:[{t:270,aR:[0,0,0],lR:[45,110,-25]},{t:285,hd:-30,aR:[-15,0,0],lR:[10,120,5]},{t:285,hd:-30,aR:[-15,0,0],lR:[10,120,5]}],d:[1.4,1.2,2],hl:['hpR'],
+ cues:['Boca arriba, pies apoyados a la anchura de la cadera.','Sube la cadera apretando los glúteos.','Mantén dos segundos arriba y baja lento.'],
+ err:['Arquear la zona lumbar en lugar de usar el glúteo.','Empujar con las puntas de los pies.'],why:'Despierta los glúteos, que estabilizan cadera, rodilla y zona lumbar. Progresión: a una pierna.',q:'puente de glúteo técnica correcta'},
+{id:'cars-cadera',n:'Círculos de cadera en cuadrupedia',j:'cadera',lvl:'Diario',view:'side',mode:'reps',reps:5,sets:1,rest:20,sides:2,
+ frames:[{...QUAD,lL:[76,90,-90]},{...QUAD,lR:[130,120,-90],lL:[76,90,-90]},{...QUAD,lL:[76,90,-90]},{...QUAD,lR:[10,90,-90],lL:[76,90,-90]}],d:[1.6,1.6,1.6,1.6],gk:3,hl:['hpR'],
+ cues:['A cuatro apoyos, espalda quieta.','Lleva la rodilla al pecho, ábrela al lado y empújala hacia atrás.','Movimiento lento y amplio.'],
+ err:['Girar la espalda.','Ir rápido.'],why:'Mueve la cadera en todas sus direcciones. Mantiene la movilidad que el sedentarismo quita.',q:'hip CARs cuadrupedia movilidad cadera'},
+{id:'flexor',n:'Estiramiento activo del flexor de cadera',j:'cadera',lvl:'Diario',view:'side',mode:'time',secs:40,sets:1,rest:15,sides:2,ax:'knL',
+ frames:[{aR:[10,0,0],lR:[80,80,0],lL:[-10,95,15]},{t:184,aR:[170,0,0],lR:[65,90,25],lL:[-28,80,33]},{t:184,aR:[170,0,0],lR:[65,90,25],lL:[-28,80,33]}],d:[2.5,4,2.5],gk:1,hl:['hpL'],
+ cues:['Una rodilla en el suelo y el otro pie delante.','Aprieta el glúteo de la pierna de atrás y mete la pelvis.','Lleva el cuerpo hacia delante y sube el brazo.'],
+ err:['Arquear la zona lumbar.','Rebotar.'],why:'Abre los flexores de cadera, acortados por estar sentado, y alivia la tensión lumbar.',q:'estiramiento flexor de cadera de rodillas psoas'},
+{id:'rumano',n:'Peso muerto rumano',j:'cadera',lvl:'Intermedio',view:'side',mode:'reps',reps:10,sets:3,rest:75,ax:'anR',
+ frames:[{aR:[0,0,0],lR:[0,8,8]},{t:110,aR:[70,0,0],lR:[85,20,5]},{t:110,aR:[70,0,0],lR:[85,20,5]}],d:[2.5,.5,2],props:{db:['wrR']},hl:['hpR'],
+ cues:['Rodillas un poco dobladas y espalda larga.','Lleva la cadera hacia atrás como si cerraras una puerta con el trasero.','Sube apretando glúteos cuando sientas tirar la parte de atrás del muslo.'],
+ err:['Redondear la espalda.','Convertirlo en una sentadilla.'],why:'Fortalece glúteos, isquiotibiales y espalda baja. Enseña a agacharse y levantar peso con seguridad.',q:'peso muerto rumano mancuernas técnica'},
+// ESPALDA
+{id:'bird-dog',n:'Perro-pájaro (bird dog)',j:'espalda',lvl:'Básico',view:'side',mode:'reps',reps:6,sets:2,rest:30,sides:2,
+ frames:[{t:100,aR:[80,0,90],lR:[80,90,-90]},{t:100,aR:[180,0,0],aL:[80,0,90],lR:[80,90,-90],lL:[0,0,0]},{t:100,aR:[180,0,0],aL:[80,0,90],lR:[80,90,-90],lL:[0,0,0]}],d:[1.6,3,1.6],hl:['spine'],
+ cues:['A cuatro apoyos, espalda neutra.','Estira un brazo y la pierna contraria a la vez.','Aguanta tres segundos sin que la espalda se mueva.'],
+ err:['Subir la pierna por encima de la cadera.','Girar la pelvis.'],why:'Uno de los tres básicos de McGill. Estabiliza la columna con muy poca carga sobre ella.',q:'bird dog McGill técnica'},
+{id:'plancha-lat',n:'Plancha lateral',j:'espalda',lvl:'Intermedio',view:'side',mode:'time',secs:25,sets:2,rest:30,sides:2,ax:'elR',
+ frames:[{t:103,aR:[77,90,0],aL:[257,0,0],lR:[0,0,-13]},{t:105,aR:[75,90,0],aL:[255,0,0],lR:[0,0,-15]}],d:[2.5,2.5],hl:['spine','hpR'],
+ cues:['Codo bajo el hombro y el cuerpo en línea recta.','Sube la cadera y no la dejes caer.','Si cuesta, apoya las rodillas.'],
+ err:['Dejar caer la cadera.','Echar los hombros hacia delante.'],why:'Fortalece la parte lateral del core, clave para la espalda baja. Otro de los básicos de McGill.',q:'plancha lateral técnica McGill'},
+{id:'dead-bug',n:'Bicho muerto (dead bug)',j:'espalda',lvl:'Básico',view:'side',mode:'reps',reps:6,sets:2,rest:30,sides:2,
+ frames:[{t:270,aR:[90,0,0],lR:[90,90,-90]},{t:270,aR:[170,0,0],aL:[90,0,0],lR:[90,90,-90],lL:[20,0,-90]},{t:270,aR:[90,0,0],lR:[90,90,-90]}],d:[2,1,2],hl:['spine'],
+ cues:['Boca arriba, brazos al techo y rodillas a noventa grados.','Baja un brazo y la pierna contraria sin despegar la zona lumbar.','Exhala al estirar y vuelve.'],
+ err:['Arquear la espalda.','Ir rápido.'],why:'Entrena el abdomen profundo para proteger la zona lumbar sin flexionar la columna.',q:'dead bug ejercicio técnica'},
+{id:'gato',n:'Gato-camello',j:'espalda',lvl:'Diario',view:'side',mode:'reps',reps:8,sets:1,rest:15,
+ frames:[{t:102,aR:[78,0,90],lR:[78,90,-90]},{t:102,c:14,hd:-45,aR:[78,0,90],lR:[78,90,-90]},{t:102,aR:[78,0,90],lR:[78,90,-90]},{t:102,c:-10,hd:25,aR:[78,0,90],lR:[78,90,-90]}],d:[2,2,2,2],gk:1,hl:['spine'],
+ cues:['A cuatro apoyos.','Redondea la espalda mirando al ombligo.','Luego húndela suave mirando al frente. Sigue tu respiración.'],
+ err:['Forzar los extremos.','Hacerlo rápido.'],why:'Moviliza la columna vértebra a vértebra. Ideal por la mañana o tras muchas horas sentado.',q:'gato camello cat cow movilidad columna'},
+{id:'barbilla',n:'Retracción de barbilla',j:'espalda',lvl:'Diario',view:'side',mode:'reps',reps:10,sets:1,rest:15,tuck:true,
+ frames:[{aR:[4,0,0],hd:-18},{aR:[4,0,0],hd:6},{aR:[4,0,0],hd:6}],d:[1.5,3,1.5],gk:1,hl:['neck'],focus:['neck','head','shR','elR'],
+ cues:['De pie o sentado, mirada al frente.','Lleva la cabeza hacia atrás, como si hicieras papada.','Aguanta tres segundos y suelta.'],
+ err:['Inclinar la cabeza hacia abajo.','Subir los hombros.'],why:'Fortalece los flexores profundos del cuello. Corrige la cabeza adelantada de mirar el móvil.',q:'chin tuck retracción cervical ejercicio'},
+];
+const byId=Object.fromEntries(EX.map(e=>[e.id,e]));
+const JOINTS=[['todo','Todo'],['hombros','Hombros'],['rodillas','Rodillas'],['muñecas','Muñecas'],['cadera','Cadera'],['espalda','Espalda']];
+const jName=j=>(JOINTS.find(x=>x[0]===j)||[,j])[1];
+const doseTxt=(ex,o={})=>{const sets=o.sets??ex.sets,sides=ex.sides===2?' por lado':'';return ex.mode==='time'?`${sets} × ${o.secs??ex.secs} s${sides}`:`${sets} × ${o.reps??ex.reps} reps${sides}`};
+
+const ROUTINES=[
+ {id:'express',n:'Movilidad diaria',desc:'Para todos los días, al levantarte o en una pausa del trabajo. Sin material.',star:true,
+  items:[{id:'gato'},{id:'barbilla',reps:8},{id:'cars-hombro',reps:3},{id:'balanceo',reps:6},{id:'cars-cadera',reps:4},{id:'wall-slide',sets:1},{id:'flexor',secs:30}]},
+ {id:'hombros',n:'Hombros blindados',desc:'Manguito rotador, omóplatos y fuerza de empuje y tirón.',
+  items:[{id:'cars-hombro',reps:3},{id:'wall-slide'},{id:'rot-ext'},{id:'pull-apart'},{id:'remo'},{id:'flexion'},{id:'colgarse',sets:2}]},
+ {id:'rodillas',n:'Rodillas fuertes',desc:'Cuádriceps, glúteos y control de la rodilla en todo su recorrido.',
+  items:[{id:'tke',sets:2},{id:'puente',sets:2},{id:'sentadilla'},{id:'zancada',sets:2},{id:'step-down',sets:2},{id:'pared',sets:2}]},
+ {id:'munecas',n:'Muñecas de acero',desc:'Antebrazos, agarre y tolerancia a soportar peso en las manos.',
+  items:[{id:'balanceo'},{id:'muneca-flex'},{id:'muneca-ext'},{id:'martillo'},{id:'granjero',sets:2},{id:'colgarse',sets:2,secs:20}]},
+ {id:'espalda',n:'Espalda y postura',desc:'Los básicos de McGill, cadera fuerte y espalda alta activa.',
+  items:[{id:'gato',reps:6},{id:'barbilla',reps:8},{id:'bird-dog'},{id:'dead-bug'},{id:'plancha-lat'},{id:'puente',sets:2},{id:'pull-apart',sets:2},{id:'rumano',sets:2}]},
+];
+
+/* ---------- Vistas animadas ---------- */
+const views=new Set();
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function sizeView(v){const r=v.canvas.getBoundingClientRect(),d=Math.min(2,window.devicePixelRatio||1);v.w=Math.max(10,r.width);v.h=Math.max(10,r.height);v.dpr=d;v.canvas.width=Math.round(v.w*d);v.canvas.height=Math.round(v.h*d);render(v,v.lastT||0)}
+const ro=new ResizeObserver(es=>{for(const e of es){const v=e.target._view;if(v)sizeView(v)}});
+function makeView(canvas,ex,o={}){const v={canvas,ex,ctx:canvas.getContext('2d'),t0:performance.now(),active:true,...o};canvas._view=v;views.add(v);ro.observe(canvas);sizeView(v);return v}
+const io=new IntersectionObserver(es=>{for(const e of es){const v=e.target._view;if(v)v.active=e.isIntersecting}},{rootMargin:'100px'});
+function loop(now){for(const v of views){if(!v.active||v.canvas.offsetParent===null&&!v.always)continue;
+  const t=v.timeFn?v.timeFn(now):(now-v.t0)/1000*(reduce?.5:1);v.lastT=t;render(v,t)}requestAnimationFrame(loop)}
+
+/* Hero */
+const heroOrder=['sentadilla','rot-ext','puente','balanceo','flexion','bird-dog','zancada','wall-slide','martillo','rumano','gato','step-down'];
+let heroI=0;const heroV=makeView(document.getElementById('heroCanvas'),byId[heroOrder[0]],{always:true,pad:.16,yOff:-14});
+function setHero(i){const ex=byId[heroOrder[i]];heroV.ex=ex;heroV.t0=performance.now();
+  document.getElementById('heroName').textContent=ex.n;document.getElementById('heroJ').textContent=jName(ex.j);document.getElementById('heroDose').textContent=doseTxt(ex)}
+setHero(0);setInterval(()=>{if(document.hidden)return;heroI=(heroI+1)%heroOrder.length;setHero(heroI)},7000);
+
+/* Biblioteca */
+const grid=document.getElementById('grid'),chips=document.getElementById('chips');
+const yt=q=>'https://www.youtube.com/results?search_query='+encodeURIComponent(q);
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+EX.forEach(ex=>{
+  const el=document.createElement('article');el.className='card';el.dataset.j=ex.j;
+  el.innerHTML=`<canvas aria-label="Animación: ${esc(ex.n)}"></canvas><div class="body">
+   <div class="row"><span class="pill j">${jName(ex.j)}</span><span class="pill">${ex.lvl}</span></div>
+   <h3>${esc(ex.n)}</h3><div class="dose">${doseTxt(ex)} · descanso ${ex.rest} s</div>
+   <ul>${ex.cues.map(c=>`<li>${esc(c)}</li>`).join('')}</ul>
+   <p class="why">${esc(ex.why)}</p>
+   <div class="acts"><button class="btn" data-ex="${ex.id}">▶ Practicar</button><a href="${yt(ex.q)}" target="_blank" rel="noopener">Video real ↗</a></div></div>`;
+  grid.appendChild(el);
+  const cv=el.querySelector('canvas');makeView(cv,ex,{pad:.1});io.observe(cv);
+});
+let filter='todo';
+JOINTS.forEach(([k,n])=>{const b=document.createElement('button');b.className='chip';b.textContent=n;b.setAttribute('aria-pressed',k===filter);
+  b.onclick=()=>{filter=k;[...chips.children].forEach(c=>c.setAttribute('aria-pressed',c===b));[...grid.children].forEach(c=>c.hidden=!(k==='todo'||c.dataset.j===k))};chips.appendChild(b)});
+
+/* Sesiones */
+function buildSteps(items){
+  const steps=[];
+  items.forEach((it,ii)=>{const ex=byId[it.id];const sets=it.sets??ex.sets,sides=ex.sides||1,reps=it.reps??ex.reps,secs=it.secs??ex.secs;
+    steps.push({k:'prep',ex,it,dur:ii===0?10:9});
+    for(let s=0;s<sets;s++)for(let side=0;side<sides;side++){
+      steps.push({k:'work',ex,it,set:s,sets,side,sides,reps,secs,dur:ex.mode==='time'?secs:reps*cycleOf(ex)});
+      const lastOfEx=s===sets-1&&side===sides-1;
+      if(!lastOfEx)steps.push({k:'rest',ex,it,dur:side<sides-1?6:ex.rest,switchSide:side<sides-1});
+      else if(ii<items.length-1)steps.push({k:'rest',ex,it,dur:20,nextEx:byId[items[ii+1].id]});
+    }});
+  steps.push({k:'done',dur:1e9});return steps;
+}
+const fmt=s=>{s=Math.max(0,Math.ceil(s));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
+const rtWrap=document.getElementById('routines');
+ROUTINES.forEach(r=>{const st=buildSteps(r.items);const tot=st.filter(s=>s.k!=='done').reduce((a,s)=>a+s.dur,0);r.mins=Math.round(tot/60);
+  const el=document.createElement('article');el.className='rt'+(r.star?' star':'');
+  const js=[...new Set(r.items.map(i=>byId[i.id].j))].map(jName).join(' · ');
+  el.innerHTML=`<p class="lbl">${js}</p><h3>${esc(r.n)}</h3><div class="meta"><span><b>${r.mins}</b> min</span><span><b>${r.items.length}</b> ejercicios</span></div><p>${esc(r.desc)}</p>
+  <ol>${r.items.map(i=>`<li>${esc(byId[i.id].n)}</li>`).join('')}</ol><button class="btn" data-routine="${r.id}">▶ Empezar</button>`;
+  rtWrap.appendChild(el)});
+
+/* Semana */
+const KEY='taller-art-sesiones';
+function getLog(){try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){return[]}}
+function addLog(){try{const l=getLog();l.push(Date.now());localStorage.setItem(KEY,JSON.stringify(l.slice(-200)))}catch(e){}}
+function renderWeek(){const now=new Date(),dow=(now.getDay()+6)%7,mon=new Date(now.getFullYear(),now.getMonth(),now.getDate()-dow);
+  const log=getLog(),wrap=document.getElementById('weekDays');wrap.innerHTML='';let n=0;
+  'LMXJVSD'.split('').forEach((d,i)=>{const day=new Date(mon.getFullYear(),mon.getMonth(),mon.getDate()+i),next=new Date(day.getFullYear(),day.getMonth(),day.getDate()+1);
+    const on=log.some(t=>t>=day&&t<next);if(on)n++;const e=document.createElement('span');e.className='d'+(on?' on':'')+(i===dow?' today':'');e.textContent=d;wrap.appendChild(e)});
+  document.getElementById('weekTxt').textContent=`Esta semana: ${n} ${n===1?'día':'días'}`}
+renderWeek();
+
+/* ---------- Audio ---------- */
+let voiceOn=true,beepOn=true,VOICE=null,AC=null;
+const hasTTS='speechSynthesis' in window;
+function pickVoice(){if(!hasTTS)return;const vs=speechSynthesis.getVoices();
+  VOICE=vs.find(v=>/^es[-_](MX|US|419|CO|AR)/i.test(v.lang))||vs.find(v=>/^es[-_]ES/i.test(v.lang))||vs.find(v=>/^es/i.test(v.lang))||null}
+if(hasTTS){pickVoice();speechSynthesis.onvoiceschanged=pickVoice}
+const capEl=document.getElementById('pCap');
+function say(text,pri=false){capEl.innerHTML=`<span>${esc(text)}</span>`;
+  if(!voiceOn||!hasTTS)return;try{if(pri)speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang=VOICE?VOICE.lang:'es-ES';if(VOICE)u.voice=VOICE;u.rate=1.03;speechSynthesis.speak(u)}catch(e){}}
+const busy=()=>hasTTS&&voiceOn&&speechSynthesis.speaking;
+function beep(f=880,d=.12){if(!beepOn)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();
+  const o=AC.createOscillator(),g=AC.createGain(),t=AC.currentTime;o.type='sine';o.frequency.value=f;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.25,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g).connect(AC.destination);o.start(t);o.stop(t+d+.03)}catch(e){}}
+const NUM=['cero','una','dos','tres','cuatro','cinco','seis','siete','ocho','nueve','diez','once','doce','trece','catorce','quince','dieciséis','diecisiete','dieciocho','diecinueve','veinte'];
+
+/* ---------- Reproductor ---------- */
+const $=id=>document.getElementById(id);
+const player=$('player');
+const PL={steps:[],i:0,el:0,paused:false,last:0,rep:0,marks:new Set(),routine:null,wake:null};
+const pv=makeView($('pCanvas'),EX[0],{always:true,pad:.1,ghost:true,timeFn:()=>PL.el});
+pv.active=false;
+const PLAY='<path d="M7 5v14l12-7z"/>',PAUSE='<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';
+function start(routine){
+  PL.routine=routine;PL.steps=buildSteps(routine.items);PL.i=0;PL.paused=false;
+  $('pRoutine').textContent=routine.n;player.hidden=false;document.body.style.overflow='hidden';
+  pv.active=true;requestAnimationFrame(()=>sizeView(pv));
+  try{navigator.wakeLock&&navigator.wakeLock.request('screen').then(w=>PL.wake=w).catch(()=>{})}catch(e){}
+  beep(660,.05);enter();PL.last=performance.now();
+}
+function close(){player.hidden=true;document.body.style.overflow='';pv.active=false;if(hasTTS)speechSynthesis.cancel();try{PL.wake&&PL.wake.release()}catch(e){}PL.wake=null}
+function workSteps(){return PL.steps.filter(s=>s.k==='work')}
+function enter(){
+  const st=PL.steps[PL.i];PL.el=0;PL.rep=0;PL.marks=new Set();
+  const main=$('pMain');
+  if(st.k==='done'){addLog();renderWeek();main.innerHTML=`<div class="done" style="grid-column:1/-1"><span class="lbl">${esc(PL.routine.n)}</span><h2>Sesión completada</h2><p>Has terminado ${PL.routine.items.length} ejercicios. Tu progreso de la semana ya está actualizado.</p><button class="btn" id="pDoneClose">Volver</button></div>`;
+    $('pDoneClose').onclick=()=>{close();location.reload()};$('pPhase')&&($('pPhase').hidden=true);say('Sesión completada. ¡Buen trabajo!',true);beep(880,.15);setTimeout(()=>beep(1175,.25),180);$('pProg').style.width='100%';return}
+  const ex=st.k==='rest'&&st.nextEx?st.nextEx:st.ex;
+  pv.ex=ex;pv.mirror=st.side===1;boundsOf(ex);
+  $('pName').textContent=ex.n;$('pDose').textContent=doseTxt(ex,st.it&&st.it.id===ex.id?st.it:{})+' · descanso '+ex.rest+' s';
+  $('pCues').innerHTML=ex.cues.map(c=>`<li>${esc(c)}</li>`).join('');$('pErr').innerHTML=ex.err.map(c=>`<li>${esc(c)}</li>`).join('');$('pVideo').href=yt(ex.q);
+  const ph=$('pPhase');ph.className='phase'+(st.k==='work'?' work':st.k==='rest'?' rest':'');
+  ph.textContent=st.k==='work'?'TRABAJO':st.k==='rest'?'DESCANSO':'PREPÁRATE';
+  const exIdx=PL.routine.items.findIndex(i=>i===st.it)+1;
+  $('pStep').textContent=`${exIdx}/${PL.routine.items.length} · ${(st.k==='rest'&&st.nextEx?st.nextEx:st.ex).n}`;
+  $('pSide').textContent=st.k==='work'?`Serie ${st.set+1}/${st.sets}${st.sides===2?(st.side?' · lado izquierdo':' · lado derecho'):''}`:'';
+  $('pCountLbl').textContent=st.k==='work'?(ex.mode==='time'?'Tiempo':'Repeticiones'):st.k==='rest'?'Descanso':'Empieza en';
+  const nx=PL.steps.slice(PL.i+1).find(s=>s.k==='work');
+  $('pNext').textContent=st.k==='work'&&nx&&nx.ex!==st.ex?`Después: ${nx.ex.n}`:'';
+  if(st.k==='prep')say(`${ex.n}. ${doseTxt(ex,st.it).replace('×','series de').replace('reps','repeticiones').replace(' s',' segundos')}. ${ex.cues[0]}`,true);
+  if(st.k==='work'){beep(990,.16);say(ex.mode==='time'?`¡Vamos! ${st.secs} segundos.`:'¡Vamos!',true)}
+  if(st.k==='rest')say(st.switchSide?'Cambia de lado.':st.nextEx?`Muy bien. Descansa. Siguiente: ${st.nextEx.n}.`:`Descansa ${st.dur} segundos.`,true);
+  updateHUD();
+}
+function updateHUD(){
+  const st=PL.steps[PL.i];if(!st||st.k==='done')return;
+  const c=$('pCount');
+  if(st.k==='work'&&st.ex.mode==='reps'){c.innerHTML=`${Math.min(st.reps,PL.rep)}<small>/${st.reps}</small>`}
+  else c.textContent=fmt(st.dur-PL.el);
+  const tot=PL.steps.length-1;$('pProg').style.width=((PL.i+Math.min(1,PL.el/st.dur))/tot*100)+'%';
+}
+function tick(now){
+  const dt=Math.min(.25,(now-PL.last)/1000);PL.last=now;
+  if(!player.hidden&&!PL.paused){const st=PL.steps[PL.i];
+    if(st&&st.k!=='done'){PL.el+=dt;
+      const left=st.dur-PL.el,ls=Math.ceil(left);
+      if(st.k==='work'&&st.ex.mode==='reps'){const r=Math.floor(PL.el/cycleOf(st.ex));
+        if(r>PL.rep){PL.rep=r;beep(740,.06);
+          if(st.set===0&&st.side===0&&r===2&&st.ex.cues[1])say(st.ex.cues[1],true);
+          else if(st.set===0&&st.side===0&&r===4&&st.ex.cues[2])say(st.ex.cues[2],true);
+          else if(r===st.reps-1&&st.reps>3)say('Última',true);
+          else if(!busy())say(NUM[r]||String(r))}}
+      else{
+        if(st.k==='work'&&st.ex.mode==='time'&&!PL.marks.has('h')&&PL.el>=st.dur/2&&st.dur>=20){PL.marks.add('h');say(st.ex.cues[1]||'Mitad. Sigue así.',true)}
+        if(st.k==='work'&&!PL.marks.has('10')&&left<=10.2&&st.dur>=25){PL.marks.add('10');say('Diez segundos.',true)}
+      }
+      if(ls<=3&&ls>=1&&!PL.marks.has('b'+ls)&&(st.k!=='work'||st.ex.mode==='time')){PL.marks.add('b'+ls);beep(520,.09)}
+      if(PL.el>=st.dur){PL.i++;enter()}
+      updateHUD()}}
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);requestAnimationFrame(loop);
+function go(delta){const n=Math.max(0,Math.min(PL.steps.length-1,PL.i+delta));if(n===PL.i&&delta<0){PL.el=0;enter();return}PL.i=n;enter()}
+function setPaused(p){PL.paused=p;$('pPlayIco').innerHTML=p?PLAY:PAUSE;$('pPlay').setAttribute('aria-label',p?'Reanudar':'Pausar');
+  if(p){if(hasTTS)speechSynthesis.cancel();say('En pausa.')}else{beep(660,.05)}}
+$('pPlay').onclick=()=>setPaused(!PL.paused);
+$('pPrev').onclick=()=>go(-1);$('pNextBtn').onclick=()=>go(1);$('pClose').onclick=close;
+$('pVoice').onclick=e=>{voiceOn=!voiceOn;e.currentTarget.setAttribute('aria-pressed',voiceOn);if(!voiceOn&&hasTTS)speechSynthesis.cancel()};
+$('pBeep').onclick=e=>{beepOn=!beepOn;e.currentTarget.setAttribute('aria-pressed',beepOn)};
+document.addEventListener('keydown',e=>{if(player.hidden)return;if(e.key===' '){e.preventDefault();setPaused(!PL.paused)}else if(e.key==='ArrowRight')go(1);else if(e.key==='ArrowLeft')go(-1);else if(e.key==='Escape')close()});
+document.addEventListener('click',e=>{const b=e.target.closest('[data-routine],[data-ex]');if(!b)return;
+  if(b.dataset.routine)start(ROUTINES.find(r=>r.id===b.dataset.routine));
+  else{const ex=byId[b.dataset.ex];start({n:'Práctica individual',items:[{id:ex.id}]})}});
+if(!hasTTS)capEl.innerHTML='<span>Tu navegador no tiene voz. Sigue los subtítulos y los pitidos.</span>';
+
+/* Hoja de revisión (solo desarrollo) */
+window.__sheet=()=>{document.body.innerHTML='<div id="sh" style="display:grid;grid-template-columns:repeat(6,1fr);gap:4px;padding:4px"></div>';const sh=document.getElementById('sh');
+  EX.forEach(ex=>{(ex._F||ex.frames.map(norm)).forEach((f,i)=>{const w=document.createElement('div');const c=document.createElement('canvas');c.style.cssText='width:100%;aspect-ratio:4/3;border:1px solid #ccc;background:#fff;display:block';w.appendChild(c);
+    const t=document.createElement('div');t.style.cssText='font:10px monospace';t.textContent=ex.id+' #'+i;w.appendChild(t);sh.appendChild(w);
+    const v={canvas:c,ex,ctx:c.getContext('2d'),pad:.08};const r=c.getBoundingClientRect();v.w=r.width;v.h=r.height;v.dpr=1;c.width=v.w;c.height=v.h;
+    const ofs=ex.d.slice(0,i).reduce((a,b)=>a+b,0);render(v,ofs+.0001)})})};
+})();
+</script>
