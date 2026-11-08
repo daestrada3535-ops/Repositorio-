@@ -39,6 +39,33 @@ Separador `,`, `;` o tabulador (se detecta solo). También acepta `G/P/N` y `win
   y máxima caída (drawdown).
 - **Desgloses:** por deporte, mercado, casa, rango de cuota y mes.
 
+## Evaluar una apuesta antes de hacerla
+
+`evaluar_apuesta.py` te dice si una apuesta va **a favor**, **en contra** o es **neutral**
+según los datos, comparando la probabilidad estimada con lo que paga la cuota.
+
+**Modo cuotas:** cuánto cobra la casa y qué probabilidad real indica cada cuota.
+
+```bash
+python3 evaluar_apuesta.py cuotas 2.10 3.40 3.60 --nombres Local Empate Visita
+python3 evaluar_apuesta.py cuotas 2.10 3.40 3.60 --mi-prob 52 --elegida 1
+```
+
+**Modo fútbol:** modelo de goles (Poisson) con los promedios de los últimos partidos
+(goles a favor y en contra por partido de cada equipo). Calcula 1X2, doble oportunidad,
+más/menos 2.5, ambos marcan y marcadores más probables, y compara con las cuotas.
+
+```bash
+python3 evaluar_apuesta.py futbol --local-gf 1.8 --local-gc 0.9 --visita-gf 1.1 --visita-gc 1.4 \
+    --cuota-1 1.95 --cuota-x 3.50 --cuota-2 4.00 --cuota-mas25 1.85 --cuota-menos25 1.95
+```
+
+**Cómo leerlo:**
+- *Cuota justa* = 1 / probabilidad. Si la casa paga **más** que la cuota justa, hay valor.
+- *Valor esperado* = cuánto ganarías en promedio por cada 1 apostado si la apuesta se
+  repitiera muchas veces. Positivo = a favor; negativo = en contra.
+- Ningún modelo garantiza el resultado: una apuesta "a favor" puede perderse.
+
 ## Pruebas
 
 ```bash
