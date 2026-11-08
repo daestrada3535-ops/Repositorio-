@@ -1,0 +1,61 @@
+fecha,deporte,mercado,casa,evento,cuota,monto,resultado
+2026-07-02,Fútbol,Más/Menos 2.5,Betsson,Evento 1,3.19,10,ganada
+2026-07-03,Tenis,Ganador,Bet365,Evento 2,3.94,25,ganada
+2026-07-05,Fútbol,1X2,Betsson,Evento 3,1.56,10,ganada
+2026-07-06,Tenis,Ganador,Bet365,Evento 4,2.97,10,perdida
+2026-07-07,Baloncesto,Más/Menos,Codere,Evento 5,1.72,50,ganada
+2026-07-08,Fútbol,Ambos marcan,Bet365,Evento 6,2.96,50,ganada
+2026-07-08,Tenis,Ganador,Betsson,Evento 7,3.1,25,perdida
+2026-07-09,Baloncesto,Más/Menos,Bet365,Evento 8,2.35,15,ganada
+2026-07-09,Tenis,Ganador,Betsson,Evento 9,2.82,25,perdida
+2026-07-10,Tenis,Ganador,Codere,Evento 10,1.64,15,ganada
+2026-07-12,Baloncesto,Hándicap,Betsson,Evento 11,4.09,50,ganada
+2026-07-13,Baloncesto,Más/Menos,Codere,Evento 12,3.02,10,perdida
+2026-07-13,Baloncesto,Más/Menos,Betsson,Evento 13,3.32,20,ganada
+2026-07-15,Baloncesto,Más/Menos,Codere,Evento 14,3.87,20,perdida
+2026-07-16,Tenis,Ganador,Codere,Evento 15,2.73,15,ganada
+2026-07-17,Baloncesto,Más/Menos,Bet365,Evento 16,3.96,25,perdida
+2026-07-19,Tenis,Ganador,Betsson,Evento 17,3.86,20,perdida
+2026-07-21,Baloncesto,Más/Menos,Bet365,Evento 18,4.08,15,ganada
+2026-07-22,Tenis,Ganador,Bet365,Evento 19,1.33,20,perdida
+2026-07-23,Fútbol,1X2,Betsson,Evento 20,2.51,20,ganada
+2026-07-24,Tenis,Ganador,Betsson,Evento 21,2.62,50,perdida
+2026-07-26,Baloncesto,Más/Menos,Codere,Evento 22,2.44,10,perdida
+2026-07-27,Fútbol,1X2,Betsson,Evento 23,2.58,10,ganada
+2026-07-27,Fútbol,Ambos marcan,Codere,Evento 24,1.74,50,ganada
+2026-07-27,Fútbol,1X2,Codere,Evento 25,3.08,20,ganada
+2026-07-28,Baloncesto,Hándicap,Codere,Evento 26,1.63,25,ganada
+2026-07-30,Baloncesto,Hándicap,Betsson,Evento 27,1.72,20,perdida
+2026-08-01,Tenis,Ganador,Betsson,Evento 28,2.8,20,ganada
+2026-08-02,Tenis,Ganador,Betsson,Evento 29,3.5,10,ganada
+2026-08-03,Tenis,Ganador,Bet365,Evento 30,3.93,50,perdida
+2026-08-04,Tenis,Ganador,Bet365,Evento 31,3.08,15,perdida
+2026-08-06,Tenis,Ganador,Betsson,Evento 32,1.88,10,ganada
+2026-08-06,Baloncesto,Más/Menos,Codere,Evento 33,2.05,25,perdida
+2026-08-07,Baloncesto,Hándicap,Bet365,Evento 34,1.94,20,ganada
+2026-08-08,Baloncesto,Hándicap,Betsson,Evento 35,2.69,10,perdida
+2026-08-08,Baloncesto,Hándicap,Betsson,Evento 36,2.69,20,ganada
+2026-08-08,Tenis,Ganador,Bet365,Evento 37,2.64,15,perdida
+2026-08-09,Fútbol,1X2,Betsson,Evento 38,1.74,15,perdida
+2026-08-11,Tenis,Ganador,Bet365,Evento 39,1.75,10,ganada
+2026-08-11,Tenis,Ganador,Bet365,Evento 40,2.56,10,perdida
+2026-08-12,Fútbol,Más/Menos 2.5,Codere,Evento 41,2.75,20,perdida
+2026-08-14,Fútbol,1X2,Codere,Evento 42,3.94,50,perdida
+2026-08-16,Tenis,Ganador,Bet365,Evento 43,2.84,25,perdida
+2026-08-17,Tenis,Ganador,Bet365,Evento 44,3.55,25,ganada
+2026-08-17,Tenis,Ganador,Betsson,Evento 45,2.25,25,perdida
+2026-08-17,Tenis,Ganador,Bet365,Evento 46,2.02,50,ganada
+2026-08-19,Tenis,Ganador,Codere,Evento 47,3.5,20,perdida
+2026-08-20,Tenis,Ganador,Codere,Evento 48,2.61,50,perdida
+2026-08-21,Tenis,Ganador,Bet365,Evento 49,3.98,25,perdida
+2026-08-22,Baloncesto,Hándicap,Betsson,Evento 50,2.44,15,ganada
+2026-08-24,Fútbol,1X2,Bet365,Evento 51,3.24,20,perdida
+2026-08-25,Baloncesto,Hándicap,Bet365,Evento 52,4.11,25,ganada
+2026-08-27,Fútbol,Ambos marcan,Codere,Evento 53,3.71,50,ganada
+2026-08-29,Baloncesto,Más/Menos,Betsson,Evento 54,1.87,20,ganada
+2026-08-29,Baloncesto,Más/Menos,Codere,Evento 55,2.58,50,nula
+2026-08-30,Tenis,Ganador,Bet365,Evento 56,1.63,10,perdida
+2026-08-30,Baloncesto,Más/Menos,Codere,Evento 57,1.41,15,perdida
+2026-09-01,Tenis,Ganador,Betsson,Evento 58,2.48,50,perdida
+2026-09-03,Tenis,Ganador,Betsson,Evento 59,1.56,15,ganada
+2026-09-05,Fútbol,Más/Menos 2.5,Codere,Evento 60,4.02,10,perdida
