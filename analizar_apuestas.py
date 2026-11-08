@@ -245,10 +245,10 @@ def formatear(reporte: dict) -> str:
         return "No hay apuestas para analizar."
     r, b = reporte["rachas"], reporte["banca"]
     lineas = [
-        "=" * 60,
-        "  ANÁLISIS DE APUESTAS",
+        "=" * 62,
+        "  ANÁLISIS, ESTADÍSTICAS Y PROMEDIOS DE DATOS DE APUESTAS",
         f"  Periodo: {reporte['periodo'][0]} a {reporte['periodo'][1]}",
-        "=" * 60,
+        "=" * 62,
         "",
         "RESUMEN",
         f"  Apuestas:               {g['apuestas']}  "

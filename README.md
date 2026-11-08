@@ -1,4 +1,4 @@
-# Análisis de apuestas
+# Análisis, estadísticas y promedios de datos de apuestas
 
 Herramienta en Python (sin dependencias externas) que lee un CSV con tus apuestas
 y calcula estadísticas y promedios.
