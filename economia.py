@@ -85,7 +85,8 @@ def main():
                 gas_mes[cat] += monto
 
     total = sum(saldo_medio.values())
-    pendientes = [p for p in pend if p["estado"].strip().lower() != "pagado"]
+    pendientes = [p for p in pend if p["estado"].strip().lower() == "pendiente"]
+    programados = [p for p in pend if p["estado"].strip().lower() == "programado"]
     total_pend = sum(float(p["monto"]) for p in pendientes)
     total_me_deben = sum(v for v in me_deben.values() if v > 0.5)
     total_le_debo = sum(v for v in le_debo.values() if v > 0.5)
@@ -124,6 +125,16 @@ def main():
               for p in sorted(pendientes, key=lambda p: p["fecha_limite"])]
     else:
         L += ["Nada pendiente."]
+    L += [""]
+
+    L += ["## Próximos pagos (salen de la próxima plata que entre)", ""]
+    if programados:
+        L += ["| Fecha | Concepto | Monto | Nota |", "|---|---|---:|---|"]
+        L += [f"| {p['fecha_limite']} | {p['concepto']} | {pesos(float(p['monto']))} | {p.get('nota', '')} |"
+              for p in sorted(programados, key=lambda p: p["fecha_limite"])]
+        L += ["", f"Total próximos: **{pesos(sum(float(p['monto']) for p in programados))}** (no se descuentan de la plata libre todavía)"]
+    else:
+        L += ["Nada programado."]
     L += [""]
 
     L += [f"## Mes {mes}", "",

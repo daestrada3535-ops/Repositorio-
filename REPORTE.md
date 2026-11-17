@@ -10,8 +10,8 @@
 | Nu | $41.525 |
 | **Total** | **$866.398** |
 
-- Pagos pendientes por hacer: **$150.000**
-- Plata libre (total − pendientes): **$716.398**
+- Pagos pendientes por hacer: **$0**
+- Plata libre (total − pendientes): **$866.398**
 - Me deben: **$0** · Yo debo: **$0**
 - Patrimonio neto (plata + me deben − debo): **$866.398**
 
@@ -25,9 +25,15 @@ No debo nada. 🙌
 
 ## Pagos pendientes por hacer
 
-| Fecha límite | Concepto | Monto | Nota |
+Nada pendiente.
+
+## Próximos pagos (salen de la próxima plata que entre)
+
+| Fecha | Concepto | Monto | Nota |
 |---|---|---:|---|
-| 2026-11-30 | Plata para mamá (casa) | $150.000 | Fijo quincenal |
+| 2026-11-30 | Plata para mamá (casa) | $150.000 | Sale de la nómina del 30 |
+
+Total próximos: **$150.000** (no se descuentan de la plata libre todavía)
 
 ## Mes 2026-11
 

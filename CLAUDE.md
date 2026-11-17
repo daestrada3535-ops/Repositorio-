@@ -8,7 +8,9 @@ Tu trabajo: anotarlo en los CSV, correr el reporte, contestarle con el resumen y
 - `datos/movimientos.csv` — todo movimiento de plata. Columnas:
   `fecha,tipo,monto,medio,categoria,persona,descripcion,fecha_limite`
 - `datos/pendientes.csv` — pagos que el usuario tiene que hacer (arriendo, servicios, apartados de la nómina).
-  Columnas: `fecha_limite,concepto,monto,estado,nota` (estado: `pendiente` o `pagado`).
+  Columnas: `fecha_limite,concepto,monto,estado,nota`. Estados: `programado` (pago futuro que saldrá de la próxima
+  plata que entre; NO se descuenta de la plata libre), `pendiente` (ya hay que sacarlo de la plata actual; SÍ se
+  descuenta) y `pagado`. Cuando entre la nómina, pasar a `pendiente` los programados que salen de ella.
 - `economia.py` — genera `REPORTE.md`. Correr: `python3 economia.py` (o `python3 economia.py 2026-11` para un mes).
 
 ## Tipos de movimiento
@@ -41,5 +43,5 @@ Tu trabajo: anotarlo en los CSV, correr el reporte, contestarle con el resumen y
   deudas que cambiaron) y hacer commit + push.
 
 ## Gastos fijos conocidos
-Cuando se pague uno, marcarlo `pagado` y agregar el de la siguiente quincena/mes a `pendientes.csv`.
+Cuando se pague uno, marcarlo `pagado` y agregar el de la siguiente quincena/mes como `programado`.
 - Plata para mamá (casa): $150.000 cada quincena (días 15 y 30). La del 15-nov se pagó el 17-nov.
