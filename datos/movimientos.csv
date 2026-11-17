@@ -7,5 +7,5 @@ fecha,tipo,monto,medio,categoria,persona,descripcion,fecha_limite
 2026-11-17,gasto,30000,Bancolombia,Hogar,Mamá,Ducha (parte mía),
 2026-11-17,gasto,20000,Bancolombia,Mercado,Mamá,Queso y granola,
 2026-11-17,gasto,40000,Nequi,Mercado,Mamá,Queso y granola,
-2026-11-17,fiado,29700,,Tienda,Tienda del barrio,Saldo de la cuenta de la tienda al 17-nov,2026-11-30
-2026-11-17,fiado,1050000,,Celular,Celular a cuotas,Compra de celular: 6 cuotas de 175.000 sin intereses,2026-12-30
+2026-11-17,fiado,29700,,Tienda,Tienda del barrio,Saldo de la cuenta de la tienda al 17-nov,
+2026-11-17,fiado,1050000,,Celular,Celular a cuotas,Compra de celular: 6 cuotas mensuales de 175.000 sin intereses (día 23),2026-12-23

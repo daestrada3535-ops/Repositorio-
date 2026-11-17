@@ -45,6 +45,8 @@ Tu trabajo: anotarlo en los CSV, correr el reporte, contestarle con el resumen y
 ## Gastos fijos conocidos
 Cuando se pague uno, marcarlo `pagado` y agregar el de la siguiente quincena/mes como `programado`.
 - Plata para mamá (casa): $150.000 cada quincena (días 15 y 30). La del 15-nov se pagó el 17-nov.
-- Tienda del barrio: la cuenta se paga cada quincena (al pagar: `abono` a `Tienda del barrio` + marcar pagado).
+- Tienda del barrio: cuenta corriente que va sumando (fiados) y se baja con abonos parciales ($50.000, $100.000...)
+  cada mes. NO programar el pago total; registrar cada abono como `abono` a `Tienda del barrio`.
 - Celular a cuotas (persona `Celular a cuotas`): $1.050.000 en 6 cuotas de $175.000 sin intereses, la primera
-  en la quincena del 30-dic-2026. Cada cuota pagada = `abono` de 175000 a `Celular a cuotas`.
+  mensuales, se pagan el día 23 (dic-2026 a may-2027) con la plata de la nómina del 15. Ya están programadas en
+  `pendientes.csv`. Cada cuota pagada = `abono` de 175000 a `Celular a cuotas` + marcar la cuota `pagado`.
