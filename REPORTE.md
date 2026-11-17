@@ -35,14 +35,18 @@ Nada pendiente.
 
 | Categoría de gasto | Monto |
 |---|---:|
-| Familia | $240.000 |
+| Familia | $150.000 |
+| Mercado | $60.000 |
+| Hogar | $30.000 |
 
 ## Últimos 20 movimientos
 
 | Fecha | Tipo | Monto | Medio | Categoría | Persona | Descripción |
 |---|---|---:|---|---|---|---|
-| 2026-11-17 | gasto | $200.000 | Bancolombia | Familia | Mamá | Para mamá: gastos de la casa (incluye ducha y granola/queso) |
-| 2026-11-17 | gasto | $40.000 | Nequi | Familia | Mamá | Para mamá: gastos de la casa (incluye ducha y granola/queso) |
+| 2026-11-17 | gasto | $40.000 | Nequi | Mercado | Mamá | Queso y granola |
+| 2026-11-17 | gasto | $20.000 | Bancolombia | Mercado | Mamá | Queso y granola |
+| 2026-11-17 | gasto | $30.000 | Bancolombia | Hogar | Mamá | Ducha (parte mía) |
+| 2026-11-17 | gasto | $150.000 | Bancolombia | Familia | Mamá | Para mamá: gastos de la casa |
 | 2026-11-17 | saldo_inicial | $226.000 | Efectivo |  |  | Saldo inicial |
 | 2026-11-16 | saldo_inicial | $41.525 | Nu |  |  | Saldo inicial |
 | 2026-11-16 | saldo_inicial | $140.298 | Nequi |  |  | Saldo inicial |
