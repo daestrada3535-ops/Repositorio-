@@ -39,3 +39,7 @@ Tu trabajo: anotarlo en los CSV, correr el reporte, contestarle con el resumen y
 - Nunca borrar movimientos viejos; para corregir, editar la fila equivocada y avisar.
 - Después de cada actualización: `python3 economia.py`, mostrar un resumen corto (total, plata libre,
   deudas que cambiaron) y hacer commit + push.
+
+## Gastos fijos conocidos
+Cuando se pague uno, marcarlo `pagado` y agregar el de la siguiente quincena/mes a `pendientes.csv`.
+- Plata para mamá (casa): $150.000 cada quincena (días 15 y 30). La del 15-nov se pagó el 17-nov.
