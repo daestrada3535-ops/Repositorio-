@@ -45,3 +45,6 @@ Tu trabajo: anotarlo en los CSV, correr el reporte, contestarle con el resumen y
 ## Gastos fijos conocidos
 Cuando se pague uno, marcarlo `pagado` y agregar el de la siguiente quincena/mes como `programado`.
 - Plata para mamá (casa): $150.000 cada quincena (días 15 y 30). La del 15-nov se pagó el 17-nov.
+- Tienda del barrio: la cuenta se paga cada quincena (al pagar: `abono` a `Tienda del barrio` + marcar pagado).
+- Celular a cuotas (persona `Celular a cuotas`): $1.050.000 en 6 cuotas de $175.000 sin intereses, la primera
+  en la quincena del 30-dic-2026. Cada cuota pagada = `abono` de 175000 a `Celular a cuotas`.

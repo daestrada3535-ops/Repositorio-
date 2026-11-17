@@ -12,8 +12,8 @@
 
 - Pagos pendientes por hacer: **$0**
 - Plata libre (total − pendientes): **$866.398**
-- Me deben: **$0** · Yo debo: **$0**
-- Patrimonio neto (plata + me deben − debo): **$866.398**
+- Me deben: **$0** · Yo debo: **$1.079.700**
+- Patrimonio neto (plata + me deben − debo): **-$213.302**
 
 ## Personas que me deben
 
@@ -21,7 +21,10 @@ Nadie me debe por ahora.
 
 ## Lo que yo debo (tienda, préstamos…)
 
-No debo nada. 🙌
+| A quién | Debo | Fecha límite |
+|---|---:|---|
+| Celular a cuotas | $1.050.000 | 2026-12-30 |
+| Tienda del barrio | $29.700 | 2026-11-30 |
 
 ## Pagos pendientes por hacer
 
@@ -32,25 +35,31 @@ Nada pendiente.
 | Fecha | Concepto | Monto | Nota |
 |---|---|---:|---|
 | 2026-11-30 | Plata para mamá (casa) | $150.000 | Sale de la nómina del 30 |
+| 2026-11-30 | Pagar cuenta Tienda del barrio | $29.700 | Sale de la nómina del 30 |
+| 2026-12-30 | Cuota 1/6 celular | $175.000 | Sale de la nómina del 30-dic |
 
-Total próximos: **$150.000** (no se descuentan de la plata libre todavía)
+Total próximos: **$354.700** (no se descuentan de la plata libre todavía)
 
 ## Mes 2026-11
 
 - Ingresos: **$0**
-- Gastos (incluye fiado): **$240.000**
-- Diferencia: **-$240.000**
+- Gastos (incluye fiado): **$1.319.700**
+- Diferencia: **-$1.319.700**
 
 | Categoría de gasto | Monto |
 |---|---:|
+| Celular | $1.050.000 |
 | Familia | $150.000 |
 | Mercado | $60.000 |
 | Hogar | $30.000 |
+| Tienda | $29.700 |
 
 ## Últimos 20 movimientos
 
 | Fecha | Tipo | Monto | Medio | Categoría | Persona | Descripción |
 |---|---|---:|---|---|---|---|
+| 2026-11-17 | fiado | $1.050.000 |  | Celular | Celular a cuotas | Compra de celular: 6 cuotas de 175.000 sin intereses |
+| 2026-11-17 | fiado | $29.700 |  | Tienda | Tienda del barrio | Saldo de la cuenta de la tienda al 17-nov |
 | 2026-11-17 | gasto | $40.000 | Nequi | Mercado | Mamá | Queso y granola |
 | 2026-11-17 | gasto | $20.000 | Bancolombia | Mercado | Mamá | Queso y granola |
 | 2026-11-17 | gasto | $30.000 | Bancolombia | Hogar | Mamá | Ducha (parte mía) |
