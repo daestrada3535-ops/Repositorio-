@@ -31,7 +31,7 @@ Tu trabajo: anotarlo en los CSV, correr el reporte, contestarle con el resumen y
   (la tienda es `Tienda del barrio`).
 - `medio`: `Efectivo`, `Nequi`, `Bancolombia`, etc. Si no lo dice, `Efectivo` (o preguntar si importa).
 - `fecha_limite`: cuándo le van a pagar / cuándo tiene que pagar.
-- Categorías sugeridas: Nómina, Comida, Mercado, Transporte, Arriendo, Servicios, Celular, Salud, Ropa,
+- Categorías sugeridas: Nómina, Comida, Mercado, Hogar, Transporte, Arriendo, Servicios, Celular, Salud, Ropa,
   Diversión, Familia, Tienda, Deudas, Otros. Mantenerlas consistentes.
 - Cuando llega la nómina y dice "tengo que sacar X para esto", anotar el ingreso y agregar cada apartado a
   `pendientes.csv`; cuando lo pague, registrar el gasto y marcar el pendiente como `pagado`.
