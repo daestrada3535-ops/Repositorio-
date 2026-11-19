@@ -31,7 +31,8 @@ Tu trabajo: anotarlo en los CSV, correr el reporte, contestarle con el resumen y
 - Montos sin puntos ni signo: `1500000`. Fechas `AAAA-MM-DD`; si no dice fecha, usar hoy.
 - `persona` es obligatoria en fiado/abono/prestamo_recibido/preste/me_debe/cobro. Usar SIEMPRE el mismo nombre
   (la tienda es `Tienda del barrio`).
-- `medio`: `Efectivo`, `Nequi`, `Bancolombia`, etc. Si no lo dice, `Efectivo` (o preguntar si importa).
+- `medio`: `Efectivo`, `Nequi`, `Bancolombia`, `Nu`. Si no lo dice, `Efectivo` (o preguntar si importa).
+  Cuando dice "en efectivo" o "saqué X en efectivo" es plata de la billetera (`Efectivo`), NO un retiro de cajero.
 - `fecha_limite`: cuándo le van a pagar / cuándo tiene que pagar.
 - Categorías sugeridas: Nómina, Comida, Mercado, Hogar, Transporte, Arriendo, Servicios, Celular, Salud, Ropa,
   Diversión, Familia, Tienda, Deudas, Otros. Mantenerlas consistentes.
