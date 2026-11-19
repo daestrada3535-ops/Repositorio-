@@ -146,6 +146,31 @@ footer{padding-block:30px 50px;color:var(--muted);font-size:.85rem;border-top:1p
 @media (max-width:880px){.two{grid-template-columns:1fr}.plate-wrap{grid-template-columns:1fr;justify-items:center}}
 @media (max-width:420px){.calc,.outs{grid-template-columns:1fr}}
 
+/* Plan personal */
+.quiz{display:flex;flex-direction:column;gap:14px}
+.q p{font-weight:700;margin-bottom:8px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.opt{text-align:left;border:1.5px solid var(--line);background:var(--bg);border-radius:12px;padding:10px 12px;font-size:.95rem}
+.opt[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--bg)}
+.result{display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding:16px;border-radius:14px;background:var(--bg)}
+.result b{font-family:var(--display);font-size:2rem;text-transform:uppercase;line-height:1}
+.food3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.food3 .panel{padding:16px;gap:8px}
+.food3 h4{margin:0;font-family:var(--display);font-size:1.3rem;text-transform:uppercase}
+.food3 ul{font-size:.93rem}
+.food3 .go{border-top:5px solid var(--ok)}
+.food3 .mid{border-top:5px solid var(--warn)}
+.food3 .stop{border-top:5px solid var(--tape)}
+.day{display:flex;flex-direction:column}
+.day .slot{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:12px 0;border-top:1px solid var(--line)}
+.day .slot:first-child{border-top:none}
+.day .slot span{font-family:var(--mono);font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding-top:3px}
+.fs{font-size:.86rem;color:var(--muted);border-left:3px solid var(--cool);padding-left:10px;margin-top:4px}
+.recipes{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.recipes ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:5px;font-size:.93rem}
+@media (max-width:880px){.food3{grid-template-columns:1fr}}
+@media (max-width:420px){.opts{grid-template-columns:1fr}.day .slot{grid-template-columns:1fr;gap:2px}}
+
 /* Player */
 #player[hidden]{display:none}
 #player{position:fixed;inset:0;z-index:50;background:var(--bg);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
@@ -195,7 +220,7 @@ footer{padding-block:30px 50px;color:var(--muted);font-size:.85rem;border-top:1p
 <div class="wrap">
   <header class="top">
     <div class="brand"><i></i>Taller de Articulaciones</div>
-    <nav><a href="#sesiones">Sesiones guiadas</a><a href="#biblioteca">Ejercicios</a><a href="#alimentacion">Alimentación</a><a href="#reglas">Reglas de seguridad</a></nav>
+    <nav><a href="#sesiones">Sesiones guiadas</a><a href="#biblioteca">Ejercicios</a><a href="#alimentacion">Alimentación</a><a href="#plan">Mi plan</a><a href="#reglas">Reglas de seguridad</a></nav>
   </header>
 
   <section class="hero">
@@ -325,6 +350,70 @@ footer{padding-block:30px 50px;color:var(--muted);font-size:.85rem;border-top:1p
       </tbody></table></div>
     </div>
     <p class="note" style="margin:0">Consulta a tu médico si notas piel u ojos amarillos, orina muy oscura, cansancio extremo o pérdida de peso sin buscarla. En un chequeo puedes pedir pruebas de hígado, glucosa, perfil lipídico, función renal y vitamina D.</p>
+  </div>
+</section>
+
+<section class="block" id="plan">
+  <div class="wrap" style="display:flex;flex-direction:column;gap:16px">
+    <div class="sec-head" style="margin-bottom:6px"><div><h2>Mi plan: hígado, intestino y energía</h2><p>Basado en el método de Frank Suárez y ajustado con la evidencia científica. Responde 5 preguntas y el plan se adapta a ti. Donde la ciencia dice otra cosa, lo verás en una nota azul.</p></div></div>
+
+    <div class="panel">
+      <p class="lbl">Paso 1 · ¿Tu sistema nervioso es excitado o pasivo?</p>
+      <p style="color:var(--muted)">Frank dividía a las personas en dos tipos. El <b>pasivo</b> "digiere hasta piedras" y duerme profundo. El <b>excitado</b> tiene digestión delicada y sueño liviano. Según él, cada tipo necesita una comida distinta.</p>
+      <div class="quiz" id="quiz"></div>
+      <div class="result" id="qRes" hidden></div>
+      <p class="fs">La ciencia sí reconoce el sistema nervioso "simpático" (excitado) y el "parasimpático" (pasivo), pero no clasifica a las personas en dos tipos con dietas distintas. Úsalo como una guía para escuchar a tu cuerpo, no como un diagnóstico.</p>
+    </div>
+
+    <div>
+      <p class="lbl" style="margin-bottom:10px" id="fTitle">Paso 2 · Qué comer</p>
+      <div class="food3" id="foods"></div>
+    </div>
+
+    <div class="two" style="align-items:start">
+      <div class="panel">
+        <p class="lbl">Paso 3 · Tu día ideal</p>
+        <div class="day" id="day"></div>
+      </div>
+      <div class="panel">
+        <p class="lbl">Paso 4 · Hábitos para desinflamar</p>
+        <ul id="hab"></ul>
+      </div>
+    </div>
+
+    <div>
+      <p class="lbl" style="margin-bottom:10px">Recetas que recomendaba</p>
+      <div class="recipes">
+        <div class="panel"><b style="font-family:var(--display);font-size:1.35rem;text-transform:uppercase">Jugo verde</b>
+          <p style="font-size:.92rem;color:var(--muted)">Frank recomendaba 2 al día, de 250 ml, para calmar el sistema nervioso. Mejor de vegetales, no de fruta.</p>
+          <ol><li>1 pepino, 2 tallos de apio y un puñado de espinaca.</li><li>Un trozo de jengibre y el jugo de 1 limón completo.</li><li>Opcional: perejil o cilantro y ½ manzana verde para el sabor.</li><li>Licúa con agua. Frank prefería el extractor; la licuadora conserva más fibra.</li></ol>
+          <p class="fs">No hay estudios de que el jugo "calme los nervios", pero suma verduras, potasio y magnesio. Si tienes problemas de riñón o tomas anticoagulantes, consulta antes de tomar mucha espinaca.</p></div>
+        <div class="panel"><b style="font-family:var(--display);font-size:1.35rem;text-transform:uppercase">Caldo de huesos</b>
+          <p style="font-size:.92rem;color:var(--muted)">Él lo recomendaba para la pared intestinal. También aporta colágeno para tus articulaciones.</p>
+          <ol><li>1 kg de huesos de res con tuétano, o patas y carcasa de pollo.</li><li>Agua hasta cubrir y 2 cucharadas de vinagre de manzana.</li><li>Cebolla, zanahoria, apio, ajo y laurel.</li><li>Cocina a fuego lento de 12 a 24 horas (olla de presión: 2–3 horas). Cuela y guarda en la nevera.</li><li>Una taza al día, sola o como base de sopas.</li></ol>
+          <p class="fs">Hay poca evidencia directa de que "repare el intestino", pero es nutritivo, hidrata y es fácil de digerir.</p></div>
+      </div>
+    </div>
+
+    <div class="two">
+      <div class="panel yes"><p class="lbl">Lo que más funciona de su método</p><ul>
+        <li><b>Plato 3x1 o 2x1</b>: tres cuartas partes de proteína y verduras, y una cuarta parte de harinas.</li>
+        <li><b>Desayuno con proteína.</b> Nunca solo café con pan.</li>
+        <li><b>Agua</b>: tu peso en kilos ÷ 7 = vasos de 250 ml al día.</li>
+        <li><b>Cero gaseosas y jugos de caja.</b> Para él, el jarabe de maíz era el gran causante del hígado graso.</li>
+        <li><b>Tres comidas bien hechas</b>, sin pasar hambre y sin picar todo el día.</li>
+        <li><b>Calmar el estrés</b>: comer tranquilo, respirar profundo, sol y caminar.</li>
+      </ul></div>
+      <div class="panel no"><p class="lbl">Lo que no conviene copiar</p><ul>
+        <li><b>Limpieza de hígado</b> con aceite, toronja y sal de higuera: las "piedras" que salen son jabón que se forma en el intestino.</li>
+        <li>Hidroterapia de colon y la "costra intestinal".</li>
+        <li>Medir la tiroides con el termómetro: pide un examen de TSH.</li>
+        <li>Magnesio "hasta que afloje el estómago" y potasio en dosis altas sin médico.</li>
+        <li>Kits anticándida y productos de su marca.</li>
+        <li>Dormir solo 5–6 horas. Lo recomendado son 7–9.</li>
+      </ul></div>
+    </div>
+    <p class="note" style="margin:0">Para saber si tienes hígado graso, Frank decía que bastaba mirarse la barriga al espejo. La forma fiable es una ecografía y pruebas de hígado. Pídelas en tu chequeo junto con hemograma, ferritina, B12, vitamina D, TSH y glucosa.</p>
   </div>
 </section>
 
@@ -875,6 +964,71 @@ function rRender(){
 }
 $('rStart').onclick=()=>{R={start:Date.now(),days:{}};rSave(R);rRender()};
 rRender();
+
+/* ---------- Plan personal ---------- */
+const QS=[
+ ['¿Cómo duermes?','Profundo. Casi nada me despierta','Liviano. Me despierto fácil o me levanto cansado'],
+ ['¿Cómo es tu digestión?','Todo me cae bien, a cualquier hora','Delicada. La grasa, el picante o comer tarde me caen mal'],
+ ['Después de comer carne de res o cerdo…','Me siento bien y con energía','Me siento pesado, con acidez o duermo peor'],
+ ['¿Qué comida te sienta mejor?','Carnes y comidas contundentes','Ensaladas, verduras, pollo o pescado'],
+ ['¿Cómo es tu mente?','Tranquila. Me cuesta acelerarme','Inquieta. Pienso mucho y me cuesta desconectar'],
+];
+const PKEY='taller-art-plan';
+let ANS=(()=>{try{return JSON.parse(localStorage.getItem(PKEY))||[]}catch(e){return[]}})();
+const COMMON={
+ mid:['Arroz, papa, yuca, plátano, arepa y pan: solo ¼ del plato (el "1" del 3x1)','Fruta entera: 1–2 al día, mejor después de comer','Café: máximo 1–2 tazas antes del mediodía'],
+ stop:['Gaseosas, jugos de caja y bebidas energéticas','Azúcar, dulces, ponqués y pan blanco en exceso','Alcohol: el hígado lo procesa primero que todo','Embutidos, frituras y comida de paquete']};
+const TYPES={
+ E:{n:'Excitado',d:'Según Frank, tu cuerpo funciona "con gasolina": comida liviana, muchos vegetales y proteína blanca. Cena ligero y temprano.',
+  go:['Verduras y ensaladas "por montones": brócoli, espinaca, pepino, habichuela, zanahoria','2 jugos verdes al día (receta abajo)','Pollo, pavo, pescado blanco (tilapia, mojarra, bagre)','Huevos y queso campesino o quesito','Fríjoles y lentejas, en porciones moderadas','Aguacate y aceite de oliva, en poca cantidad','Caldo de huesos de pollo'],
+  mid:['Carne de res: 1–2 veces por semana, magra','Nueces y almendras: un puñado pequeño (Frank las evitaba por las purinas)'],
+  stop:['Cerdo, chicharrón y carnes muy grasosas','Mariscos y vísceras (purinas)','Comidas pesadas o picantes en la noche','Exceso de sal y de café']},
+ P:{n:'Pasivo',d:'Según Frank, tu cuerpo funciona "con diésel": necesita carne y grasa natural para tener energía. Las dietas bajas en grasa te debilitan.',
+  go:['Carne de res, huevos y queso','Pescado azul: sardinas, atún, salmón, trucha','Pollo y cerdo magro','Verduras y ensaladas en cada comida','Aguacate, aceite de oliva y nueces','Caldo de huesos de res'],
+  mid:['Fríjoles y lentejas (para Frank eran tipo E; la ciencia los considera muy saludables)','Lácteos enteros, si te caen bien'],
+  stop:['Comer harinas sin proteína al lado','Pasar hambre o hacer dietas muy bajas en calorías','Picar todo el día: 3 comidas bien hechas bastan']},
+ M:{n:'Mixto',d:'Tienes rasgos de los dos. Frank decía que el equilibrado es el que menos problemas tiene. Toma como base proteína blanca y verduras, y observa cómo te cae lo demás.',
+  go:['Verduras y ensaladas en cada comida','Pollo, pescado, huevos y queso campesino','Pescado azul 2 veces por semana: sardinas, atún','Fríjoles y lentejas','Aguacate y aceite de oliva','1 jugo verde al día'],
+  mid:['Carne de res: 2–3 veces por semana','Nueces y almendras: un puñado'],
+  stop:['Comidas muy pesadas en la noche','Embutidos y carnes procesadas']}};
+function typeOf(){if(ANS.filter(a=>a!=null).length<5)return null;const e=ANS.filter(a=>a===1).length;return e>=4?'E':e<=1?'P':'M'}
+function vasos(){const w=parseFloat($('calcPeso').value);return w>=35&&w<=200?Math.round(w/7):10}
+function planRender(){
+  $('quiz').innerHTML=QS.map((q,i)=>`<div class="q"><p>${i+1}. ${esc(q[0])}</p><div class="opts">${[1,2].map(k=>`<button class="opt" data-q="${i}" data-a="${k-1}" aria-pressed="${ANS[i]===k-1}">${esc(q[k])}</button>`).join('')}</div></div>`).join('');
+  $('quiz').querySelectorAll('.opt').forEach(b=>b.onclick=()=>{ANS[+b.dataset.q]=+b.dataset.a;try{localStorage.setItem(PKEY,JSON.stringify(ANS))}catch(e){}planRender()});
+  const t=typeOf(),T=TYPES[t||'M'],res=$('qRes');
+  if(t){res.hidden=false;res.innerHTML=`<span class="lbl">Tu resultado</span><b>${T.n}</b><span style="flex-basis:100%;color:var(--muted)">${esc(T.d)}</span>`}else res.hidden=true;
+  $('fTitle').textContent=t?`Paso 2 · Qué comer si eres ${T.n.toLowerCase()}`:'Paso 2 · Qué comer (responde el test para personalizarlo)';
+  const li=a=>a.map(x=>`<li>${esc(x)}</li>`).join('');
+  $('foods').innerHTML=`<div class="panel go"><h4>Come más</h4><ul>${li(T.go)}</ul></div><div class="panel mid"><h4>Con medida</h4><ul>${li(T.mid.concat(COMMON.mid))}</ul></div><div class="panel stop"><h4>Evita o reduce</h4><ul>${li(T.stop.concat(COMMON.stop))}</ul></div>`;
+  const v=vasos(),ex=t==='E',pa=t==='P';
+  const D=[
+   ['Al despertar',`2 vasos de agua. Tu meta del día son ${v} vasos (peso ÷ 7, la fórmula de Frank). 10 minutos de sol en brazos y cara.`],
+   ['Desayuno',ex?'2–3 huevos pericos o queso campesino, ½ arepa, aguacate y una fruta. Sin café con pan solo.':pa?'Huevos con carne o queso, ½ arepa, aguacate y café si quieres. Proteína fuerte para arrancar.':'2–3 huevos, ½ arepa, aguacate y una fruta.'],
+   ['Media mañana',ex?'Jugo verde n.º 1.':'Agua. Si tienes hambre: queso, huevo duro o un puñado de nueces.'],
+   ['Almuerzo',`Plato 3x1: ½ verduras, ¼ ${ex?'pollo o pescado':pa?'carne, pescado o pollo':'proteína'}, ¼ arroz, papa, yuca o plátano. Come tranquilo, sin pantalla, y mastica bien.`],
+   ['Después','Camina 10–20 minutos. Baja la glucosa y ayuda a la digestión.'],
+   ['Tarde',ex?'Jugo verde n.º 2 o una taza de caldo de huesos.':'Taza de caldo de huesos o agua. Tu sesión de ejercicios 3 veces por semana.'],
+   ['Cena',ex?'Ligera y temprano, 3 horas antes de dormir: pescado o pollo con verduras.':'3x1 con poca harina: proteína y verduras.'],
+   ['Noche','Pantallas apagadas 1 hora antes. Oscuridad total y 7–9 horas de sueño.'],
+  ];
+  $('day').innerHTML=D.map(d=>`<div class="slot"><span>${d[0]}</span><div>${esc(d[1])}</div></div>`).join('');
+  const H=[
+   ['Hígado: menos azúcar y harinas.','Frank: el exceso de carbohidratos refinados es "la causa principal" del hígado graso. La ciencia coincide, sobre todo con las bebidas azucaradas.'],
+   ['Hígado: alcohol mínimo o cero durante 4 semanas.',null],
+   ['Intestino: come sentado, despacio y tranquilo.','Frank: el sistema nervioso excitado "para la digestión". Comer estresado sí empeora los gases y la acidez.'],
+   [`Agua: ${v} vasos al día, repartidos.`,'Frank la ponía como la causa n.º 1 de la acidez y el cansancio.'],
+   ['Ayuno nocturno de 12–14 horas (cena a las 7, desayuno a las 8–9).','Frank recomendaba el ayuno intermitente contra el hígado graso. Hay estudios que lo apoyan, sobre todo si bajas de peso.'],
+   ['Fibra poco a poco: verduras, legumbres, avena.','Ajuste científico: Frank las limitaba, pero la fibra alimenta la flora buena.'],
+   ['Prueba de eliminación: 2 semanas sin trigo, observa.','Hazte antes el examen de celiaquía. Frank sospechaba del trigo, el arroz y el maíz.'],
+   ['Muévete a diario y entrena fuerza 3 veces por semana.','El ejercicio reduce la grasa del hígado aunque no bajes de peso, y es lo que más sube la energía.'],
+   ['Calma el sistema nervioso: respira 5 minutos, camina al sol, aléjate de noticias y gente tóxica.',null],
+   ['Pide un chequeo de sangre y una ecografía de hígado.','Es la forma real de saber cómo está tu hígado y por qué te falta energía.'],
+  ];
+  $('hab').innerHTML=H.map(h=>`<li><b>${esc(h[0])}</b>${h[1]?`<div class="fs">${esc(h[1])}</div>`:''}</li>`).join('');
+}
+$('calcPeso').addEventListener('input',planRender);
+planRender();
 
 /* Hoja de revisión (solo desarrollo) */
 window.__sheet=()=>{document.body.innerHTML='<div id="sh" style="display:grid;grid-template-columns:repeat(6,1fr);gap:4px;padding:4px"></div>';const sh=document.getElementById('sh');
