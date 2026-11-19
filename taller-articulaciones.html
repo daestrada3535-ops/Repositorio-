@@ -107,6 +107,45 @@ section.block{padding-block:44px}
 .note{font-size:.88rem;color:var(--muted);margin-top:14px}
 footer{padding-block:30px 50px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);margin-top:20px}
 
+/* Alimentación */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.panel{display:flex;flex-direction:column;gap:12px;padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:18px;min-width:0}
+.panel ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:7px}
+.panel.yes{border-top:5px solid var(--ok)}
+.panel.no{border-top:5px solid var(--tape)}
+.panel.no li{color:var(--muted)}
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field input,.field select{font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;width:100%}
+.outs{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.out{padding:12px;border-radius:12px;background:var(--bg)}
+.out b{display:block;font-family:var(--display);font-size:2.2rem;line-height:1;font-variant-numeric:tabular-nums}
+.out span{font-size:.85rem;color:var(--muted)}
+.plate-wrap{display:grid;grid-template-columns:160px 1fr;gap:18px;align-items:center}
+.plate{width:160px;aspect-ratio:1;max-width:100%;border-radius:50%;border:8px solid var(--line);background:conic-gradient(var(--ok) 0 50%,var(--tape) 50% 75%,var(--warn) 75% 100%)}
+.leg{display:flex;flex-direction:column;gap:8px;font-size:.95rem}
+.leg i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:8px;vertical-align:-1px}
+.nutri{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.nutri .panel{gap:6px;padding:16px}
+.nutri b{font-family:var(--display);font-size:1.35rem;text-transform:uppercase}
+.nutri p{font-size:.92rem;color:var(--muted)}
+.reset-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.weeks{display:flex;gap:6px;flex-wrap:wrap}
+.habits{display:flex;flex-direction:column;gap:8px}
+.habit{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;cursor:pointer}
+.habit input{width:20px;height:20px;accent-color:var(--ok);flex:none;margin-top:2px}
+.habit:has(input:checked){border-color:var(--ok);background:color-mix(in srgb,var(--ok) 10%,transparent)}
+.d21{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.d21 span{aspect-ratio:1;border-radius:8px;border:1.5px solid var(--line);display:grid;place-items:center;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.d21 span.part{background:color-mix(in srgb,var(--ok) 25%,transparent)}
+.d21 span.full{background:var(--ok);border-color:var(--ok);color:#fff}
+.d21 span.now{border-color:var(--ink);color:var(--ink);font-weight:700}
+.menu{width:100%;border-collapse:collapse;font-size:.95rem}
+.menu td{padding:10px 8px;border-top:1px solid var(--line);vertical-align:top}
+.menu td:first-child{font-family:var(--mono);font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);white-space:nowrap;width:1%}
+@media (max-width:880px){.two{grid-template-columns:1fr}.plate-wrap{grid-template-columns:1fr;justify-items:center}}
+@media (max-width:420px){.calc,.outs{grid-template-columns:1fr}}
+
 /* Player */
 #player[hidden]{display:none}
 #player{position:fixed;inset:0;z-index:50;background:var(--bg);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
@@ -156,12 +195,12 @@ footer{padding-block:30px 50px;color:var(--muted);font-size:.85rem;border-top:1p
 <div class="wrap">
   <header class="top">
     <div class="brand"><i></i>Taller de Articulaciones</div>
-    <nav><a href="#sesiones">Sesiones guiadas</a><a href="#biblioteca">Ejercicios</a><a href="#reglas">Reglas de seguridad</a></nav>
+    <nav><a href="#sesiones">Sesiones guiadas</a><a href="#biblioteca">Ejercicios</a><a href="#alimentacion">Alimentación</a><a href="#reglas">Reglas de seguridad</a></nav>
   </header>
 
   <section class="hero">
     <div>
-      <p class="lbl">Hombros · Rodillas · Muñecas · Cadera · Espalda</p>
+      <p class="lbl">Articulaciones · Postura · Alimentación</p>
       <h1 style="margin-top:10px">Mira, escucha y <em>replica</em>.</h1>
       <p class="lead">26 ejercicios con respaldo científico para fortalecer tus articulaciones. Cada uno tiene una demostración animada y una voz en español que te guía, cuenta tus repeticiones y te avisa cuándo descansar.</p>
       <div class="ctas">
@@ -195,6 +234,97 @@ footer{padding-block:30px 50px;color:var(--muted);font-size:.85rem;border-top:1p
       <div class="chips" id="chips" role="group" aria-label="Filtrar por articulación"></div>
     </div>
     <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<section class="block" id="alimentacion">
+  <div class="wrap" style="display:flex;flex-direction:column;gap:16px">
+    <div class="sec-head" style="margin-bottom:6px"><div><h2>Alimentación y desintoxicación</h2><p>Tu hígado, riñones, intestino y pulmones ya se encargan de desintoxicarte. Tu trabajo es quitarles carga y darles lo que necesitan. Eso también es lo que fortalece tus articulaciones.</p></div></div>
+
+    <div class="two">
+      <div class="panel yes"><p class="lbl">Desintoxica de verdad</p><ul>
+        <li><b>Reducir o dejar el alcohol.</b> Es la mayor carga para el hígado.</li>
+        <li><b>Dejar el cigarrillo y el vapeo.</b></li>
+        <li><b>Cero bebidas azucaradas.</b> El azúcar líquido favorece el hígado graso.</li>
+        <li><b>Dormir 7–9 horas.</b> Al dormir el cerebro elimina desechos.</li>
+        <li><b>Fibra, agua y verduras crucíferas</b> (brócoli, repollo, coliflor).</li>
+        <li><b>Proteína suficiente y ejercicio.</b> El ejercicio reduce la grasa del hígado.</li>
+      </ul></div>
+      <div class="panel no"><p class="lbl">No funciona o es riesgoso</p><ul>
+        <li>Tés "detox" y adelgazantes: casi siempre son laxantes o diuréticos.</li>
+        <li>Varios días solo con jugos: pierdes músculo y comes mucho azúcar.</li>
+        <li>Carbón activado diario, parches para los pies, lavados de colon.</li>
+        <li>Productos que prometen "limpiar el hígado" en pocos días.</li>
+        <li><b style="color:var(--ink)">Importante:</b> si tomas alcohol mucho y a diario, no lo dejes de golpe sin un médico. La abstinencia puede ser peligrosa.</li>
+      </ul></div>
+    </div>
+
+    <div class="two">
+      <div class="panel">
+        <p class="lbl">Tus metas diarias</p>
+        <div class="calc">
+          <label class="field" for="calcPeso"><span class="lbl">Tu peso (kg)</span><input id="calcPeso" type="number" min="35" max="200" value="70" inputmode="decimal"></label>
+          <label class="field" for="calcAct"><span class="lbl">Actividad</span><select id="calcAct"><option value="1.2">Poca o caminatas</option><option value="1.4" selected>Fuerza 3 días/semana</option><option value="1.6">Entreno intenso</option></select></label>
+        </div>
+        <div class="outs">
+          <div class="out"><b id="oProt">98 g</b><span>de proteína al día</span></div>
+          <div class="out"><b id="oMeal">33 g</b><span>de proteína por comida (3 comidas)</span></div>
+          <div class="out"><b id="oAgua">2,3 L</b><span>de agua, +0,5 L por hora de ejercicio</span></div>
+          <div class="out"><b>30 g</b><span>de fibra (verduras, fruta, legumbres)</span></div>
+        </div>
+        <p class="note" style="margin:0" id="oEj">Ejemplo: 3 huevos (18 g) + 1 lata de atún (27 g) + 1 taza de lentejas (17 g) + 120 g de pollo (37 g).</p>
+      </div>
+      <div class="panel">
+        <p class="lbl">Cómo armar cada plato</p>
+        <div class="plate-wrap">
+          <div class="plate" role="img" aria-label="Plato: mitad verduras, un cuarto proteína, un cuarto carbohidrato"></div>
+          <div class="leg">
+            <span><i style="background:var(--ok)"></i><b>½ verduras</b>: ensalada, brócoli, zanahoria, pimentón, habichuela</span>
+            <span><i style="background:var(--tape)"></i><b>¼ proteína</b>: pollo, huevo, pescado, res, fríjoles, lentejas</span>
+            <span><i style="background:var(--warn)"></i><b>¼ carbohidrato</b>: arroz, papa, yuca, plátano, arepa, mazorca</span>
+            <span><i style="background:var(--cool)"></i><b>+ grasa buena</b>: aguacate, aceite de oliva, nueces</span>
+          </div>
+        </div>
+        <p class="note" style="margin:0">En los días de entreno fuerte el carbohidrato puede subir a un tercio del plato.</p>
+      </div>
+    </div>
+
+    <div class="panel" id="reset">
+      <div class="reset-head">
+        <div><p class="lbl">Reinicio de 21 días</p><h3 style="margin-top:4px" id="rTitle">Semana 1 · Hidratación y sueño</h3></div>
+        <button class="btn ghost" id="rStart" style="padding:9px 14px">Empezar hoy</button>
+      </div>
+      <p style="color:var(--muted)" id="rInfo">Marca cada día los hábitos que cumpliste. Cada semana suma hábitos nuevos y mantiene los anteriores. Un día cuenta como completo con 4 o más hábitos.</p>
+      <div class="two" style="align-items:start">
+        <div class="habits" id="rHabits"></div>
+        <div><div class="d21" id="rDays" aria-label="Progreso de 21 días"></div><p class="note" id="rCount" style="margin-top:10px"></p></div>
+      </div>
+    </div>
+
+    <div>
+      <p class="lbl" style="margin-bottom:10px">Nutrientes para tendones, cartílago y huesos</p>
+      <div class="nutri">
+        <div class="panel"><b>Proteína</b><p>Huevos, pollo, pescado, res, fríjoles, lentejas, yogur griego, queso campesino.</p></div>
+        <div class="panel"><b>Vitamina C</b><p>Guayaba (de las frutas con más vitamina C), naranja, mandarina, maracuyá, mango, pimentón.</p></div>
+        <div class="panel"><b>Omega-3</b><p>Sardinas, atún, trucha, salmón, chía, linaza molida, nueces. Pescado 2 veces por semana.</p></div>
+        <div class="panel"><b>Colágeno</b><p>Caldo de hueso o 10–15 g de gelatina sin sabor con jugo de guayaba, 30–60 min antes de entrenar.</p></div>
+        <div class="panel"><b>Calcio y vitamina D</b><p>Leche, yogur, queso, sardinas con espina. Sol de 10–20 minutos al día en brazos y piernas.</p></div>
+        <div class="panel"><b>Magnesio</b><p>Cacao puro, semillas de calabaza, almendras, espinaca, banano. Ayuda al sueño y a los músculos.</p></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <p class="lbl">Un día de ejemplo</p>
+      <div style="overflow-x:auto"><table class="menu"><tbody>
+        <tr><td>Desayuno</td><td>2–3 huevos pericos, 1 arepa mediana, ½ aguacate, 1 guayaba o naranja, café o chocolate sin azúcar añadido.</td></tr>
+        <tr><td>Media mañana</td><td>Yogur griego natural con 1 cucharada de chía y fruta picada.</td></tr>
+        <tr><td>Almuerzo</td><td>Lentejas o fríjoles, poco arroz, pollo, carne o pescado y una ensalada grande con limón y aceite de oliva.</td></tr>
+        <tr><td>Pre-entreno</td><td>Gelatina sin sabor en jugo natural de guayaba o naranja, y un banano.</td></tr>
+        <tr><td>Cena</td><td>Pescado o pollo a la plancha, verduras salteadas y papa, yuca o plátano cocido.</td></tr>
+        <tr><td>Antojo nocturno</td><td>Un vaso de leche, queso con fruta o un puñado de nueces.</td></tr>
+      </tbody></table></div>
+    </div>
+    <p class="note" style="margin:0">Consulta a tu médico si notas piel u ojos amarillos, orina muy oscura, cansancio extremo o pérdida de peso sin buscarla. En un chequeo puedes pedir pruebas de hígado, glucosa, perfil lipídico, función renal y vitamina D.</p>
   </div>
 </section>
 
@@ -713,6 +843,38 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-routine],[
   if(b.dataset.routine)start(ROUTINES.find(r=>r.id===b.dataset.routine));
   else{const ex=byId[b.dataset.ex];start({n:'Práctica individual',items:[{id:ex.id}]})}});
 if(!hasTTS)capEl.innerHTML='<span>Tu navegador no tiene voz. Sigue los subtítulos y los pitidos.</span>';
+
+/* ---------- Alimentación ---------- */
+const nf=(n,d=0)=>n.toLocaleString('es-CO',{minimumFractionDigits:d,maximumFractionDigits:d});
+function calc(){const w=parseFloat($('calcPeso').value),f=parseFloat($('calcAct').value);
+  if(!(w>=35&&w<=200)){$('oProt').textContent='—';$('oMeal').textContent='—';$('oAgua').textContent='—';return}
+  const p=Math.round(w*f/5)*5;$('oProt').textContent=nf(p)+' g';$('oMeal').textContent=nf(Math.round(p/3))+' g';$('oAgua').textContent=nf(w*.033,1)+' L'}
+$('calcPeso').addEventListener('input',calc);$('calcAct').addEventListener('change',calc);calc();
+
+const WEEKS=[
+ {t:'Semana 1 · Hidratación y sueño',h:['Tomé mi meta de agua','Cero gaseosas, jugos de caja o bebidas energéticas','Me acosté a mi hora y sin celular 30 min antes','Caminé 20–30 minutos','Hice mi sesión de ejercicios o movilidad']},
+ {t:'Semana 2 · Proteína y verduras',h:['Tomé mi meta de agua','Proteína en cada comida','Medio plato de verduras en almuerzo y cena','2 frutas, una rica en vitamina C','Hice mi sesión de ejercicios o movilidad','Dormí 7 horas o más']},
+ {t:'Semana 3 · Menos de lo que intoxica',h:['Cero alcohol hoy','Cociné en casa / cero comida rápida','Cero bebidas azucaradas','Proteína y verduras en cada comida','Hice mi sesión de ejercicios o movilidad','Dormí 7 horas o más']},
+];
+const RKEY='taller-art-reinicio';
+const rLoad=()=>{try{return JSON.parse(localStorage.getItem(RKEY))||null}catch(e){return null}};
+const rSave=s=>{try{localStorage.setItem(RKEY,JSON.stringify(s))}catch(e){}};
+const dayStart=t=>{const d=new Date(t);return new Date(d.getFullYear(),d.getMonth(),d.getDate()).getTime()};
+let R=rLoad();
+function rIdx(){return R?Math.round((dayStart(Date.now())-dayStart(R.start))/864e5):0}
+function rRender(){
+  const idx=Math.min(20,Math.max(0,rIdx())),wk=Math.min(2,Math.floor(idx/7)),W=WEEKS[wk];
+  $('rTitle').textContent=W.t;$('rStart').textContent=R?'Reiniciar':'Empezar hoy';
+  const today=(R&&R.days[idx])||[];
+  $('rHabits').innerHTML=W.h.map((h,i)=>`<label class="habit" for="rh${i}"><input type="checkbox" id="rh${i}" data-i="${i}" ${today[i]?'checked':''}><span>${esc(h)}</span></label>`).join('');
+  $('rHabits').querySelectorAll('input').forEach(c=>c.onchange=()=>{
+    if(!R){R={start:Date.now(),days:{}}}const i2=Math.min(20,Math.max(0,rIdx()));const a=R.days[i2]||[];a[+c.dataset.i]=c.checked;R.days[i2]=a;rSave(R);rRender()});
+  let full=0;$('rDays').innerHTML=Array.from({length:21},(_,d)=>{const n=((R&&R.days[d])||[]).filter(Boolean).length;if(n>=4)full++;
+    return `<span class="${n>=4?'full':n>0?'part':''}${R&&d===idx?' now':''}">${d+1}</span>`}).join('');
+  $('rCount').textContent=R?(rIdx()>20?`Terminaste el reinicio: ${full} de 21 días completos. Puedes empezar otro ciclo.`:`Día ${idx+1} de 21 · ${full} ${full===1?'día completo':'días completos'}. Se guarda solo en este dispositivo.`):'Al marcar tu primer hábito empieza tu día 1. El progreso se guarda solo en este dispositivo.';
+}
+$('rStart').onclick=()=>{R={start:Date.now(),days:{}};rSave(R);rRender()};
+rRender();
 
 /* Hoja de revisión (solo desarrollo) */
 window.__sheet=()=>{document.body.innerHTML='<div id="sh" style="display:grid;grid-template-columns:repeat(6,1fr);gap:4px;padding:4px"></div>';const sh=document.getElementById('sh');
