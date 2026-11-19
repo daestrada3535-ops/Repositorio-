@@ -9,3 +9,4 @@ fecha,tipo,monto,medio,categoria,persona,descripcion,fecha_limite
 2026-11-17,gasto,40000,Nequi,Mercado,Mamá,Queso y granola,
 2026-11-17,fiado,29700,,Tienda,Tienda del barrio,Saldo de la cuenta de la tienda al 17-nov,
 2026-11-17,fiado,1050000,,Celular,Celular a cuotas,Compra de celular: 6 cuotas mensuales de 175.000 sin intereses (día 23),2026-12-23
+2026-11-18,gasto,45000,Bancolombia,Transporte,,Gasolina moto,

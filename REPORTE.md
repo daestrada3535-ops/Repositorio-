@@ -1,19 +1,19 @@
-# Mi Economía — reporte al 2026-11-17
+# Mi Economía — reporte al 2026-11-19
 
 ## Plata disponible
 
 | Medio | Saldo |
 |---|---:|
-| Bancolombia | $498.575 |
+| Bancolombia | $453.575 |
 | Efectivo | $226.000 |
 | Nequi | $100.298 |
 | Nu | $41.525 |
-| **Total** | **$866.398** |
+| **Total** | **$821.398** |
 
 - Pagos pendientes por hacer: **$0**
-- Plata libre (total − pendientes): **$866.398**
+- Plata libre (total − pendientes): **$821.398**
 - Me deben: **$0** · Yo debo: **$1.079.700**
-- Patrimonio neto (plata + me deben − debo): **-$213.302**
+- Patrimonio neto (plata + me deben − debo): **-$258.302**
 
 ## Personas que me deben
 
@@ -47,14 +47,15 @@ Total próximos: **$1.200.000** (no se descuentan de la plata libre todavía)
 ## Mes 2026-11
 
 - Ingresos: **$0**
-- Gastos (incluye fiado): **$1.319.700**
-- Diferencia: **-$1.319.700**
+- Gastos (incluye fiado): **$1.364.700**
+- Diferencia: **-$1.364.700**
 
 | Categoría de gasto | Monto |
 |---|---:|
 | Celular | $1.050.000 |
 | Familia | $150.000 |
 | Mercado | $60.000 |
+| Transporte | $45.000 |
 | Hogar | $30.000 |
 | Tienda | $29.700 |
 
@@ -62,6 +63,7 @@ Total próximos: **$1.200.000** (no se descuentan de la plata libre todavía)
 
 | Fecha | Tipo | Monto | Medio | Categoría | Persona | Descripción |
 |---|---|---:|---|---|---|---|
+| 2026-11-18 | gasto | $45.000 | Bancolombia | Transporte |  | Gasolina moto |
 | 2026-11-17 | fiado | $1.050.000 |  | Celular | Celular a cuotas | Compra de celular: 6 cuotas mensuales de 175.000 sin intereses (día 23) |
 | 2026-11-17 | fiado | $29.700 |  | Tienda | Tienda del barrio | Saldo de la cuenta de la tienda al 17-nov |
 | 2026-11-17 | gasto | $40.000 | Nequi | Mercado | Mamá | Queso y granola |
