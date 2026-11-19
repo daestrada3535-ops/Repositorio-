@@ -5,15 +5,15 @@
 | Medio | Saldo |
 |---|---:|
 | Bancolombia | $533.575 |
-| Efectivo | $140.000 |
+| Efectivo | $70.000 |
 | Nequi | $100.298 |
 | Nu | $41.525 |
-| **Total** | **$815.398** |
+| **Total** | **$745.398** |
 
 - Pagos pendientes por hacer: **$0**
-- Plata libre (total − pendientes): **$815.398**
+- Plata libre (total − pendientes): **$745.398**
 - Me deben: **$0** · Yo debo: **$1.112.400**
-- Patrimonio neto (plata + me deben − debo): **-$297.002**
+- Patrimonio neto (plata + me deben − debo): **-$367.002**
 
 ## Personas que me deben
 
@@ -47,13 +47,13 @@ Total próximos: **$1.200.000** (no se descuentan de la plata libre todavía)
 ## Mes 2026-11
 
 - Ingresos: **$0**
-- Gastos (incluye fiado): **$1.403.400**
-- Diferencia: **-$1.403.400**
+- Gastos (incluye fiado): **$1.473.400**
+- Diferencia: **-$1.473.400**
 
 | Categoría de gasto | Monto |
 |---|---:|
 | Celular | $1.050.000 |
-| Familia | $150.000 |
+| Familia | $220.000 |
 | Mercado | $79.000 |
 | Transporte | $45.000 |
 | Hogar | $30.000 |
@@ -71,6 +71,7 @@ Total próximos: **$1.200.000** (no se descuentan de la plata libre todavía)
 | 2026-11-18 | preste | $80.000 | Efectivo | Comida | Suegra | Papas: pagué la parte de la suegra |
 | 2026-11-18 | gasto | $6.000 | Efectivo | Comida |  | Papas con suegra y novia (mi parte de 86.000) |
 | 2026-11-18 | gasto | $45.000 | Bancolombia | Transporte |  | Gasolina moto |
+| 2026-11-17 | gasto | $70.000 | Efectivo | Familia | Papá | Repuestos para el carro de mi papá (taller) |
 | 2026-11-17 | fiado | $1.050.000 |  | Celular | Celular a cuotas | Compra de celular: 6 cuotas mensuales de 175.000 sin intereses (día 23) |
 | 2026-11-17 | fiado | $29.700 |  | Tienda | Tienda del barrio | Saldo de la cuenta de la tienda al 17-nov |
 | 2026-11-17 | gasto | $40.000 | Nequi | Mercado | Mamá | Queso y granola |
