@@ -10,3 +10,6 @@ fecha,tipo,monto,medio,categoria,persona,descripcion,fecha_limite
 2026-11-17,fiado,29700,,Tienda,Tienda del barrio,Saldo de la cuenta de la tienda al 17-nov,
 2026-11-17,fiado,1050000,,Celular,Celular a cuotas,Compra de celular: 6 cuotas mensuales de 175.000 sin intereses (día 23),2026-12-23
 2026-11-18,gasto,45000,Bancolombia,Transporte,,Gasolina moto,
+2026-11-18,gasto,6000,Efectivo,Comida,,Papas con suegra y novia (mi parte de 86.000),
+2026-11-18,preste,80000,Efectivo,Comida,Suegra,Papas: pagué la parte de la suegra,
+2026-11-18,cobro,80000,Bancolombia,Comida,Suegra,Suegra me transfirió su parte de las papas,
