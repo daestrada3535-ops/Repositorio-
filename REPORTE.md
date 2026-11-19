@@ -58,14 +58,13 @@ Total próximos: **$1.200.000** (no se descuentan de la plata libre todavía)
 | Transporte | $45.000 |
 | Hogar | $30.000 |
 | Tienda | $29.700 |
-| Otros | $13.700 |
-| Comida | $6.000 |
+| Comida | $19.700 |
 
 ## Últimos 20 movimientos
 
 | Fecha | Tipo | Monto | Medio | Categoría | Persona | Descripción |
 |---|---|---:|---|---|---|---|
-| 2026-11-19 | fiado | $13.700 |  | Otros | Tienda del barrio | Cosas para mi novia |
+| 2026-11-19 | fiado | $13.700 |  | Comida | Tienda del barrio | Mekato para mi novia |
 | 2026-11-19 | fiado | $19.000 |  | Mercado | Tienda del barrio | Huevos |
 | 2026-11-18 | cobro | $80.000 | Bancolombia | Comida | Suegra | Suegra me transfirió su parte de las papas |
 | 2026-11-18 | preste | $80.000 | Efectivo | Comida | Suegra | Papas: pagué la parte de la suegra |
