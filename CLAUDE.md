@@ -31,7 +31,7 @@ Tu trabajo: anotarlo en los CSV, correr el reporte, contestarle con el resumen y
 - Montos sin puntos ni signo: `1500000`. Fechas `AAAA-MM-DD`; si no dice fecha, usar hoy.
 - `persona` es obligatoria en fiado/abono/prestamo_recibido/preste/me_debe/cobro. Usar SIEMPRE el mismo nombre
   (la tienda es `Tienda del barrio`).
-- `medio`: `Efectivo`, `Nequi`, `Bancolombia`, `Nu`. Si no lo dice, `Efectivo` (o preguntar si importa).
+- `medio`: `Efectivo`, `Nequi`, `Bancolombia`, `Nu`, `Acciones`. Si no lo dice, `Efectivo` (o preguntar si importa).
   Cuando dice "en efectivo" o "saqué X en efectivo" es plata de la billetera (`Efectivo`), NO un retiro de cajero.
 - `fecha_limite`: cuándo le van a pagar / cuándo tiene que pagar.
 - Categorías sugeridas: Nómina, Comida, Mercado, Hogar, Transporte, Arriendo, Servicios, Celular, Salud, Ropa,
@@ -51,3 +51,12 @@ Cuando se pague uno, marcarlo `pagado` y agregar el de la siguiente quincena/mes
 - Celular a cuotas (persona `Celular a cuotas`): $1.050.000 en 6 cuotas de $175.000 sin intereses, la primera
   mensuales, se pagan el día 23 (dic-2026 a may-2027) con la plata de la nómina del 15. Ya están programadas en
   `pendientes.csv`. Cada cuota pagada = `abono` de 175000 a `Celular a cuotas` + marcar la cuota `pagado`.
+
+## Ingresos y ahorro
+- Nómina: quincena del 30 ≈ $1.050.000 (trae el auxilio de transporte); quincena del 15 ≈ $800.000–850.000.
+- El contrato termina el 15-dic-2026 y se renueva. Con la terminación entra la liquidación (cesantías del año,
+  intereses de cesantías, prima del semestre y vacaciones si no las tomó). Monto aún no confirmado.
+- `Nu` y `Acciones` son medios de AHORRO/INVERSIÓN (`AHORRO` en economia.py): cuentan en el total pero no en la
+  plata libre. Meter plata ahí = `traslado` (ej. `Bancolombia>Nu`, `Nequi>Acciones`), no `gasto`.
+- Meta: $60.000/mes a Nu (≈9 % E.A.) = $30.000 por quincena, y $20.000–50.000 por quincena en acciones,
+  subiéndolo con el tiempo. Programar ambos en cada quincena.

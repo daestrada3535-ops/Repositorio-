@@ -14,6 +14,8 @@ BASE = Path(__file__).parent
 MOV = BASE / "datos" / "movimientos.csv"
 PEND = BASE / "datos" / "pendientes.csv"
 REPORTE = BASE / "REPORTE.md"
+# Medios que son ahorro/inversión: cuentan en el total, pero NO en la plata libre para gastar
+AHORRO = {"Nu", "Acciones"}
 
 # Efecto de cada tipo: (signo en mi plata, signo en "me debe" de la persona, signo en "le debo")
 TIPOS = {
@@ -85,6 +87,8 @@ def main():
                 gas_mes[cat] += monto
 
     total = sum(saldo_medio.values())
+    ahorro = sum(v for m, v in saldo_medio.items() if m in AHORRO)
+    disponible = total - ahorro
     pendientes = [p for p in pend if p["estado"].strip().lower() == "pendiente"]
     programados = [p for p in pend if p["estado"].strip().lower() == "programado"]
     total_pend = sum(float(p["monto"]) for p in pendientes)
@@ -93,10 +97,13 @@ def main():
 
     L = [f"# Mi Economía — reporte al {date.today().isoformat()}", ""]
     L += ["## Plata disponible", "", "| Medio | Saldo |", "|---|---:|"]
-    L += [f"| {m} | {pesos(v)} |" for m, v in sorted(saldo_medio.items()) if abs(v) > 0.5]
+    L += [f"| {m} | {pesos(v)} |" for m, v in sorted(saldo_medio.items()) if abs(v) > 0.5 and m not in AHORRO]
+    L += [f"| **Para gastar** | **{pesos(disponible)}** |"]
+    L += [f"| {m} (ahorro/inversión) | {pesos(v)} |" for m, v in sorted(saldo_medio.items()) if abs(v) > 0.5 and m in AHORRO]
     L += [f"| **Total** | **{pesos(total)}** |", ""]
     L += [f"- Pagos pendientes por hacer: **{pesos(total_pend)}**",
-          f"- Plata libre (total − pendientes): **{pesos(total - total_pend)}**",
+          f"- Plata libre (para gastar − pendientes; no cuenta el ahorro): **{pesos(disponible - total_pend)}**",
+          f"- Ahorro e inversión: **{pesos(ahorro)}**",
           f"- Me deben: **{pesos(total_me_deben)}** · Yo debo: **{pesos(total_le_debo)}**",
           f"- Patrimonio neto (plata + me deben − debo): **{pesos(total + total_me_deben - total_le_debo)}**", ""]
 
