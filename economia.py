@@ -15,7 +15,7 @@ MOV = BASE / "datos" / "movimientos.csv"
 PEND = BASE / "datos" / "pendientes.csv"
 REPORTE = BASE / "REPORTE.md"
 # Medios que son ahorro/inversión: cuentan en el total, pero NO en la plata libre para gastar
-AHORRO = {"Nu", "Acciones"}
+AHORRO = {"Nu Emergencia", "Acciones"}
 
 # Efecto de cada tipo: (signo en mi plata, signo en "me debe" de la persona, signo en "le debo")
 TIPOS = {

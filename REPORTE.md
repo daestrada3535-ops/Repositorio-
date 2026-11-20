@@ -7,13 +7,13 @@
 | Bancolombia | $533.575 |
 | Efectivo | $70.000 |
 | Nequi | $100.298 |
-| **Para gastar** | **$703.873** |
-| Nu (ahorro/inversión) | $41.525 |
+| Nu Flujo | $41.525 |
+| **Para gastar** | **$745.398** |
 | **Total** | **$745.398** |
 
 - Pagos pendientes por hacer: **$0**
-- Plata libre (para gastar − pendientes; no cuenta el ahorro): **$703.873**
-- Ahorro e inversión: **$41.525**
+- Plata libre (para gastar − pendientes; no cuenta el ahorro): **$745.398**
+- Ahorro e inversión: **$0**
 - Me deben: **$0** · Yo debo: **$1.130.700**
 - Patrimonio neto (plata + me deben − debo): **-$385.302**
 
@@ -37,11 +37,15 @@ Nada pendiente.
 | Fecha | Concepto | Monto | Nota |
 |---|---|---:|---|
 | 2026-11-30 | Plata para mamá (casa) | $150.000 | Sale de la nómina del 30 |
-| 2026-11-30 | Ahorro Nu (traslado a Nu) | $30.000 | Meta 60.000/mes: 30.000 por quincena |
-| 2026-11-30 | Inversión en acciones | $30.000 | Meta 20.000-50.000 por quincena |
+| 2026-11-30 | Ahorro Nu Emergencia | $30.000 | Meta 60.000/mes: 30.000 por quincena. No se toca |
+| 2026-11-30 | Inversión en acciones | $30.000 | Entre 30.000 y 50.000 por quincena |
+| 2026-11-30 | Colaboración mamá (queso / granola / comida mía) | $50.000 | Fijo quincenal |
+| 2026-11-30 | Plata para la novia (salidas / comida / motel) | $50.000 | Fijo quincenal |
 | 2026-12-15 | Plata para mamá (casa) | $150.000 | Sale de la nómina del 15 |
-| 2026-12-15 | Ahorro Nu (traslado a Nu) | $30.000 | Meta 60.000/mes: 30.000 por quincena |
-| 2026-12-15 | Inversión en acciones | $30.000 | Meta 20.000-50.000 por quincena |
+| 2026-12-15 | Ahorro Nu Emergencia | $30.000 | Meta 60.000/mes: 30.000 por quincena. No se toca |
+| 2026-12-15 | Inversión en acciones | $30.000 | Entre 30.000 y 50.000 por quincena |
+| 2026-12-15 | Colaboración mamá (queso / granola / comida mía) | $50.000 | Fijo quincenal |
+| 2026-12-15 | Plata para la novia (salidas / comida / motel) | $50.000 | Fijo quincenal |
 | 2026-12-23 | Cuota 1/6 celular | $175.000 | Sale de la nómina del 15 |
 | 2027-01-23 | Cuota 2/6 celular | $175.000 | Sale de la nómina del 15 |
 | 2027-02-23 | Cuota 3/6 celular | $175.000 | Sale de la nómina del 15 |
@@ -49,7 +53,7 @@ Nada pendiente.
 | 2027-04-23 | Cuota 5/6 celular | $175.000 | Sale de la nómina del 15 |
 | 2027-05-23 | Cuota 6/6 celular | $175.000 | Sale de la nómina del 15 |
 
-Total próximos: **$1.470.000** (no se descuentan de la plata libre todavía)
+Total próximos: **$1.670.000** (no se descuentan de la plata libre todavía)
 
 ## Mes 2026-11
 
@@ -86,6 +90,6 @@ Total próximos: **$1.470.000** (no se descuentan de la plata libre todavía)
 | 2026-11-17 | gasto | $30.000 | Bancolombia | Hogar | Mamá | Ducha (parte mía) |
 | 2026-11-17 | gasto | $150.000 | Bancolombia | Familia | Mamá | Para mamá: gastos de la casa |
 | 2026-11-17 | saldo_inicial | $226.000 | Efectivo |  |  | Saldo inicial |
-| 2026-11-16 | saldo_inicial | $41.525 | Nu |  |  | Saldo inicial |
+| 2026-11-16 | saldo_inicial | $41.525 | Nu Flujo |  |  | Saldo inicial |
 | 2026-11-16 | saldo_inicial | $140.298 | Nequi |  |  | Saldo inicial |
 | 2026-11-16 | saldo_inicial | $698.575 | Bancolombia |  |  | Saldo inicial |

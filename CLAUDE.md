@@ -31,7 +31,7 @@ Tu trabajo: anotarlo en los CSV, correr el reporte, contestarle con el resumen y
 - Montos sin puntos ni signo: `1500000`. Fechas `AAAA-MM-DD`; si no dice fecha, usar hoy.
 - `persona` es obligatoria en fiado/abono/prestamo_recibido/preste/me_debe/cobro. Usar SIEMPRE el mismo nombre
   (la tienda es `Tienda del barrio`).
-- `medio`: `Efectivo`, `Nequi`, `Bancolombia`, `Nu`, `Acciones`. Si no lo dice, `Efectivo` (o preguntar si importa).
+- `medio`: `Efectivo`, `Nequi`, `Bancolombia`, `Nu Flujo`, `Nu Emergencia`, `Acciones`. Si no lo dice, `Efectivo` (o preguntar si importa).
   Cuando dice "en efectivo" o "saqué X en efectivo" es plata de la billetera (`Efectivo`), NO un retiro de cajero.
 - `fecha_limite`: cuándo le van a pagar / cuándo tiene que pagar.
 - Categorías sugeridas: Nómina, Comida, Mercado, Hogar, Transporte, Arriendo, Servicios, Celular, Salud, Ropa,
@@ -46,6 +46,8 @@ Tu trabajo: anotarlo en los CSV, correr el reporte, contestarle con el resumen y
 ## Gastos fijos conocidos
 Cuando se pague uno, marcarlo `pagado` y agregar el de la siguiente quincena/mes como `programado`.
 - Plata para mamá (casa): $150.000 cada quincena (días 15 y 30). La del 15-nov se pagó el 17-nov.
+- Colaboración mamá (queso, granola, comida que él come): ~$50.000 cada quincena. Categoría `Mercado`.
+- Plata para la novia (salidas, comida, motel): $50.000 cada quincena. Categoría `Diversión`, persona `Novia`.
 - Tienda del barrio: cuenta corriente que va sumando (fiados) y se baja con abonos parciales ($50.000, $100.000...)
   cada mes. NO programar el pago total; registrar cada abono como `abono` a `Tienda del barrio`.
 - Celular a cuotas (persona `Celular a cuotas`): $1.050.000 en 6 cuotas de $175.000 sin intereses, la primera
@@ -54,9 +56,10 @@ Cuando se pague uno, marcarlo `pagado` y agregar el de la siguiente quincena/mes
 
 ## Ingresos y ahorro
 - Nómina: quincena del 30 ≈ $1.050.000 (trae el auxilio de transporte); quincena del 15 ≈ $800.000–850.000.
-- El contrato termina el 15-dic-2026 y se renueva. Con la terminación entra la liquidación (cesantías del año,
-  intereses de cesantías, prima del semestre y vacaciones si no las tomó). Monto aún no confirmado.
-- `Nu` y `Acciones` son medios de AHORRO/INVERSIÓN (`AHORRO` en economia.py): cuentan en el total pero no en la
-  plata libre. Meter plata ahí = `traslado` (ej. `Bancolombia>Nu`, `Nequi>Acciones`), no `gasto`.
-- Meta: $60.000/mes a Nu (≈9 % E.A.) = $30.000 por quincena, y $20.000–50.000 por quincena en acciones,
-  subiéndolo con el tiempo. Programar ambos en cada quincena.
+- El contrato termina el 15-dic-2026 y firma el nuevo esa misma semana. Liquidación: cesantías del año, intereses,
+  prima del semestre y vacaciones pagadas en plata (no las toma). Estimado ~$4.000.000 si gana el mínimo; no confirmado.
+- Nu tiene dos cajitas: `Nu Flujo` (mete y saca; cuenta como plata para gastar) y `Nu Emergencia` (fondo de
+  emergencia, NO se toca). `Nu Emergencia` y `Acciones` son AHORRO (`AHORRO` en economia.py): cuentan en el total
+  pero no en la plata libre. Meter plata ahí = `traslado` (ej. `Bancolombia>Nu Emergencia`), no `gasto`.
+- Meta: $60.000/mes a Nu Emergencia (≈9 % E.A.) = $30.000 por quincena, y $30.000–50.000 por quincena en acciones
+  (le interesan tecnológicas grandes tipo Apple/Google, Coca-Cola y algo de S&P 500). Programar ambos cada quincena.
