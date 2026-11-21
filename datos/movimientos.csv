@@ -20,3 +20,6 @@ fecha,tipo,monto,medio,categoria,persona,descripcion,fecha_limite
 2026-11-21,gasto,18900,Bancolombia,Suscripciones/Netflix,,Suscripción Netflix,
 2026-11-20,gasto,27500,Efectivo,Novia/Salidas a comer,Novia,Helado con mi novia,
 2026-11-18,gasto,8500,Bancolombia,Novia/Transferencias,Novia,Transferencia a mi novia,
+2026-11-21,me_debe,5000,,Suscripciones/Netflix,Mamá,Su parte del Netflix de noviembre,
+2026-11-21,me_debe,5000,,Suscripciones/Netflix,Papá,Su parte del Netflix de noviembre,
+2026-11-21,me_debe,5000,,Suscripciones/Netflix,Hermana,Su parte del Netflix de noviembre,

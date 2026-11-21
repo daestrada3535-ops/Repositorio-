@@ -52,6 +52,7 @@ Cuando se pague uno, marcarlo `pagado` y agregar el de la siguiente quincena/mes
 - Colaboración mamá (queso, granola, comida que él come): ~$50.000 cada quincena. Categoría `Mercado`.
 - Plata para la novia (salidas, comida, motel): $50.000 cada quincena. Categoría `Novia/<sección>`, persona `Novia`.
 - Netflix: $18.900 mensual, débito automático de Bancolombia (~día 21). Categoría `Suscripciones/Netflix`.
+  Mamá, Papá y Hermana le dan $5.000 cada uno: cada mes que se cobre, anotar `me_debe` 5000 a cada uno y `cobro` cuando paguen.
 - Claude Code: $63.490 mensual desde Bancolombia, el día 28. Categoría `Suscripciones/Claude`.
 - Tienda del barrio: cuenta corriente que va sumando (fiados) y se baja con abonos parciales ($50.000, $100.000...)
   cada mes. NO programar el pago total; registrar cada abono como `abono` a `Tienda del barrio`.

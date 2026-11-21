@@ -14,12 +14,16 @@
 - Pagos pendientes por hacer: **$63.490**
 - Plata libre (para gastar − pendientes; no cuenta el ahorro): **$627.008**
 - Ahorro e inversión: **$0**
-- Me deben: **$0** · Yo debo: **$1.130.700**
-- Patrimonio neto (plata + me deben − debo): **-$440.202**
+- Me deben: **$15.000** · Yo debo: **$1.130.700**
+- Patrimonio neto (plata + me deben − debo): **-$425.202**
 
 ## Personas que me deben
 
-Nadie me debe por ahora.
+| Persona | Debe | Fecha de pago |
+|---|---:|---|
+| Mamá | $5.000 |  |
+| Papá | $5.000 |  |
+| Hermana | $5.000 |  |
 
 ## Lo que yo debo (tienda, préstamos…)
 
@@ -84,6 +88,9 @@ Total próximos: **$1.688.900** (no se descuentan de la plata libre todavía)
 
 | Fecha | Tipo | Monto | Medio | Categoría | Persona | Descripción |
 |---|---|---:|---|---|---|---|
+| 2026-11-21 | me_debe | $5.000 |  | Suscripciones/Netflix | Hermana | Su parte del Netflix de noviembre |
+| 2026-11-21 | me_debe | $5.000 |  | Suscripciones/Netflix | Papá | Su parte del Netflix de noviembre |
+| 2026-11-21 | me_debe | $5.000 |  | Suscripciones/Netflix | Mamá | Su parte del Netflix de noviembre |
 | 2026-11-21 | gasto | $18.900 | Bancolombia | Suscripciones/Netflix |  | Suscripción Netflix |
 | 2026-11-20 | gasto | $27.500 | Efectivo | Novia/Salidas a comer | Novia | Helado con mi novia |
 | 2026-11-19 | fiado | $18.300 |  | Mercado | Tienda del barrio | Comida para la casa: arepas + quesito grande + bolsa de leche |
@@ -101,6 +108,3 @@ Total próximos: **$1.688.900** (no se descuentan de la plata libre todavía)
 | 2026-11-17 | gasto | $20.000 | Bancolombia | Mercado | Mamá | Queso y granola |
 | 2026-11-17 | gasto | $30.000 | Bancolombia | Hogar | Mamá | Ducha (parte mía) |
 | 2026-11-17 | gasto | $150.000 | Bancolombia | Familia | Mamá | Para mamá: gastos de la casa |
-| 2026-11-17 | saldo_inicial | $226.000 | Efectivo |  |  | Saldo inicial |
-| 2026-11-16 | saldo_inicial | $41.525 | Nu Flujo |  |  | Saldo inicial |
-| 2026-11-16 | saldo_inicial | $140.298 | Nequi |  |  | Saldo inicial |
