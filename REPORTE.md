@@ -32,7 +32,7 @@ Nadie me debe por ahora.
 
 | Fecha límite | Concepto | Monto | Nota |
 |---|---|---:|---|
-| 2026-11-30 | Suscripción Claude Code (mensual) | $63.490 | Sale de Bancolombia. Fecha por confirmar |
+| 2026-11-28 | Suscripción Claude Code (mensual) | $63.490 | Sale de Bancolombia el 28 de cada mes |
 
 ## Próximos pagos (salen de la próxima plata que entre)
 
