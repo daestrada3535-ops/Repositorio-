@@ -36,6 +36,9 @@ Tu trabajo: anotarlo en los CSV, correr el reporte, contestarle con el resumen y
 - `fecha_limite`: cuándo le van a pagar / cuándo tiene que pagar.
 - Categorías sugeridas: Nómina, Comida, Mercado, Hogar, Transporte, Arriendo, Servicios, Celular, Salud, Ropa,
   Diversión, Familia, Tienda, Deudas, Otros. Mantenerlas consistentes.
+- Categoría `Novia` con secciones, se escribe `Novia/<sección>`: `Novia/Comida`, `Novia/Salidas a comer`,
+  `Novia/Regalos`, `Novia/Transferencias`, `Novia/Moteliadas`. Todo gasto para la novia va ahí (aunque sea fiado
+  en la tienda). El reporte las agrupa bajo "Novia". Otras categorías pueden usar el mismo formato `Principal/Sección`.
 - Cuando llega la nómina y dice "tengo que sacar X para esto", anotar el ingreso y agregar cada apartado a
   `pendientes.csv`; cuando lo pague, registrar el gasto y marcar el pendiente como `pagado`.
 - Si algo es ambiguo (monto, si fue fiado o de contado, quién), preguntar antes de anotar.
@@ -47,7 +50,7 @@ Tu trabajo: anotarlo en los CSV, correr el reporte, contestarle con el resumen y
 Cuando se pague uno, marcarlo `pagado` y agregar el de la siguiente quincena/mes como `programado`.
 - Plata para mamá (casa): $150.000 cada quincena (días 15 y 30). La del 15-nov se pagó el 17-nov.
 - Colaboración mamá (queso, granola, comida que él come): ~$50.000 cada quincena. Categoría `Mercado`.
-- Plata para la novia (salidas, comida, motel): $50.000 cada quincena. Categoría `Diversión`, persona `Novia`.
+- Plata para la novia (salidas, comida, motel): $50.000 cada quincena. Categoría `Novia/<sección>`, persona `Novia`.
 - Netflix: $18.900 mensual, débito automático de Bancolombia (~día 21). Categoría `Diversión`.
 - Tienda del barrio: cuenta corriente que va sumando (fiados) y se baja con abonos parciales ($50.000, $100.000...)
   cada mes. NO programar el pago total; registrar cada abono como `abono` a `Tienda del barrio`.

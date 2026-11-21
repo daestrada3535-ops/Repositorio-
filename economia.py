@@ -150,7 +150,18 @@ def main():
           f"- Diferencia: **{pesos(sum(ing_mes.values()) - sum(gas_mes.values()))}**", ""]
     if gas_mes:
         L += ["| Categoría de gasto | Monto |", "|---|---:|"]
-        L += [f"| {c} | {pesos(v)} |" for c, v in sorted(gas_mes.items(), key=lambda x: -x[1])]
+        # Categorías con sección "Principal/Sección" (ej. "Novia/Regalos") se agrupan bajo la principal
+        principal = defaultdict(float)
+        secciones = defaultdict(lambda: defaultdict(float))
+        for c, v in gas_mes.items():
+            cp, _, sec = c.partition("/")
+            principal[cp.strip()] += v
+            if sec:
+                secciones[cp.strip()][sec.strip()] += v
+        for c, v in sorted(principal.items(), key=lambda x: -x[1]):
+            L.append(f"| **{c}** | **{pesos(v)}** |" if c in secciones else f"| {c} | {pesos(v)} |")
+            for sc, sv in sorted(secciones[c].items(), key=lambda x: -x[1]):
+                L.append(f"| &nbsp;&nbsp;↳ {sc} | {pesos(sv)} |")
         L += [""]
 
     L += ["## Últimos 20 movimientos", ""]

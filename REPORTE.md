@@ -67,20 +67,23 @@ Total próximos: **$1.688.900** (no se descuentan de la plata libre todavía)
 | Celular | $1.050.000 |
 | Familia | $220.000 |
 | Mercado | $97.300 |
-| Diversión | $46.400 |
 | Transporte | $45.000 |
+| **Novia** | **$41.200** |
+| &nbsp;&nbsp;↳ Salidas a comer | $27.500 |
+| &nbsp;&nbsp;↳ Comida | $13.700 |
 | Hogar | $30.000 |
 | Tienda | $29.700 |
-| Comida | $19.700 |
+| Diversión | $18.900 |
+| Comida | $6.000 |
 
 ## Últimos 20 movimientos
 
 | Fecha | Tipo | Monto | Medio | Categoría | Persona | Descripción |
 |---|---|---:|---|---|---|---|
 | 2026-11-21 | gasto | $18.900 | Bancolombia | Diversión |  | Suscripción Netflix |
-| 2026-11-20 | gasto | $27.500 | Efectivo | Diversión | Novia | Helado con mi novia |
+| 2026-11-20 | gasto | $27.500 | Efectivo | Novia/Salidas a comer | Novia | Helado con mi novia |
 | 2026-11-19 | fiado | $18.300 |  | Mercado | Tienda del barrio | Comida para la casa: arepas + quesito grande + bolsa de leche |
-| 2026-11-19 | fiado | $13.700 |  | Comida | Tienda del barrio | Mekato para mi novia |
+| 2026-11-19 | fiado | $13.700 |  | Novia/Comida | Tienda del barrio | Mekato para mi novia |
 | 2026-11-19 | fiado | $19.000 |  | Mercado | Tienda del barrio | Huevos |
 | 2026-11-18 | cobro | $80.000 | Bancolombia | Comida | Suegra | Suegra me transfirió su parte de las papas |
 | 2026-11-18 | preste | $80.000 | Efectivo | Comida | Suegra | Papas: pagué la parte de la suegra |
