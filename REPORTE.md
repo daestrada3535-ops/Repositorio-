@@ -4,18 +4,18 @@
 
 | Medio | Saldo |
 |---|---:|
-| Bancolombia | $514.675 |
+| Bancolombia | $506.175 |
 | Efectivo | $42.500 |
 | Nequi | $100.298 |
 | Nu Flujo | $41.525 |
-| **Para gastar** | **$698.998** |
-| **Total** | **$698.998** |
+| **Para gastar** | **$690.498** |
+| **Total** | **$690.498** |
 
 - Pagos pendientes por hacer: **$0**
-- Plata libre (para gastar − pendientes; no cuenta el ahorro): **$698.998**
+- Plata libre (para gastar − pendientes; no cuenta el ahorro): **$690.498**
 - Ahorro e inversión: **$0**
 - Me deben: **$0** · Yo debo: **$1.130.700**
-- Patrimonio neto (plata + me deben − debo): **-$431.702**
+- Patrimonio neto (plata + me deben − debo): **-$440.202**
 
 ## Personas que me deben
 
@@ -59,18 +59,19 @@ Total próximos: **$1.688.900** (no se descuentan de la plata libre todavía)
 ## Mes 2026-11
 
 - Ingresos: **$0**
-- Gastos (incluye fiado): **$1.538.100**
-- Diferencia: **-$1.538.100**
+- Gastos (incluye fiado): **$1.546.600**
+- Diferencia: **-$1.546.600**
 
 | Categoría de gasto | Monto |
 |---|---:|
 | Celular | $1.050.000 |
 | Familia | $220.000 |
 | Mercado | $97.300 |
-| Transporte | $45.000 |
-| **Novia** | **$41.200** |
+| **Novia** | **$49.700** |
 | &nbsp;&nbsp;↳ Salidas a comer | $27.500 |
 | &nbsp;&nbsp;↳ Comida | $13.700 |
+| &nbsp;&nbsp;↳ Transferencias | $8.500 |
+| Transporte | $45.000 |
 | Hogar | $30.000 |
 | Tienda | $29.700 |
 | Diversión | $18.900 |
@@ -85,6 +86,7 @@ Total próximos: **$1.688.900** (no se descuentan de la plata libre todavía)
 | 2026-11-19 | fiado | $18.300 |  | Mercado | Tienda del barrio | Comida para la casa: arepas + quesito grande + bolsa de leche |
 | 2026-11-19 | fiado | $13.700 |  | Novia/Comida | Tienda del barrio | Mekato para mi novia |
 | 2026-11-19 | fiado | $19.000 |  | Mercado | Tienda del barrio | Huevos |
+| 2026-11-18 | gasto | $8.500 | Bancolombia | Novia/Transferencias | Novia | Transferencia a mi novia |
 | 2026-11-18 | cobro | $80.000 | Bancolombia | Comida | Suegra | Suegra me transfirió su parte de las papas |
 | 2026-11-18 | preste | $80.000 | Efectivo | Comida | Suegra | Papas: pagué la parte de la suegra |
 | 2026-11-18 | gasto | $6.000 | Efectivo | Comida |  | Papas con suegra y novia (mi parte de 86.000) |
@@ -99,4 +101,3 @@ Total próximos: **$1.688.900** (no se descuentan de la plata libre todavía)
 | 2026-11-17 | saldo_inicial | $226.000 | Efectivo |  |  | Saldo inicial |
 | 2026-11-16 | saldo_inicial | $41.525 | Nu Flujo |  |  | Saldo inicial |
 | 2026-11-16 | saldo_inicial | $140.298 | Nequi |  |  | Saldo inicial |
-| 2026-11-16 | saldo_inicial | $698.575 | Bancolombia |  |  | Saldo inicial |
