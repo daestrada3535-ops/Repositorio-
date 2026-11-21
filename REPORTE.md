@@ -5,17 +5,17 @@
 | Medio | Saldo |
 |---|---:|
 | Bancolombia | $514.675 |
-| Efectivo | $70.000 |
+| Efectivo | $42.500 |
 | Nequi | $100.298 |
 | Nu Flujo | $41.525 |
-| **Para gastar** | **$726.498** |
-| **Total** | **$726.498** |
+| **Para gastar** | **$698.998** |
+| **Total** | **$698.998** |
 
 - Pagos pendientes por hacer: **$0**
-- Plata libre (para gastar − pendientes; no cuenta el ahorro): **$726.498**
+- Plata libre (para gastar − pendientes; no cuenta el ahorro): **$698.998**
 - Ahorro e inversión: **$0**
 - Me deben: **$0** · Yo debo: **$1.130.700**
-- Patrimonio neto (plata + me deben − debo): **-$404.202**
+- Patrimonio neto (plata + me deben − debo): **-$431.702**
 
 ## Personas que me deben
 
@@ -59,25 +59,26 @@ Total próximos: **$1.688.900** (no se descuentan de la plata libre todavía)
 ## Mes 2026-11
 
 - Ingresos: **$0**
-- Gastos (incluye fiado): **$1.510.600**
-- Diferencia: **-$1.510.600**
+- Gastos (incluye fiado): **$1.538.100**
+- Diferencia: **-$1.538.100**
 
 | Categoría de gasto | Monto |
 |---|---:|
 | Celular | $1.050.000 |
 | Familia | $220.000 |
 | Mercado | $97.300 |
+| Diversión | $46.400 |
 | Transporte | $45.000 |
 | Hogar | $30.000 |
 | Tienda | $29.700 |
 | Comida | $19.700 |
-| Diversión | $18.900 |
 
 ## Últimos 20 movimientos
 
 | Fecha | Tipo | Monto | Medio | Categoría | Persona | Descripción |
 |---|---|---:|---|---|---|---|
 | 2026-11-21 | gasto | $18.900 | Bancolombia | Diversión |  | Suscripción Netflix |
+| 2026-11-20 | gasto | $27.500 | Efectivo | Diversión | Novia | Helado con mi novia |
 | 2026-11-19 | fiado | $18.300 |  | Mercado | Tienda del barrio | Comida para la casa: arepas + quesito grande + bolsa de leche |
 | 2026-11-19 | fiado | $13.700 |  | Comida | Tienda del barrio | Mekato para mi novia |
 | 2026-11-19 | fiado | $19.000 |  | Mercado | Tienda del barrio | Huevos |
