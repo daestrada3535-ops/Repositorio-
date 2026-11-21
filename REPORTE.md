@@ -11,8 +11,8 @@
 | **Para gastar** | **$690.498** |
 | **Total** | **$690.498** |
 
-- Pagos pendientes por hacer: **$0**
-- Plata libre (para gastar − pendientes; no cuenta el ahorro): **$690.498**
+- Pagos pendientes por hacer: **$63.490**
+- Plata libre (para gastar − pendientes; no cuenta el ahorro): **$627.008**
 - Ahorro e inversión: **$0**
 - Me deben: **$0** · Yo debo: **$1.130.700**
 - Patrimonio neto (plata + me deben − debo): **-$440.202**
@@ -30,7 +30,9 @@ Nadie me debe por ahora.
 
 ## Pagos pendientes por hacer
 
-Nada pendiente.
+| Fecha límite | Concepto | Monto | Nota |
+|---|---|---:|---|
+| 2026-11-30 | Suscripción Claude Code (mensual) | $63.490 | Sale de Bancolombia. Fecha por confirmar |
 
 ## Próximos pagos (salen de la próxima plata que entre)
 
@@ -74,14 +76,15 @@ Total próximos: **$1.688.900** (no se descuentan de la plata libre todavía)
 | Transporte | $45.000 |
 | Hogar | $30.000 |
 | Tienda | $29.700 |
-| Diversión | $18.900 |
+| **Suscripciones** | **$18.900** |
+| &nbsp;&nbsp;↳ Netflix | $18.900 |
 | Comida | $6.000 |
 
 ## Últimos 20 movimientos
 
 | Fecha | Tipo | Monto | Medio | Categoría | Persona | Descripción |
 |---|---|---:|---|---|---|---|
-| 2026-11-21 | gasto | $18.900 | Bancolombia | Diversión |  | Suscripción Netflix |
+| 2026-11-21 | gasto | $18.900 | Bancolombia | Suscripciones/Netflix |  | Suscripción Netflix |
 | 2026-11-20 | gasto | $27.500 | Efectivo | Novia/Salidas a comer | Novia | Helado con mi novia |
 | 2026-11-19 | fiado | $18.300 |  | Mercado | Tienda del barrio | Comida para la casa: arepas + quesito grande + bolsa de leche |
 | 2026-11-19 | fiado | $13.700 |  | Novia/Comida | Tienda del barrio | Mekato para mi novia |

@@ -35,7 +35,7 @@ Tu trabajo: anotarlo en los CSV, correr el reporte, contestarle con el resumen y
   Cuando dice "en efectivo" o "saqué X en efectivo" es plata de la billetera (`Efectivo`), NO un retiro de cajero.
 - `fecha_limite`: cuándo le van a pagar / cuándo tiene que pagar.
 - Categorías sugeridas: Nómina, Comida, Mercado, Hogar, Transporte, Arriendo, Servicios, Celular, Salud, Ropa,
-  Diversión, Familia, Tienda, Deudas, Otros. Mantenerlas consistentes.
+  Diversión, Familia, Tienda, Deudas, Suscripciones, Otros. Mantenerlas consistentes.
 - Categoría `Novia` con secciones, se escribe `Novia/<sección>`: `Novia/Comida`, `Novia/Salidas a comer`,
   `Novia/Regalos`, `Novia/Transferencias`, `Novia/Moteliadas`. Todo gasto para la novia va ahí (aunque sea fiado
   en la tienda). El reporte las agrupa bajo "Novia". Otras categorías pueden usar el mismo formato `Principal/Sección`.
@@ -51,7 +51,8 @@ Cuando se pague uno, marcarlo `pagado` y agregar el de la siguiente quincena/mes
 - Plata para mamá (casa): $150.000 cada quincena (días 15 y 30). La del 15-nov se pagó el 17-nov.
 - Colaboración mamá (queso, granola, comida que él come): ~$50.000 cada quincena. Categoría `Mercado`.
 - Plata para la novia (salidas, comida, motel): $50.000 cada quincena. Categoría `Novia/<sección>`, persona `Novia`.
-- Netflix: $18.900 mensual, débito automático de Bancolombia (~día 21). Categoría `Diversión`.
+- Netflix: $18.900 mensual, débito automático de Bancolombia (~día 21). Categoría `Suscripciones/Netflix`.
+- Claude Code: $63.490 mensual desde Bancolombia (fecha de cobro por confirmar). Categoría `Suscripciones/Claude`.
 - Tienda del barrio: cuenta corriente que va sumando (fiados) y se baja con abonos parciales ($50.000, $100.000...)
   cada mes. NO programar el pago total; registrar cada abono como `abono` a `Tienda del barrio`.
 - Celular a cuotas (persona `Celular a cuotas`): $1.050.000 en 6 cuotas de $175.000 sin intereses, la primera
