@@ -1,21 +1,21 @@
-# Mi Economía — reporte al 2026-11-20
+# Mi Economía — reporte al 2026-11-21
 
 ## Plata disponible
 
 | Medio | Saldo |
 |---|---:|
-| Bancolombia | $533.575 |
+| Bancolombia | $514.675 |
 | Efectivo | $70.000 |
 | Nequi | $100.298 |
 | Nu Flujo | $41.525 |
-| **Para gastar** | **$745.398** |
-| **Total** | **$745.398** |
+| **Para gastar** | **$726.498** |
+| **Total** | **$726.498** |
 
 - Pagos pendientes por hacer: **$0**
-- Plata libre (para gastar − pendientes; no cuenta el ahorro): **$745.398**
+- Plata libre (para gastar − pendientes; no cuenta el ahorro): **$726.498**
 - Ahorro e inversión: **$0**
 - Me deben: **$0** · Yo debo: **$1.130.700**
-- Patrimonio neto (plata + me deben − debo): **-$385.302**
+- Patrimonio neto (plata + me deben − debo): **-$404.202**
 
 ## Personas que me deben
 
@@ -46,6 +46,7 @@ Nada pendiente.
 | 2026-12-15 | Inversión en acciones | $30.000 | Entre 30.000 y 50.000 por quincena |
 | 2026-12-15 | Colaboración mamá (queso / granola / comida mía) | $50.000 | Fijo quincenal |
 | 2026-12-15 | Plata para la novia (salidas / comida / motel) | $50.000 | Fijo quincenal |
+| 2026-12-21 | Netflix (suscripción mensual) | $18.900 | Débito automático Bancolombia |
 | 2026-12-23 | Cuota 1/6 celular | $175.000 | Sale de la nómina del 15 |
 | 2027-01-23 | Cuota 2/6 celular | $175.000 | Sale de la nómina del 15 |
 | 2027-02-23 | Cuota 3/6 celular | $175.000 | Sale de la nómina del 15 |
@@ -53,13 +54,13 @@ Nada pendiente.
 | 2027-04-23 | Cuota 5/6 celular | $175.000 | Sale de la nómina del 15 |
 | 2027-05-23 | Cuota 6/6 celular | $175.000 | Sale de la nómina del 15 |
 
-Total próximos: **$1.670.000** (no se descuentan de la plata libre todavía)
+Total próximos: **$1.688.900** (no se descuentan de la plata libre todavía)
 
 ## Mes 2026-11
 
 - Ingresos: **$0**
-- Gastos (incluye fiado): **$1.491.700**
-- Diferencia: **-$1.491.700**
+- Gastos (incluye fiado): **$1.510.600**
+- Diferencia: **-$1.510.600**
 
 | Categoría de gasto | Monto |
 |---|---:|
@@ -70,11 +71,13 @@ Total próximos: **$1.670.000** (no se descuentan de la plata libre todavía)
 | Hogar | $30.000 |
 | Tienda | $29.700 |
 | Comida | $19.700 |
+| Diversión | $18.900 |
 
 ## Últimos 20 movimientos
 
 | Fecha | Tipo | Monto | Medio | Categoría | Persona | Descripción |
 |---|---|---:|---|---|---|---|
+| 2026-11-21 | gasto | $18.900 | Bancolombia | Diversión |  | Suscripción Netflix |
 | 2026-11-19 | fiado | $18.300 |  | Mercado | Tienda del barrio | Comida para la casa: arepas + quesito grande + bolsa de leche |
 | 2026-11-19 | fiado | $13.700 |  | Comida | Tienda del barrio | Mekato para mi novia |
 | 2026-11-19 | fiado | $19.000 |  | Mercado | Tienda del barrio | Huevos |

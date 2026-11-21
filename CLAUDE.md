@@ -48,6 +48,7 @@ Cuando se pague uno, marcarlo `pagado` y agregar el de la siguiente quincena/mes
 - Plata para mamá (casa): $150.000 cada quincena (días 15 y 30). La del 15-nov se pagó el 17-nov.
 - Colaboración mamá (queso, granola, comida que él come): ~$50.000 cada quincena. Categoría `Mercado`.
 - Plata para la novia (salidas, comida, motel): $50.000 cada quincena. Categoría `Diversión`, persona `Novia`.
+- Netflix: $18.900 mensual, débito automático de Bancolombia (~día 21). Categoría `Diversión`.
 - Tienda del barrio: cuenta corriente que va sumando (fiados) y se baja con abonos parciales ($50.000, $100.000...)
   cada mes. NO programar el pago total; registrar cada abono como `abono` a `Tienda del barrio`.
 - Celular a cuotas (persona `Celular a cuotas`): $1.050.000 en 6 cuotas de $175.000 sin intereses, la primera
