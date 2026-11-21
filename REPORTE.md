@@ -14,13 +14,14 @@
 - Pagos pendientes por hacer: **$63.490**
 - Plata libre (para gastar − pendientes; no cuenta el ahorro): **$627.008**
 - Ahorro e inversión: **$0**
-- Me deben: **$15.000** · Yo debo: **$1.130.700**
-- Patrimonio neto (plata + me deben − debo): **-$425.202**
+- Me deben: **$415.000** · Yo debo: **$1.130.700**
+- Patrimonio neto (plata + me deben − debo): **-$25.202**
 
 ## Personas que me deben
 
 | Persona | Debe | Fecha de pago |
 |---|---:|---|
+| Tío Carlos | $400.000 |  |
 | Mamá | $5.000 |  |
 | Papá | $5.000 |  |
 | Hermana | $5.000 |  |
@@ -88,6 +89,7 @@ Total próximos: **$1.688.900** (no se descuentan de la plata libre todavía)
 
 | Fecha | Tipo | Monto | Medio | Categoría | Persona | Descripción |
 |---|---|---:|---|---|---|---|
+| 2026-11-21 | me_debe | $400.000 |  | Otros | Tío Carlos | Me debe 400.000 (deuda de antes) |
 | 2026-11-21 | me_debe | $5.000 |  | Suscripciones/Netflix | Hermana | Su parte del Netflix de noviembre |
 | 2026-11-21 | me_debe | $5.000 |  | Suscripciones/Netflix | Papá | Su parte del Netflix de noviembre |
 | 2026-11-21 | me_debe | $5.000 |  | Suscripciones/Netflix | Mamá | Su parte del Netflix de noviembre |
@@ -107,4 +109,3 @@ Total próximos: **$1.688.900** (no se descuentan de la plata libre todavía)
 | 2026-11-17 | gasto | $40.000 | Nequi | Mercado | Mamá | Queso y granola |
 | 2026-11-17 | gasto | $20.000 | Bancolombia | Mercado | Mamá | Queso y granola |
 | 2026-11-17 | gasto | $30.000 | Bancolombia | Hogar | Mamá | Ducha (parte mía) |
-| 2026-11-17 | gasto | $150.000 | Bancolombia | Familia | Mamá | Para mamá: gastos de la casa |
