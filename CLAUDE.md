@@ -21,6 +21,7 @@ Tu trabajo: anotarlo en los CSV, correr el reporte, contestarle con el resumen y
 | gasto | pagó algo de contado | − plata |
 | fiado | sacó algo fiado (tienda del barrio) | + lo que debe (cuenta como gasto del mes) |
 | abono | le paga/abona a alguien que le debe (tienda, préstamo) | − plata, − lo que debe |
+| debo | una deuda que ya tenía de antes (no es una compra nueva) | + lo que debe (NO cuenta como gasto del mes) |
 | prestamo_recibido | alguien le presta plata | + plata, + lo que debe |
 | preste | él le presta plata a alguien | − plata, + le deben |
 | me_debe | alguien le queda debiendo sin sacar plata (un trabajo, una venta) | + le deben |

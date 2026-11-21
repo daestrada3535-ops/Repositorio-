@@ -14,8 +14,8 @@
 - Pagos pendientes por hacer: **$63.490**
 - Plata libre (para gastar − pendientes; no cuenta el ahorro): **$627.008**
 - Ahorro e inversión: **$0**
-- Me deben: **$465.000** · Yo debo: **$1.130.700**
-- Patrimonio neto (plata + me deben − debo): **$24.798**
+- Me deben: **$465.000** · Yo debo: **$1.247.700**
+- Patrimonio neto (plata + me deben − debo): **-$92.202**
 
 ## Personas que me deben
 
@@ -31,6 +31,7 @@
 | A quién | Debo | Fecha límite |
 |---|---:|---|
 | Celular a cuotas | $1.050.000 | 2026-12-23 |
+| Primo Juan Manuel | $117.000 |  |
 | Tienda del barrio | $80.700 |  |
 
 ## Pagos pendientes por hacer
@@ -66,8 +67,8 @@ Total próximos: **$1.688.900** (no se descuentan de la plata libre todavía)
 ## Mes 2026-11
 
 - Ingresos: **$0**
-- Gastos (incluye fiado): **$1.546.600**
-- Diferencia: **-$1.546.600**
+- Gastos (incluye fiado): **$1.516.900**
+- Diferencia: **-$1.516.900**
 
 | Categoría de gasto | Monto |
 |---|---:|
@@ -80,7 +81,6 @@ Total próximos: **$1.688.900** (no se descuentan de la plata libre todavía)
 | &nbsp;&nbsp;↳ Transferencias | $8.500 |
 | Transporte | $45.000 |
 | Hogar | $30.000 |
-| Tienda | $29.700 |
 | **Suscripciones** | **$18.900** |
 | &nbsp;&nbsp;↳ Netflix | $18.900 |
 | Comida | $6.000 |
@@ -89,6 +89,7 @@ Total próximos: **$1.688.900** (no se descuentan de la plata libre todavía)
 
 | Fecha | Tipo | Monto | Medio | Categoría | Persona | Descripción |
 |---|---|---:|---|---|---|---|
+| 2026-11-21 | debo | $117.000 |  | Deudas | Primo Juan Manuel | Le debo 117.000 (deuda de antes) |
 | 2026-11-21 | me_debe | $5.000 |  | Suscripciones/Netflix | Mamá | Su parte del Netflix de octubre (pendiente) |
 | 2026-11-21 | me_debe | $5.000 |  | Suscripciones/Netflix | Papá | Su parte del Netflix de octubre (pendiente) |
 | 2026-11-21 | me_debe | $400.000 |  | Otros | Tío Carlos | Me debe 400.000 (deuda de antes) |
@@ -107,5 +108,4 @@ Total próximos: **$1.688.900** (no se descuentan de la plata libre todavía)
 | 2026-11-18 | gasto | $45.000 | Bancolombia | Transporte |  | Gasolina moto |
 | 2026-11-17 | gasto | $70.000 | Efectivo | Familia | Papá | Repuestos para el carro de mi papá (taller) |
 | 2026-11-17 | fiado | $1.050.000 |  | Celular | Celular a cuotas | Compra de celular: 6 cuotas mensuales de 175.000 sin intereses (día 23) |
-| 2026-11-17 | fiado | $29.700 |  | Tienda | Tienda del barrio | Saldo de la cuenta de la tienda al 17-nov |
-| 2026-11-17 | gasto | $40.000 | Nequi | Mercado | Mamá | Queso y granola |
+| 2026-11-17 | debo | $29.700 |  | Tienda | Tienda del barrio | Saldo de la cuenta de la tienda al 17-nov |

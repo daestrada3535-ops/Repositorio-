@@ -26,6 +26,7 @@ TIPOS = {
     "abono":             (-1, 0, -1),  # le pago/abono a alguien que le debo
     "prestamo_recibido": (+1, 0, +1),  # alguien me presta plata
     "preste":            (-1, +1, 0),  # yo le presto plata a alguien
+    "debo":              (0, 0, +1),   # deuda que ya tenía (no cuenta como gasto del mes)
     "me_debe":           (0, +1, 0),   # alguien me queda debiendo sin que yo saque plata (ej. un trabajo)
     "cobro":             (+1, -1, 0),  # alguien me paga lo que me debía
     "traslado":          (0, 0, 0),    # mover plata entre medios: medio = "Origen>Destino"

@@ -7,7 +7,7 @@ fecha,tipo,monto,medio,categoria,persona,descripcion,fecha_limite
 2026-11-17,gasto,30000,Bancolombia,Hogar,Mamá,Ducha (parte mía),
 2026-11-17,gasto,20000,Bancolombia,Mercado,Mamá,Queso y granola,
 2026-11-17,gasto,40000,Nequi,Mercado,Mamá,Queso y granola,
-2026-11-17,fiado,29700,,Tienda,Tienda del barrio,Saldo de la cuenta de la tienda al 17-nov,
+2026-11-17,debo,29700,,Tienda,Tienda del barrio,Saldo de la cuenta de la tienda al 17-nov,
 2026-11-17,fiado,1050000,,Celular,Celular a cuotas,Compra de celular: 6 cuotas mensuales de 175.000 sin intereses (día 23),2026-12-23
 2026-11-18,gasto,45000,Bancolombia,Transporte,,Gasolina moto,
 2026-11-18,gasto,6000,Efectivo,Comida,,Papas con suegra y novia (mi parte de 86.000),
@@ -28,3 +28,4 @@ fecha,tipo,monto,medio,categoria,persona,descripcion,fecha_limite
 2026-11-14,me_debe,20000,,Diversión,Hermana,Su parte de la pijamada del 14-nov,
 2026-11-21,me_debe,5000,,Suscripciones/Netflix,Papá,Su parte del Netflix de octubre (pendiente),
 2026-11-21,me_debe,5000,,Suscripciones/Netflix,Mamá,Su parte del Netflix de octubre (pendiente),
+2026-11-21,debo,117000,,Deudas,Primo Juan Manuel,Le debo 117.000 (deuda de antes),
